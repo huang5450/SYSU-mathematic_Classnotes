@@ -1,0 +1,189 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{坐标变换公式}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ 设定}
+
+$[O;\vec e_1,\vec e_2,\vec e_3]$ 为直角坐标系（Ⅰ），
+$[O';\vec e_1',\vec e_2',\vec e_3']$ 为直角坐标系（Ⅱ）。
+
+$O'$ 在旧坐标系中的坐标是 $(a_1,a_2,a_3)$；
+
+$\vec e_1'$ 在旧坐标系中的坐标是 $(a_{11},a_{21},a_{31})$，
+$\vec e_2'$ 在旧坐标系中的坐标是 $(a_{12},a_{22},a_{32})$，
+$\vec e_3'$ 在旧坐标系中的坐标是 $(a_{13},a_{23},a_{33})$，即
+\[
+\begin{cases}
+\vec e_1'=a_{11}\vec e_1+a_{21}\vec e_2+a_{31}\vec e_3,\\
+\vec e_2'=a_{12}\vec e_1+a_{22}\vec e_2+a_{32}\vec e_3,\\
+\vec e_3'=a_{13}\vec e_1+a_{23}\vec e_2+a_{33}\vec e_3,
+\end{cases}
+\qquad
+\overrightarrow{OO'}=a_1\vec e_1+a_2\vec e_2+a_3\vec e_3 .
+\]
+
+此时，设点 $P$ 在Ⅰ、Ⅱ的坐标分别为 $(x,y,z)^T$ 和
+$(x',y',z')^T$。试问：$(x,y,z)^T$ 和 $(x',y',z')^T$
+关系如何？
+
+\subsection*{1.\ 用新坐标表示旧坐标}
+
+易得
+\[
+\overrightarrow{OP}=x\vec e_1+y\vec e_2+z\vec e_3,\qquad
+\overrightarrow{O_1P_1}
+=x'\vec e_1'+y'\vec e_2'+z'\vec e_3' .
+\]
+我们将 $\vec e_1',\vec e_2',\vec e_3'$ 全部替换为
+$\vec e_1,\vec e_2,\vec e_3$，可以得到下式
+\[
+\begin{aligned}
+\overrightarrow{O_1P_1}
+&=\ x'(a_{11}\vec e_1+a_{21}\vec e_2+a_{31}\vec e_3)\\
+&\quad+\ y'(a_{12}\vec e_1+a_{22}\vec e_2+a_{32}\vec e_3)\\
+&\quad+\ z'(a_{13}\vec e_1+a_{23}\vec e_2+a_{33}\vec e_3)\\
+&\quad+\ \overrightarrow{OO_1},
+\end{aligned}
+\]
+整理可得
+\[
+\begin{aligned}
+&=\ (x'a_{11}+y'a_{12}+z'a_{13})\vec e_1\\
+&\quad+\ (x'a_{21}+y'a_{22}+z'a_{23})\vec e_2\\
+&\quad+\ (x'a_{31}+y'a_{32}+z'a_{33})\vec e_3\\
+&\quad+\ \overrightarrow{OO_1} .
+\end{aligned}
+\]
+不难发现
+\[
+\begin{cases}
+x=x'a_{11}+y'a_{12}+z'a_{13}+a_1,\\
+y=x'a_{21}+y'a_{22}+z'a_{23}+a_2,\\
+z=x'a_{31}+y'a_{32}+z'a_{33}+a_3 .
+\end{cases}
+\]
+在这里，我们引入矩阵与向量的乘法，可以将上式写成如下形式
+\[
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{pmatrix}
+\begin{pmatrix}
+x'\\y'\\z'
+\end{pmatrix}
++
+\begin{pmatrix}
+a_1\\a_2\\a_3
+\end{pmatrix}.
+\]
+我们记中间的矩阵为 $A$，则上式可写为
+\[
+X=AX'+X_0 . \tag{1}
+\]
+
+\subsection*{2.\ 用旧坐标表示新坐标}
+
+以上，我们达成了用新坐标表示旧坐标的目的，但实际算题的时候，
+我们更希望通过旧坐标去表示新坐标，那又该怎么办呢？
+
+回忆投影的概念，坐标实际上就是 $\overrightarrow{OP}$ 在
+$\vec e_1,\vec e_2,\vec e_3$ 上的投影，我们可以就此思路去表示
+$x',y',z'$，下以 $x'$ 为例
+\[
+\begin{aligned}
+x'&=\overrightarrow{O_1P}\cdot\vec e_1'
+=(\overrightarrow{O_1O}+\overrightarrow{OP})\cdot\vec e_1'\\
+&=(x-a_1,\ y-a_2,\ z-a_3)(a_{11},\ a_{21},\ a_{31}),
+\end{aligned}
+\]
+有
+\[
+x'=a_{11}(x-a_1)+a_{21}(y-a_2)+a_{31}(z-a_3).
+\]
+可以得到
+\[
+\begin{pmatrix}
+x'\\y'\\z'
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_{11} & a_{21} & a_{31}\\
+a_{12} & a_{22} & a_{32}\\
+a_{13} & a_{23} & a_{33}
+\end{pmatrix}
+\left(
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+-
+\begin{pmatrix}
+a_1\\a_2\\a_3
+\end{pmatrix}
+\right).
+\]
+这个矩阵是上面矩阵的转置，记作 $A^T$，可以写为下式
+\[
+X'=A^T(X-X_0). \tag{2}
+\]
+
+这个式子和 (1) 式高度相似，矩阵 $A$ 好似被“除”到了另一面。
+矩阵没有除法，只有乘法，为达成“除”的目的，
+我们引入矩阵逆阵的概念
+\[
+AA^{-1}=I .
+\]
+这样，我们将 (1) 式两边同时乘 $A^{-1}$ 再移项，
+就能化成类似 (2) 式的形式如下
+\[
+X'=A^{-1}(X-X_0).
+\]
+两种方法得到的式子理应是一样的，即 $A^T=A^{-1}$。
+我们称这样的矩阵是“\textbf{正交矩阵}”。
+
+\subsection*{3.\ 连续变换与矩阵乘法}
+
+如果此时有第三个坐标系，我们要从Ⅰ系连续变换到Ⅱ系再到Ⅲ系呢？
+
+我们暂时不考虑坐标系平移，只考虑旋转，对于Ⅰ变换到Ⅱ、
+Ⅱ变换到Ⅲ我们分别有
+\[
+(\mathrm{I})\to(\mathrm{II}):\quad X=A\cdot X',\qquad A=(a_{ij});
+\]
+\[
+(\mathrm{II})\to(\mathrm{III}):\quad X'=B\cdot X'',\qquad B=(b_{ij}).
+\]
+将下式代入上式即得
+\[
+(\mathrm{I})\to(\mathrm{III}):\quad X=AB\,X'' .
+\]
+我们引入了矩阵之间的乘法。
+
+\subsection*{4.\ 正交基底带来的性质}
+
+回忆我们一开始的假设，我们假设
+$\vec e_1,\vec e_2,\vec e_3$ 是一组正交基底，
+这会导致这个矩阵有很多奇妙的性质。
+
+由于 $\vec e_i\cdot\vec e_j=\delta_{ij}$，
+$\forall i,j=1,2,3$，有
+\[
+\sum_{k=1}^{3}a_{ki}a_{kj}=\delta_{ij},\qquad
+\sum_{k=1}^{3}a_{ik}a_{jk}=\delta_{ij},
+\qquad\forall i,j=1,2,3 .
+\]
+事实上，上面两式等价于矩阵乘法
+\[
+A^TA=I,\qquad AA^T=I .
+\]
+
+\end{document}

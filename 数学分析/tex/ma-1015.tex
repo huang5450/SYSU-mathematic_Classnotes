@@ -1,0 +1,170 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{数学分析 1015}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{数学分析 1015}
+\subsection*{0. Recall}
+复合函数求极限
+设$h(x) = f(g(x))$ , 令$u = g(x)$. 如果当$x \to x_0$时 , $g(x) \to u_0$且$\exists x_0$的去心邻域$\mathring{U}$满足$\forall x \in \mathring{U} , g(x) \neq U_0$,则
+\[
+\lim_{x \to x_0} f(g(x)) = \lim_{u \to u_0}f(u)
+\]
+\begin{quote}
+大部分情况下(对于初等函数而言) , $\lim\limits_{u \to u_0} f(x) = f(u_0)$
+\end{quote}
+
+定义: $\lim\limits_{x \to \infty} f(x) = A$是指$\forall \varepsilon >0 , \exists x , |x| > N$,有$|f(x)-A|< \varepsilon$
+
+命题
+\[
+\lim_{x \to x_0}f(x) = A \Leftrightarrow \lim_{x \to x_0^-}f(x) = \lim_{x \to x_0^+}f(x) = A
+\]
+我们已知趋向一个点时的情况,下面将其扩展到趋向无穷
+\[
+\lim_{x \to \infty}f(x) = A \Leftrightarrow \lim_{x \to +\infty}f(x) = \lim_{x \to -\infty}f(x) = A
+\]
+
+\subsection*{1. 无穷小量}
+定义:若$\lim\limits_{x \to \infty} f(x) = 0$则称f(x)为$x \to x_0$的无穷小量
+
+\begin{quote}
+1. 无穷小量必须强调极限过程
+\end{quote}
+\begin{quote}
+2. 无穷小量是函数而非常数0
+\end{quote}
+
+性质:设在同一极限过程中有$x \to x_0$
+\[
+\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = 0
+\]
+则有
+\noindent\textbf{1.} $f \pm g , f \times g$也是$x \to x_0$的无穷小量
+\noindent\textbf{2.} 若$h$在$x_0$的某个去心邻域$\mathring{U}$中有界,则$h \times f$是$x \to x_0$时的无穷小量
+\noindent\textbf{3.} 若$\lim\limits_{x \to x_0} \eta(x) = A$,则$n \times f$是$x \to x_0$时的无穷小量
+
+\begin{quote}
+3由局部有界性可以转换成2
+\end{quote}
+
+下对2进行证明
+引理:
+\[
+\lim_{x \to x_0}f(x) = 0 \Leftrightarrow \lim_{x \to x_0}|f(x)| = 0
+\]
+在$\mathring{U}$处考虑
+\[
+\forall x \in \mathring{U} , 0 \leq |h(x)f(x)| \leq M|f(x)|
+\]
+由夹迫准则可知
+\[
+\lim_{x \to x_0} h(x)f(x) = 0
+\]
+
+\subsection*{从无穷小量到泰勒级数}
+注意到
+\[
+\lim_{x \to x_0}f(x) = A
+\Leftrightarrow \lim_{x \to x_0}(f(x)-A) = 0
+\Leftrightarrow f(x)-A \text{是无穷小量}
+\]
+不难发现
+\[
+f(x) = A + (f(x)-A)
+\]
+可以视作使用常数去近似$f(x)$
+
+定义:若$f,g$为$x \to x_0$时的无穷小量且$\lim\limits_{x \to x_0} \frac{f}{g} = 0$ , 则称f为g的高阶无穷小
+
+在上面的例子中,$f(x)-A$就是$A$的高阶无穷小
+不妨更进一步,用多项式去近似$f(x)$,即
+\[
+f(x) = A + Bx + h(x)
+\]
+其中$h(x)$是x的高阶无穷小
+由上不难发现
+\[
+\lim_{x \to 0}f(x) = A = f(0)
+\]
+考虑B,有
+\[
+\begin{aligned}
+f(x) - A &= Bx +h(x) \\
+\Rightarrow \frac{f(x)-A}{x} &= B + \frac{h(x)}{x} \\
+\Rightarrow \lim_{x \to 0} \frac{f(x)-A}{x} &= B = \lim_{x \to 0} \frac{f(x)-f(0)}{x-0} = f(0)'
+\end{aligned}
+\]
+再进一步
+\[
+f(x) = A +Bx +Cx^2 + \delta(x)
+\]
+其中$C$和$f(0)''$有关
+
+\subsection*{3. 无穷大量}
+定义: 
+\[
+\lim_{x \to x_0} f(x) = \infty \triangleq \forall N >0 , \exists \delta >0 , \forall x \ 0<|x-x_0|<\delta , |f(x)| > N
+\]
+则称f(x)为$x \to x_0$时的无穷大量
+\begin{quote}
+趋势可以是$x \to x_0 \quad x \to x_0^+ \quad x \to x_0^-$及$x \to \infty \quad x \to +\infty \quad x \to -\infty$六种中的任何一种
+\end{quote}
+
+\begin{quote}
+无界函数和无穷大量
+\end{quote}
+\begin{quote}
+例如函数$f(x) = x \cos{x}$,取$x = 2n\pi$ , 有$f(x_n) = 2n \pi$ 可知
+\end{quote}
+\begin{quote}
+$$
+\end{quote}
+\begin{quote}
+\lim_{n \to +\intfy}f(x_n) = +\intfy
+\end{quote}
+\begin{quote}
+$$
+\end{quote}
+\begin{quote}
+显然,$f(x)$是无界函数
+\end{quote}
+\begin{quote}
+我们取$y_n = 2n\pi + \frac{\pi}{2}$,有$f(y_n) = 0$,根据海涅原理可知,$f(x)$不是$x \to x_0$时的无穷大量
+\end{quote}
+
+我们可以将$f(x)$的极限分为以下几种类型
+\noindent\textbf{1.} 极限存在且为0(无穷小量)
+\noindent\textbf{2.} 极限存在且不为0
+\noindent\textbf{3.} 极限不存在,函数值趋向无穷大(无穷大量)
+\noindent\textbf{4.} 极限不存在,函数值震荡
+
+\subsection*{4. 无穷小(大)量之间的比较}
+定义:
+若$\lim\limits_{x \to x_0}f(x) = \lim\limits_{x \to x_0}g(x) = 0$且$\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = A \neq 0$,则称f与g同阶
+如果$A = 1$ , 则称f与g是等价无穷小
+
+我们有如下的常用结论
+对于数列,
+\[
+\log{n}<n<n\log{n}<n^2<\cdots<n^k<\cdots<e^n<n!<n^n \quad n \to +\infty
+\]
+对于函数,
+\[
+\log{x}<x<x\log{x}<x^2<\cdots<x^k<\cdots<e^x
+\]
+
+对于等价无穷小,我们有
+\[
+\begin{aligned}
+\ln{1+x} &~ x\\
+e^x - 1 &~ x\\
+a^x - 1 &~ x\ln{a}\\
+(1+x)^\alpha -1 &~ \alpha x
+\end{aligned}
+\]
+
+\end{document}

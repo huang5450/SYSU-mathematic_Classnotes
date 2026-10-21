@@ -1,0 +1,73 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{空间向量}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ 向量}
+
+\begin{itemize}
+\item \textbf{向量}\quad 有起点、有终点的有向线段，
+一般用 $\vec a$ 或 $\overrightarrow{OP}$ 表示。向量两要素：长度，方向。
+\item \textbf{零向量}\quad 长度为零的向量（起点与终点相同）。
+\item \textbf{反向量}\quad 与给定向量长度相同、方向相反的向量。
+\item 一个向量平移之后还是原来的向量。
+\item \textbf{向量的加法}\quad 定义：平行四边形法则／三角形法则。
+\end{itemize}
+
+\subsubsection*{加法的性质}
+
+\begin{enumerate}
+\item 交换律\quad $\vec a+\vec b=\vec b+\vec a$；
+\item 结合律\quad
+$(\vec a+\vec b)+\vec c=\vec a+(\vec b+\vec c)$；
+
+函数的复合是有结合律的！$f(gh)=(fg)h$。
+
+\item 有零元\quad $\forall\vec a,\
+\vec 0+\vec a=\vec a+\vec 0$；
+\item 有负元\quad $\forall\vec a,\ \exists\vec b=-\vec a$，
+s.t. $\vec a+\vec b=0$。
+\end{enumerate}
+
+代数系统 $=$ 非空集合 $+$ 运算 $+$ 法则。
+
+\subsubsection*{向量的数乘}
+
+$\lambda\in\mathbb R$，$\vec a$ 是空间向量，
+$\lambda\cdot\vec a$ 是长度为 $|\lambda||\vec a|$、方向与 $\vec a$
+相同（$\lambda>0$）或相反（$\lambda<0$）的向量。
+
+显然 $0\cdot\vec 0=\vec 0$，$1\cdot\vec a=\vec a$，
+$\lambda\cdot\vec 0=\vec 0$。
+
+\subsubsection*{数乘的性质}
+
+\begin{enumerate}
+\item[5.] 有单位元\quad $\forall 1\cdot\vec a=\vec a$；
+\item[6.] 分配律 1\quad
+$\lambda(\vec a+\vec b)=\lambda\vec a+\lambda\vec b$；
+\item[7.] 分配律 2\quad
+$(\lambda+\mu)\vec a=\lambda\vec a+\mu\vec a$；
+\item[8.] 结合律\quad
+$(\lambda\mu)\vec a=\lambda(\mu\vec a)$；
+\item[9.] 三角不等式\quad
+$\bigl||\vec a|-|\vec b|\bigr|\leq|\vec a+\vec b|
+\leq|\vec a|+|\vec b|$。
+\end{enumerate}
+
+线性空间的定义会用到这 8 条性质。
+
+\subsubsection*{共线}
+
+向量 $\vec a$ 与 $\vec b$ 共线 $\Longleftrightarrow$
+$\vec a$ 与 $\vec b$ 方向相同或相反。
+
+\textbf{定理一}\quad 若 $\vec a\neq\vec 0$，则 $\vec b$ 与
+$\vec a$ 共线 $\Longleftrightarrow$ $\exists$ 唯一的
+$t\in\mathbb R$，s.t. $\vec b=t\cdot\vec a$。
+
+\end{document}

@@ -1,0 +1,223 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{数学分析 1008}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ Recall}
+
+\subsubsection*{1.\ 极限的定义}
+
+对于
+\[
+\lim_{n\to+\infty}a_n=A,
+\]
+我们有
+\[
+\forall\varepsilon,\ \exists N,\ \forall n>N,\ \text{s.t.}\
+|a_n-A|<\varepsilon .
+\]
+keypoint：放大不等式直至 $P(N)<\varepsilon$ 形式再反解。
+
+\subsubsection*{2.\ 极限的性质}
+
+\begin{itemize}
+\item \textbf{有界性}\quad 有极限存在的数列必有界，即
+\[
+\text{if}\ \lim_{n\to+\infty}a_n=A\ \text{exists},\quad
+\exists M,\ \forall n,\ |a_n|\leq M .
+\]
+
+\[
+\lim_{n\to+\infty}a_n=0
+\iff \lim_{n\to+\infty}|a_n|=0,
+\]
+直接使用极限语言易证。
+
+\item \textbf{保号性}
+\[
+\begin{aligned}
+&\text{if}\ \lim_{n\to+\infty}a_n=A\ \&\ A>0,
+\quad\exists N,\ \forall n>N,\ a_n>\frac12A>0;\\
+&\text{if}\ \lim_{n\to+\infty}a_n=A\ \&\ \exists N,\
+\forall n>N,\ a_n>0,\quad A\geq0 .
+\end{aligned}
+\]
+\end{itemize}
+
+\subsubsection*{3.\ 极限的四则运算}
+
+若
+\[
+\lim_{n\to+\infty}a_n=A,\qquad \lim_{n\to+\infty}b_n=B,
+\]
+则有
+\[
+\lim_{n\to+\infty}(a_n\pm\ \text{or}\ \times\ b_n)
+=A\pm\ \text{or}\ \times\ B .
+\]
+如果 $B\neq0$，则有
+\[
+\lim_{n\to+\infty}\frac{a_n}{b_n}=\frac AB .
+\]
+保证 $\dfrac{a_n}{b_n}$ 是有定义的：根据极限保号性，舍去有限多项后
+$b_n>0$，这保证舍去有限多项后 $\dfrac{a_n}{b_n}$ 都是有定义的。
+
+\medskip
+
+\textbf{e.g.}
+\[
+\lim_{n\to+\infty}
+\frac{a_kn^k+a_{k-1}n^{k-1}+\cdots+a_1n+a_0}
+{b_kn^k+b_{k-1}n^{k-1}+\cdots+b_1n+b_0},
+\]
+同除 $n^k$ 有
+\[
+\lim_{n\to+\infty}
+\frac{a_k+\frac{a_{k-1}}{n}+\cdots+\frac{a_1}{n^{k-1}}
++\frac{a_0}{n^k}}
+{b_k+\frac{b_{k-1}}{n}+\cdots+\frac{b_1}{n^{k-1}}
++\frac{b_0}{n^k}}
+=\frac{a_k}{b_k},
+\]
+（上例中允许除数为零，规定 $\dfrac{a_k}{0}=+\infty$。）
+
+\medskip
+
+\textbf{e.g.}\quad 设 $\lim\limits_{n\to+\infty}a_n=A$，
+$\lim\limits_{n\to+\infty}b_n=B$，$A>B$，则 $\exists N$，
+$\forall n>N$ 有 $a_n>b_n$（保序性）。
+
+考虑
+\[
+\lim_{n\to+\infty}(a_n-b_n)=A-B>0,
+\]
+据保号性 $\exists N$，$\forall n>N$，有 $a_n-b_n>0$，
+即 $a_n>b_n$。
+
+反过来也成立：设 $\lim\limits_{n\to+\infty}a_n=A$，
+$\lim\limits_{n\to+\infty}b_n=B$，且 $\exists N$，$\forall n>N$，
+$a_n\geq b_n$，则有 $A\geq B$。
+
+\subsubsection*{4.\ 夹迫准则}
+
+若 $\exists N$ s.t. $\forall n>N$，有
+$a_n\leq c_n\leq b_n$ 且
+\[
+\lim_{n\to\infty}a_n=\lim_{n\to\infty}b_n=A,
+\]
+则
+\[
+\lim_{n\to\infty}c_n=A .
+\]
+
+\medskip
+
+\textbf{e.g.}（已知，见上题 (2)）
+\[
+\lim_{n\to+\infty}\sqrt[n]{a}=1\quad(a>0).
+\]
+下面试证
+\[
+\lim_{n\to+\infty}\sqrt[n]{n}=1 .
+\]
+
+\textbf{证明：}\quad
+\[
+\sqrt[n]{n}>1\ \Longrightarrow\
+\sqrt[n]{n}-1\triangleq h_n
+\iff \sqrt[n]{n}=1+h_n,
+\]
+\[
+\Longrightarrow\ n=(1+h_n)^n
+=1+nh_n+\frac{n(n-1)}{2}h_n^2+\cdots
+\]
+其中，先尝试保留一次项：$n\geq1+nh_n\Rightarrow h_n\leq\dfrac{n-1}{n}$，次数不够（只得到 $O(1)$ 的界，推不出 $h_n\to0$）；故保留二次项（其余各项非负，舍去即得下界），即
+\[
+n\geq\frac{n(n-1)}{2}h_n^2 .
+\]
+易得
+\[
+\sqrt{\frac{2}{n-1}}\geq h_n>0,
+\]
+由夹迫准则即可得到结果。
+
+\subsection*{1.\ 单调有界数列的极限}
+
+\textbf{定义：}\quad 设 $\{a_n\}$ 满足 $\forall n,m$，$n<m$ 有
+$a_n\leq a_m$，则称 $\{a_n\}$ 单调上升；若 $\forall n,m$，
+$n<m$ 有 $a_n<a_m$，则称严格单调。
+
+\textbf{定理：}\quad 设 $\{a_n\}$ 单调递增且 $\{a_n\}$ 有上界，则
+\[
+\lim_{n\to+\infty}a_n
+\]
+存在。
+
+\subsubsection*{分析}
+
+\[
+S=\{b\mid b\ \text{是}\ \{a_n\}\ \text{的上界}\},\qquad
+T\triangleq\mathbb R-S .
+\]
+我们需要证明：
+
+\begin{enumerate}
+\item $T\mid S$ 是分划；
+\item $\mathbb R$ 是 Dedikind 连续的。
+
+以上两条我们知道存在界点 $A$。
+\end{enumerate}
+
+\noindent 3.\ 界点 $A\in S$。
+
+\subsubsection*{证明}
+
+易知
+\[
+S\cup T=\mathbb R,\qquad S\cap T=\varnothing .
+\]
+要证明它是分划，只需证明
+\[
+\forall a\in T,\ \forall b\in S,\quad a<b .
+\]
+\[
+\begin{aligned}
+&a\in T\iff a\ \text{不是上界}\iff\exists m,\ \text{s.t.}\ a_m>a;\\
+&b\in S\iff b\ \text{是上界}\iff\forall n,\ \text{s.t.}\ a_n\leq b .
+\end{aligned}
+\]
+
+特别地，取 $n=m$，有 $a<a_m\leq b$。可知 $T\mid S$ 确实是分划。
+而分划 $T\mid S$ 一定有界点 $A$。
+
+下证界点 $A\in S$。反设 $A$ 不为上界，则 $\exists m$，
+$a_m>A$。可知 $\exists B$ s.t. $a_m>B>A$。
+
+由 $B>A$ 及 $A$ 是界点知 $B\in S$，即 $B$ 是上界；
+但 $B<a_m$ 与 $B$ 是上界矛盾。假设不成立，即 $A\in S$——
+$A$ 是上界中最小的，即上确界。
+
+下证明
+\[
+\lim_{n\to+\infty}a_n=A .
+\]
+由极限定义可知，上式等价于
+\[
+|a_n-A|<\varepsilon
+\iff A-\varepsilon<a_n<A+\varepsilon .
+\]
+其中 RHS 自然成立，因为 $A$ 已经是上界了。
+$A-\varepsilon\in T$，所以它不是上界，即
+\[
+\exists N,\ \text{s.t.}\ a_n\geq a_N\geq A-\varepsilon .
+\]
+可得
+\[
+\lim_{n\to+\infty}a_n=A .
+\]
+
+\end{document}

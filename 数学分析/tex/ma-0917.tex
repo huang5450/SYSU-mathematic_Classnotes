@@ -1,0 +1,234 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{数学分析 0917}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0. Recall}
+
+有理数集 $\mathbb Q$ 是稠密的：
+\[
+\forall a,b\in\mathbb Q,\quad
+a<b\ \Longrightarrow\
+\exists c\in\mathbb Q,\quad a<c<b.
+\]
+进一步，也可以证明任意两个不同的实数之间都有有理数。
+
+无限集合 $S$ 称为\textbf{可数的}，是指存在双射
+$\phi:\mathbb Z^+\to S$；即可以将其元素依次编号为
+$s_1,s_2,s_3,\ldots$。
+
+\subsection*{1. 有理数的可数性}
+
+\subsubsection*{整数可数}
+
+将整数写成两列：
+\[
+\begin{array}{cccc}
+1&2&3&\cdots\\
+0&-1&-2&\cdots
+\end{array}
+\]
+交替从两列取数，可得
+\[
+1,0,2,-1,3,-2,\ldots
+\]
+因此 $\mathbb Z$ 可数。
+
+\subsubsection*{有理数可数}
+
+先将正有理数按分子、分母排成表：
+\[
+\begin{array}{cccc}
+\frac11&\frac21&\frac31&\cdots\\[2pt]
+\frac12&\frac22&\frac32&\cdots\\[2pt]
+\frac13&\frac23&\frac33&\cdots\\
+\vdots&\vdots&\vdots&
+\end{array}
+\]
+沿副对角线逐条枚举，并跳过与已列数相同的分数，
+便可列出所有正有理数。再交替列出正有理数、负有理数，
+并加入 $0$，可知 $\mathbb Q$ 可数。
+
+\subsubsection*{实数不可数}
+
+反设 $(0,1)$ 中的所有实数可以列为
+\[
+\begin{aligned}
+c_1&=0.a_{11}a_{12}a_{13}\cdots,\\
+c_2&=0.a_{21}a_{22}a_{23}\cdots,\\
+c_3&=0.a_{31}a_{32}a_{33}\cdots,\\
+&\ \vdots
+\end{aligned}
+\]
+统一选取不以无限个 $9$ 结尾的小数表示。
+构造 $d=0.d_1d_2d_3\cdots$，其中
+\[
+d_i=
+\begin{cases}
+1,&a_{ii}\ne1,\\
+2,&a_{ii}=1.
+\end{cases}
+\]
+则 $d$ 的第 $i$ 位与 $c_i$ 的第 $i$ 位不同，
+因此 $d$ 不在这张表中，矛盾。
+所以 $\mathbb R$ 不可数。
+
+由于 $\mathbb Q$ 可数，而 $\mathbb R$ 不可数，
+无理数集也不可数。
+
+\subsection*{2. 有理数没有连续性}
+
+\subsubsection*{回顾：$\mathbb Q$ 的稠密性}
+
+有理数集 $\mathbb Q$ 具有稠密性，即
+\[
+\forall a,b\in\mathbb Q,\ a<b,\ \exists c\in\mathbb Q,\quad a<c<b .
+\]
+（练习：证明 $\forall a,b\in\mathbb R,\ a<b$，
+$\exists c\in\mathbb Q$，使得 $a<c<b$。）
+
+\subsubsection*{直观例子}
+
+取 $\pi$ 的逐位截断值：
+\[
+a_0=3,\quad a_1=3.1,\quad
+a_2=3.14,\quad\ldots
+\]
+显然
+\[
+a_0<a_1<a_2<\cdots<a_n<\cdots,
+\]
+这些数均为有理数，且
+\[
+\lim_{n\to\infty}a_n=\pi\notin\mathbb Q.
+\]
+这提示我们：有理数的稠密性并不等于连续性。
+（类似地，$\sqrt2=1.414\ldots$ 也总可以写成某个有理数
+点列的极限，而它本身不属于 $\mathbb Q$。）
+
+\subsubsection*{分割的定义}
+
+设 $S$ 为有序集。若非空集合 $A,B$ 满足
+\[
+A\cup B=S,\qquad A\cap B=\varnothing,
+\]
+且
+\[
+\forall a\in A,\ \forall b\in B,\ a<b,
+\]
+则称 $A\mid B$ 是 $S$ 的一个分割。
+也就是说，$A\mid B$ 把 $S$ 分成前后两段：
+一段是 $A$，一段是 $B$，两段合起来正好是 $S$，且互不重叠。
+
+分割具有以下几条性质：
+\begin{enumerate}
+\item \textbf{三歧性}：任意的有序数集 $S\subset\mathbb R$，
+$\forall a,b\in S$，只有 $a>b$、$a=b$、$a<b$ 三种情况；
+\item \textbf{不空不漏}：$A,B\neq\varnothing$，且 $A\cup B=S$；
+\item \textbf{不乱}：$\forall a\in A,\ \forall b\in B$，都有 $a<b$；
+\item \textbf{不相交}：若 $A\mid B$ 是一组分割，则 $A\cap B=\varnothing$。
+\end{enumerate}
+
+\subsubsection*{dedikind 连续性}
+
+若稠密有序集 $S$ 的每个分割 $A\mid B$
+都存在唯一的 $c\in S$，使
+\[
+\forall a\in A,\ \forall b\in B,\quad a\leq c\leq b,
+\]
+则称 $S$ 具有 dedikind 连续性（即 $S$ 是连续的）。
+这里的 $c$ 称为分界点。
+
+上述定义有三个要点：
+\begin{enumerate}
+\item \textbf{稠密}：$\forall a,b\in S,\ a<b$，
+$\exists c\in S,\ a<c<b$；
+\item \textbf{存在且唯一}：$\exists!\,c\in S$，即分界点存在且唯一；
+\item 分界点 $c\in S$：$A$ 中的数都不超过 $c$，
+$B$ 中的数都不小于 $c$，即所有 $a\in A$、$b\in B$ 都被
+$c$ 分在两边；而 $c$ 本身必须落在 $S$ 中，
+要么在 $A$ 这一边，要么在 $B$ 这一边。
+\end{enumerate}
+
+\subsubsection*{$\mathbb Q$ 不具有 dedikind 连续性}
+
+为证明 $\mathbb Q$ 不连续，只需找出 $\mathbb Q$
+的一个分割 $A\mid B$，使该分割在 $\mathbb Q$ 内没有分界点。
+
+考虑分割
+\[
+A=\{x\in\mathbb Q:x<\sqrt2\},\qquad
+B=\{x\in\mathbb Q:x\geq\sqrt2\}.
+\]
+因为 $\sqrt2\notin\mathbb Q$，两集合构成 $\mathbb Q$
+的一个分割（$A\cup B=\mathbb Q$ 且 $A\cap B=\varnothing$）。
+下面证明 $A$ 中没有最大的数，同理 $B$ 中没有最小的数。
+
+我们的目标是寻找一个 $\epsilon$，使得
+\[
+\forall a\in A,\ \exists\epsilon>0,\ \epsilon\in\mathbb Q,\quad
+a+\epsilon\in A,
+\]
+即要求
+\[
+\begin{cases}
+\epsilon>0,\\
+\epsilon\in\mathbb Q,\\
+a+\epsilon<\sqrt2.
+\end{cases}
+\]
+
+先按放缩法估算。由 $a+\epsilon<\sqrt2$ 得
+\[
+(a+\epsilon)^2<2
+\iff a^2+2a\epsilon+\epsilon^2<2.
+\]
+若 $\epsilon<2a$，则 $\epsilon^2<2a\epsilon$，于是
+\[
+a^2+4a\epsilon<2
+\iff \epsilon<\frac{2-a^2}{4a}.
+\]
+故只需取
+\[
+\epsilon<\min\left\{2a,\ \frac{2-a^2}{4a}\right\},
+\]
+即可满足要求。
+（注意：$\epsilon^2<2a\epsilon$ 与 $\epsilon<2a$ 只有在
+$a>0$ 时才等价；而当 $a$ 靠近 $0$ 时，$2a$ 可能已经大于
+$\sqrt2-a$，因此还须补上 $\epsilon<\sqrt2-a$ 这一条限制，
+方能保证 $a+\epsilon<\sqrt2$，也才保证 $\epsilon>0$。）
+
+下面给出一个更直接的取法。对任意 $a\in A$，
+总有 $\sqrt2-a>0$，令
+\[
+\epsilon=\frac12\min\{1,\ \sqrt2-a\}>0 .
+\]
+由 $1,\sqrt2\in\mathbb Q$ 及 $a\in\mathbb Q$ 可知
+$\epsilon\in\mathbb Q$；并且
+\[
+\epsilon\leq\frac12(\sqrt2-a)<\sqrt2-a,
+\]
+从而
+\[
+a+\epsilon<a+(\sqrt2-a)=\sqrt2,
+\]
+即 $a+\epsilon\in A$。
+这说明 $A$ 中不存在最大的数：
+对 $A$ 中任何一个数 $a$，总能在 $A$ 中找到一个比它更大的数。
+（同理，对任意 $b\in B$，取
+$\epsilon=\frac12\min\{1,\ b-\sqrt2\}$，
+可证 $b-\epsilon\in B$，故 $B$ 中不存在最小的数。）
+
+因此，$A$ 中没有最大的数，$B$ 中没有最小的数。
+该分割在 $\mathbb Q$ 内没有分界点，
+即不存在 $c\in\mathbb Q$ 使
+\[
+\forall a\in A,\ \forall b\in B,\quad a\leq c\leq b.
+\]
+所以 $\mathbb Q$ 不具有 dedikind 连续性，$\mathbb Q$ 不连续。
+
+\end{document}

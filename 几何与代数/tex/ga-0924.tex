@@ -1,0 +1,142 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{几何与代数 0924}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ 例：$\vec d=x\vec a+y\vec b+z\vec c$ 的系数}
+
+$\vec a,\vec b,\vec c$ 不共面，
+$\vec d=x\vec a+y\vec b+z\vec c$，求 $x,y,z$。
+
+若已知 $\vec a=(a_1,a_2,a_3)$，
+$\vec b=(b_1,b_2,b_3)$，$\vec c=(c_1,c_2,c_3)$，
+$\vec d=(d_1,d_2,d_3)$，上式等价于
+\[
+\begin{pmatrix}
+d_1\\d_2\\d_3
+\end{pmatrix}
+=x\begin{pmatrix}
+a_1\\a_2\\a_3
+\end{pmatrix}
++y\begin{pmatrix}
+b_1\\b_2\\b_3
+\end{pmatrix}
++z\begin{pmatrix}
+c_1\\c_2\\c_3
+\end{pmatrix}
+\]
+\[
+\Longleftrightarrow
+\begin{cases}
+d_1=xa_1+yb_1+zc_1,\\
+d_2=xa_2+yb_2+zc_2,\\
+d_3=xa_3+yb_3+zc_3 .
+\end{cases}
+\]
+用之前求解三元一次方程组的方法即可写出 $x,y,z$ 的解，
+此为代数解法；几何运用混合积的想法详见上节笔记。
+
+\subsection*{1.\ 平行坐标系}
+
+在空间中，任取三个线性无关的向量组
+$\vec a_1,\vec a_2,\vec a_3$，则称
+$[O;\vec a_1,\vec a_2,\vec a_3]$ 是空间中的\textbf{平行坐标系}，
+称 $\vec a_1,\vec a_2,\vec a_3$ 是\textbf{基向量}。此时
+$\forall\vec b=x\vec a_1+y\vec a_2+z\vec a_3$，称
+$(x,y,z)$ 是 $\vec b$ 在
+$[O;\vec a_1,\vec a_2,\vec a_3]$ 下的坐标。
+
+若 $\vec b=(x_1,y_1,z_1)$，$\vec c=(x_2,y_2,z_2)$，则
+\[
+\vec b+\vec c=(x_1+x_2,\ y_1+y_2,\ z_1+z_2),
+\qquad
+\lambda\vec b=(\lambda x_1,\ \lambda y_1,\ \lambda z_1).
+\]
+对于 $\vec b\cdot\vec c$，则有
+\[
+\begin{aligned}
+\vec b\cdot\vec c
+&=(x_1\vec a_1+y_1\vec a_2+z_1\vec a_3)
+\cdot(x_2\vec a_1+y_2\vec a_2+z_2\vec a_3)\\
+&=(x_1,y_1,z_1)
+\begin{pmatrix}
+\vec a_1\cdot\vec a_1 & \vec a_1\cdot\vec a_2 & \vec a_1\cdot\vec a_3\\
+\vec a_2\cdot\vec a_1 & \vec a_2\cdot\vec a_2 & \vec a_2\cdot\vec a_3\\
+\vec a_3\cdot\vec a_1 & \vec a_3\cdot\vec a_2 & \vec a_3\cdot\vec a_3
+\end{pmatrix}
+\begin{pmatrix}
+x_2\\y_2\\z_2
+\end{pmatrix}.
+\end{aligned}
+\]
+$\forall i,j$，$g_{ij}=\vec a_i\cdot\vec a_j$，
+我们称 $(g_{ij})$ 是\textbf{度量矩阵}。
+
+\subsection*{2.\ 对偶坐标系}
+
+令 $\vec a_1'$ 是与 $\vec a_2,\vec a_3$ 垂直，且
+$\vec a_1\cdot\vec a_1'=1$ 的向量；同理，$\vec a_2'$ 是与
+$\vec a_1,\vec a_3$ 垂直，且 $\vec a_2\cdot\vec a_2'=1$；
+$\vec a_3'$ 是与 $\vec a_1,\vec a_2$ 垂直，且
+$\vec a_3\cdot\vec a_3'=1$。
+
+设 $\vec a_1'=\lambda\vec a_2\times\vec a_3$，由
+$\vec a_1\cdot\vec a_1'=1$ 可知
+\[
+\lambda=\frac{1}{\vec a_1\cdot\vec a_2\times\vec a_3},
+\qquad
+\vec a_1'=\frac{\vec a_2\times\vec a_3}
+{\vec a_1\cdot\vec a_2\times\vec a_3},
+\]
+同理可知
+\[
+\vec a_2'=\frac{\vec a_3\times\vec a_1}
+{\vec a_1\cdot\vec a_2\times\vec a_3},\qquad
+\vec a_3'=\frac{\vec a_1\times\vec a_2}
+{\vec a_1\cdot\vec a_2\times\vec a_3} .
+\]
+
+\textbf{性质 1：}这三个向量线性无关。由于
+\[
+(\vec a_2\times\vec a_3)\cdot
+\bigl((\vec a_3\times\vec a_1)\times(\vec a_1\times\vec a_2)\bigr)
+=(\vec a_1\cdot\vec a_2\times\vec a_3)^2\neq0,
+\]
+因此 $\vec a_1',\vec a_2',\vec a_3'$ 可作为一个新的坐标系的基向量。
+称 $[O;\vec a_1',\vec a_2',\vec a_3']$ 是
+$[O;\vec a_1,\vec a_2,\vec a_3]$ 的\textbf{对偶坐标系}。
+
+\textbf{性质 2：}若 $[O;\vec a_1',\vec a_2',\vec a_3']$ 是
+$[O;\vec a_1,\vec a_2,\vec a_3]$ 的对偶坐标系，则
+$[O;\vec a_1',\vec a_2',\vec a_3']$ 的对偶坐标系是
+$[O;\vec a_1,\vec a_2,\vec a_3]$。
+
+直角坐标系 $[O;\vec e_1,\vec e_2,\vec e_3]$ 的对偶是它自己，
+无论左右手系。
+
+若 $\vec b$ 在 $[O;\vec a_1,\vec a_2,\vec a_3]$ 的坐标是
+$(x,y,z)$，在 $[O;\vec a_1',\vec a_2',\vec a_3']$ 的坐标是
+$(x',y',z')$，那么
+\[
+\vec b\cdot\vec b'=|\vec b|^2=xx'+yy'+zz' .
+\]
+若 $\vec c$ 在 $[O;\vec a_1,\vec a_2,\vec a_3]$ 中的坐标为
+$(x_1,y_1,z_1)$，那么
+$\vec b\cdot\vec c=xx_1+yy_1+zz_1$。
+
+\subsubsection*{e.g.}
+
+$\vec b$ 在 $[O;\vec a_1,\vec a_2,\vec a_3]$ 的坐标为
+$(x,y,z)$，即
+$\vec b=x\vec a_1+y\vec a_2+z\vec a_3$，不难看出
+\[
+\vec b\cdot\vec a_1'=x,\qquad
+\vec b\cdot\vec a_2'=y,\qquad
+\vec b\cdot\vec a_3'=z .
+\]
+
+\end{document}

@@ -1,0 +1,148 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{定理}
+\newtheorem{example}{例}
+
+\title{数学分析 2024-09-14}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{0. Recall}
+
+% 原文图片：Figure_1.png；图片文件未附
+% 若图片已上传到项目，取消下一段注释即可显示
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.6\textwidth]{Figure_1.png}
+%   \caption{原文图片}
+% \end{figure}
+
+将曲边梯形的面积看作无限个小长方形面积的和，取 \(x_i=i/N\)，有
+\[
+\lim_{N\to\infty}
+\sum_{i=0}^{N-1} f(x_i)\frac1N
+=
+\int_0^1 f(x)\,\mathrm dx,
+\]
+前提是相应积分存在。
+
+\paragraph{问题.}
+如果 \(f\) 与 \(g\) 在 \([0,1]\) 上仅有有限个点的函数值不同，是否仍有
+\[
+\int_0^1 f(x)\,\mathrm dx
+=
+\int_0^1 g(x)\,\mathrm dx?
+\]
+在两者均可积的前提下，答案是肯定的。因为改变有限个点的函数值不改变积分的值。
+
+\section*{1. 丢掉高阶无穷小}
+
+以 \(f(x)=x^2\) 为例。函数在 \(x=1\) 处的极限为
+\[
+\lim_{x\to1} f(x)=\lim_{x\to1} x^2=1.
+\]
+求导数时，
+\begin{align*}
+f'(1)
+&=\lim_{\Delta x\to0}
+  \frac{f(1+\Delta x)-f(1)}{\Delta x}\\
+&=\lim_{\Delta x\to0}
+  \frac{(1+\Delta x)^2-1}{\Delta x}.
+\end{align*}
+分子可以展开为
+\[
+f(1+\Delta x)-f(1)
+=
+2\Delta x+(\Delta x)^2.
+\]
+因此
+\[
+f'(1)
+=
+\lim_{\Delta x\to0}
+ \frac{2\Delta x+(\Delta x)^2}{\Delta x}
+=
+\lim_{\Delta x\to0}(2+\Delta x)=2.
+\]
+其中 \((\Delta x)^2\) 是相对于 \(\Delta x\) 的高阶无穷小。
+
+另设
+\[
+g(x)=
+\begin{cases}
+2,&x=1,\\
+x^2,&x\ne1,
+\end{cases}
+\]
+虽然 \(g(1)=2\)，仍有 \(\lim_{x\to1} g(x)=1\)。
+
+\section*{2. 有限与无限}
+
+\begin{enumerate}
+\item \textbf{鸽笼原理：}将 \(N+1\) 只鸽子放进 \(N\) 个笼子，
+必有一个笼子至少装有两只鸽子，其中 \(N\) 为有限正整数。
+\item \textbf{希尔伯特旅馆：}若无穷多个房间均已住满，
+仍可令原住在第 \(n\) 间的客人搬至第 \(n+1\) 间，
+从而腾出第 \(1\) 间。
+\end{enumerate}
+
+\section*{3. 数学归纳法}
+
+要证明命题 \(P(n)\) 对所有 \(n\in\mathbb Z^+\) 成立，
+只须证明：
+\begin{enumerate}
+\item \(P(1)\) 成立；
+\item 对任意 \(n\in\mathbb Z^+\)，若 \(P(n)\) 成立，
+则 \(P(n+1)\) 也成立。
+\end{enumerate}
+
+\section*{4. 数系的扩充}
+
+\subsection*{从自然数到整数}
+
+自然数对加法封闭，但减法未必仍得到自然数，例如
+\(1-2=-1\)。为了使加法方程 \(n+x=m\) 总能求解，
+需要引入整数：
+\[
+\mathbb N\longrightarrow\mathbb Z.
+\]
+
+\subsection*{从整数到有理数}
+
+整数对加法和乘法封闭，但方程 \(nx=m\) 在整数中
+未必有解。例如 \(2x=1\) 不存在整数解。
+当 \(n\ne0\) 时，在有理数中可以解这类方程：
+\[
+\mathbb Z\longrightarrow
+\mathbb Q
+=
+\left\{\frac nm:n,m\in\mathbb Z,\ m\ne0\right\}.
+\]
+
+继续扩充数系，可得到
+\[
+\mathbb Q\longrightarrow\mathbb R\longrightarrow\mathbb C.
+\]
+实数的引入涉及连续性；复数使每个非常数复系数
+多项式在 \(\mathbb C\) 中有根。
+
+\subsection*{布尔巴基学派的结构观}
+
+数学结构可从以下几个方面考察：
+\[
+\left\{
+\begin{array}{l}
+\text{代数结构},\\
+\text{序结构},\\
+\text{拓扑结构}.
+\end{array}
+\right.
+\]
+
+\end{document}

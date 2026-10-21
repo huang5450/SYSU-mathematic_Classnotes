@@ -1,0 +1,245 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{空间直角坐标，平面和直线}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{§1\quad 空间直角坐标系}
+
+\begin{itemize}
+\item 在空间中，固定点 $O$，过 $O$ 点作三条两两垂直的数轴
+$OX,OY,OZ$，此时有空间直角坐标系，记作 $[O;X,Y,Z]$；
+\item 称 $O$ 是坐标原点，$OX,OY,OZ$ 为坐标轴；
+\item $OX$ 与 $OY$ 形成的平面为 $XOY$ 面，以此类推，
+它们是“坐标面”；
+\item $XOY$ 面将空间分成两部分，$Z$ 轴所指的部分称为正面，
+另外一面称为反面；
+\item 任给空间内一点 $P$，它到 $YOZ$ 面、$XOZ$ 面及 $XOY$ 面的
+“距离”（点 $P$ 在正面为正，在反面为负）分别为 $x,y,z$，
+称三元实数对 $(x,y,z)$ 是点 $P$ 在 $[O;X,Y,Z]$ 下的坐标；
+\item 显然 $|OP|=\sqrt{x^2+y^2+z^2}$；
+\item 右手系与左手系。
+\end{itemize}
+
+\textbf{eg.}\quad 对于空间内的点 $P_1(x_1,y_1,z_1)$、
+$P_2(x_2,y_2,z_2)$，如何求 $|P_1P_2|$？
+
+过点 $P_1$ 作三条分别平行于 $x$ 轴、$y$ 轴、$z$ 轴的数轴，
+记为 $x'$ 轴、$y'$ 轴、$z'$ 轴，此时有新的坐标系
+$[P_1;X',Y',Z']$，$P_1$ 在 $[P_1;X',Y',Z']$ 中的坐标为
+$(0,0,0)$，$P_2$ 在 $[P_1;X',Y',Z']$ 中的坐标为
+$(x_2',y_2',z_2')$，于是有
+\[
+\begin{cases}
+x_2'=x_2-x_1,\\
+y_2'=y_2-y_1,\\
+z_2'=z_2-z_1,
+\end{cases}
+\]
+这是\textbf{坐标平移公式}。得到
+\[
+|P_1P_2|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2},
+\]
+即两点距离公式。
+
+\subsection*{§2\quad 方向的表示}
+
+\subsubsection*{1.\ 方向}
+
+由起点和终点确定的射线所表示。
+
+\begin{itemize}
+\item 如果起点是原点，终点是 $P(x,y,z)$，用三元实数对
+$(x,y,z)$ 表示该方向：当 $\lambda>0$ 时，
+$(\lambda x,\lambda y,\lambda z)$ 也表示该方向；当
+$\lambda<0$ 时，$(\lambda x,\lambda y,\lambda z)$ 表示
+$OP$ 方向的反方向；
+\item 如果起点是 $P_1(x_1,y_1,z_1)$，终点
+$P_2(x_2,y_2,z_2)$，用
+$(x_2-x_1,\ y_2-y_1,\ z_2-z_1)$ 表示方向 $P_1P_2$。
+\end{itemize}
+
+\subsubsection*{2.\ 方向角}
+
+方向 $OP$ 分别与 $X$ 轴、$Y$ 轴、$Z$ 轴的夹角，记为
+$\alpha,\beta,\gamma$。
+
+\begin{itemize}
+\item 若 $P(x,y,z)$，则 $\cos\alpha=\dfrac{x}{|OP|}$，
+$\beta,\gamma$ 也同理。显然
+$\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$；
+\item 称 $\cos\alpha,\cos\beta,\cos\gamma$ 是方向 $OP$
+的\textbf{方向余弦}；
+\item 方向余弦是方向的单位化，它在单位球面上。
+\end{itemize}
+
+\subsubsection*{3.\ 方向的夹角}
+
+若两个方向的方向余弦分别为 $(l_1,m_1,n_1)$ 及
+$(l_2,m_2,n_2)$，它们的夹角记为 $\theta$，则一方面
+\[
+|P_1P_2|^2=(l_2-l_1)^2+(m_2-m_1)^2+(n_2-n_1)^2 ;
+\]
+另一方面，我们可以用余弦定理
+\[
+|P_1P_2|^2=|OP_1|^2+|OP_2|^2-2|OP_1||OP_2|\cos\theta .
+\]
+于是
+\[
+1+1-2l_1l_2-2m_1m_2-2n_1n_2=1+1-2\cos\theta
+\ \Longrightarrow\
+\cos\theta=l_1l_2+m_1m_2+n_1n_2 .
+\]
+当 $\theta=\dfrac\pi2$ 时，称上述两方向垂直；若 $\theta=0$，
+则称为平行。
+
+\subsection*{§3\quad 空间中的平面}
+
+\begin{itemize}
+\item \textbf{平面}\quad 到定点的方向与给定方向垂直的点的集合；
+\item 给定的方向称为平面的\textbf{法向}。不难看出，
+一个平面有两个法向，方向相反。
+\end{itemize}
+
+已知点 $O$ 在平面 $\pi$ 的垂足为 $N$，且 $ON$ 的方向余弦为
+$(l,m,n)$，$|ON|=p$。任取点 $P(x,y,z)\in\pi$，
+则方向 $NP$ 与方向 $ON$ 垂直，于是
+\[
+(x-pl)l+(y-pm)m+(z-pn)n=0
+\ \Longleftrightarrow\
+lx+my+nz-p=0 .
+\]
+
+\textbf{注：}
+
+\begin{enumerate}
+\item[①] 若 $p=0$（即 $O\in\pi$），则法式方程不唯一，
+它差一个符号；
+\item[②] 若 $p>0$，则法式方程唯一，其几何意义是：
+与半径为 $p$ 的球面相切于方向是 $(l,m,n)$ 的点的平面；
+\item[③] 法式方程的特点：\\
+1. 一次项系数平方和为 $1$；\quad 2. 常数项 $\leq0$。
+\end{enumerate}
+
+\subsubsection*{特殊的平面}
+
+\begin{enumerate}
+\item $Ax+By+D=0$ 表示与 $z$ 轴平行的平面。
+\item 若
+\[
+\begin{cases}
+\pi_1:A_1x+B_1y+C_1z+D_1=0,\\
+\pi_2:A_2x+B_2y+C_2z+D_2=0,
+\end{cases}
+\]
+则有
+\[
+\pi_1\parallel\pi_2
+\Longleftrightarrow
+\frac{A_1}{A_2}=\frac{B_1}{B_2}=\frac{C_1}{C_2},
+\qquad
+\pi_1\perp\pi_2
+\Longleftrightarrow
+A_1A_2+B_1B_2+C_1C_2=0 .
+\]
+\item 如果
+\[
+\begin{cases}
+\pi_1:A_1x+B_1y+C_1z+D_1=0,\\
+\pi_2:A_2x+B_2y+C_2z+D_2=0,
+\end{cases}
+\]
+则 $\pi_1$ 到 $\pi_2$ 的距离是
+\[
+\frac{|D_1-D_2|}{\sqrt{A^2+B^2+C^2}} .
+\]
+\item 如果
+\[
+\begin{cases}
+\pi_1:A_1x+B_1y+C_1z+D_1=0,\\
+\pi_2:A_1x+B_1y+D_1=0,
+\end{cases}
+\qquad\text{且}\ C\neq0,
+\]
+那么 $\pi_2$ 是过 $\pi_1$ 与 $XOY$ 面的交线且与 $Z$ 轴平行的平面。
+\end{enumerate}
+
+法式方程是一个特殊的三元一次方程，它表示一个平面。
+那么，一个一般的三元一次方程
+\[
+Ax+By+Cz+D=0
+\]
+表示什么图形？
+\[
+\frac{\pm1}{\sqrt{A^2+B^2+C^2}}(Ax+By+Cz+D)=0
+\]
+是一个法式方程，它表示一个平面。称其为平面的\textbf{一般方程}。
+
+\subsection*{§4\quad 空间中的直线}
+
+\begin{itemize}
+\item \textbf{直线}\quad 到定点的方向与给定方向平行的点的轨迹。
+\end{itemize}
+
+记直线 $L$ 过定点 $N(x_0,y_0,z_0)$，直线 $L$ 与方向
+$(l,m,n)$ 平行，取点 $P(x,y,z)\in L$，则方向 $(l,m,n)$
+与方向 $NP$ 平行，于是
+\[
+\exists t\in\mathbb R,\ \text{s.t.}\
+\begin{cases}
+x-x_0=tl,\\
+y-y_0=tm,\\
+z-z_0=tn,
+\end{cases}
+\qquad\text{其中}\ t\in\mathbb R\ \text{是参数} .
+\]
+称上述是直线 $L$ 的\textbf{参数方程}。消去参数 $t$，得
+\[
+\frac{x-x_0}{l}=\frac{y-y_0}{m}=\frac{z-z_0}{n},
+\]
+若分母为零，则分子也为零。称其为直线 $L$ 的\textbf{点向方程}。
+
+可以把点向方程视作两个方程组成的三元一次方程组。
+
+\textbf{Q：}\quad 一般的，由两个方程组成的三元一次方程组
+\[
+\begin{cases}
+A_1x+B_1y+C_1z+D_1=0,\\
+A_2x+B_2y+C_2z+D_2=0,
+\end{cases}
+\]
+表示什么图形？从几何上看，它表示两个平面的交线（如果有的话）；
+从代数上看，它可以化成参数方程／点向方程，它是一条直线。
+上式称为直线的\textbf{一般方程}。
+
+注意到，若 $L$ 与 $XOY$ 面不平行
+$\Longleftrightarrow A_1B_2\neq A_2B_1$，以后可以用外积证明。
+
+\subsubsection*{直线的投影}
+
+有直线 $L$
+\[
+\begin{cases}
+A_1x+B_1y+C_1z+D_1=0,\\
+A_2x+B_2y+C_2z+D_2=0,
+\end{cases}
+\]
+上两式联立，消去 $z$，得到方程
+\[
+A_3x+B_3y+D_3=0,
+\]
+这是过直线 $L$ 且与 $z$ 轴平行的平面。则方程
+\[
+\begin{cases}
+A_3x+B_3y+D_3=0,\\
+z=0,
+\end{cases}
+\]
+的解即为直线在 $XOY$ 平面上的投影。
+
+事实上，就是把点向方程擦掉含 $z$ 的那一部分。
+
+\end{document}

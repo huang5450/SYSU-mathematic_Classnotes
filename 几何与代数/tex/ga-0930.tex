@@ -1,0 +1,166 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{几何与代数 0930}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ 二次曲面}
+
+\textbf{二次曲面}：由一个三元二次方程确定的空间图形。
+
+三元二次方程
+\[
+a_{11}x^2+a_{22}y^2+a_{33}z^2
++2a_{12}xy+2a_{13}xz+2a_{23}yz
++2a_1x+2a_2y+2a_3z+c=0
+\]
+可以写成如下的矩阵形式
+\[
+(x,y,z,1)
+\begin{pmatrix}
+a_{11} & a_{12} & a_{13} & a_1\\
+a_{12} & a_{22} & a_{23} & a_2\\
+a_{13} & a_{23} & a_{33} & a_3\\
+a_1 & a_2 & a_3 & c
+\end{pmatrix}
+\begin{pmatrix}
+x\\y\\z\\1
+\end{pmatrix}
+=0 .
+\]
+
+\textbf{Q：}三元二次方程表示什么图形？图形有几类？
+
+平面上的二次曲线有几类？
+\[
+a_{11}x^2+a_{22}y^2+2a_{12}xy+2a_1x+2a_2y+b=0 .
+\]
+曲面方程 $F(x,y,z)=0$；曲线方程可以看作两个曲面相交：
+$F(x,y,z)=0$，$G(x,y,z)=0$。
+
+\subsection*{1.\ 球面}
+
+\textbf{球面}：到定点的距离等于定长的点的集合。
+
+设定点 $Q_0(x_0,y_0,z_0)$，定长为 $r$，任取点 $P(x,y,z)$，
+则 $|PQ_0|=r$，有
+\[
+\Longrightarrow\ (x-x_0)^2+(y-y_0)^2+(z-z_0)^2=r^2
+\]
+\[
+\Longleftrightarrow\
+x^2+y^2+z^2-2x_0x-2y_0y-2z_0z
++x_0^2+y_0^2+z_0^2-r^2=0 .
+\]
+该方程有如下特点：
+
+\begin{enumerate}
+\item 没有交叉项；
+\item 平方项系数相同。
+\end{enumerate}
+
+反过来，若三元二次方程满足上两条件，即方程为
+\[
+x^2+y^2+z^2+2a_1x+2a_2y+2a_3z+b=0,
+\]
+可化为
+\[
+(x+a_1)^2+(y+a_2)^2+(z+a_3)^2
+=a_1^2+a_2^2+a_3^2-b .
+\]
+于是，该方程表示球心在 $(-a_1,-a_2,-a_3)$、半径为
+$\sqrt{a_1^2+a_2^2+a_3^2-b}$ 的球面。
+
+\subsubsection*{e.g.1}
+
+求过 $(A,0,0)$、$(0,B,0)$、$(0,0,C)$ 的球面方程。
+
+设过三点的球面方程为
+\[
+x^2+y^2+z^2+2a_1x+2a_2y+2a_3z+b=0 .
+\]
+代入三点坐标有
+\[
+\begin{cases}
+A^2+2a_1A+b=0,\\
+B^2+2a_2B+b=0,\\
+C^2+2a_3C+b=0 .
+\end{cases}
+\]
+令 $b=0$ 得
+\[
+a_1=-\frac A2,\qquad a_2=-\frac B2,\qquad a_3=-\frac C2 .
+\]
+所以方程为
+\[
+x^2+y^2+z^2-Ax-By-Cz=0 .
+\]
+
+\subsection*{2.\ 柱面}
+
+\textbf{柱面}：由一族平行直线所组成的图形。平面是柱面。
+
+这些直线称为柱面的\textbf{母线}；与每一条母线相交的曲线叫
+\textbf{准线}。柱面是由一条母线沿着准线平行移动得到的图形。
+由此看来，确定一个柱面，需要准线 $+$ 母线方向。
+
+\textbf{圆柱面}：到定直线的距离为定长的点的集合，
+且准线是圆、母线方向与圆垂直的柱面。
+
+取 $[O;X,Y,Z]$，s.t. $z$ 轴是母线方向，柱面 $S$ 的方程
+$F(x,y,z)=0$，$\forall P(x,y,z)\in S$，则
+$\forall t\in\mathbb R$，$(x,y,tz)\in S$，即 $F(x,y,tz)=0$
+$\forall t\in\mathbb R$ 都成立，于是柱面 $S$ 的方程为 $F(x,y)=0$。
+
+反之，如果 $F(x,y,z)=0$ 不含 $z$，则该方程 $F(x,y)=0$
+表示什么？若 $P(x,y,z)\in$ 图形 $S$，则
+$\forall t\in\mathbb R$，$(x,y,tz)\in S$，说明过 $P$ 点且平行于
+$z$ 轴的直线属于 $S$，于是 $S$ 是母线方向为 $z$ 轴的柱面。
+
+柱面的准线方程
+\[
+\Gamma=
+\begin{cases}
+F(x,y)=0,\\
+z=0 .
+\end{cases}
+\]
+
+\textbf{圆柱面方程}\quad 取 $[O;X,Y,Z]$，s.t. $O$ 是准线的圆心，
+$z$ 轴是母线方向。已知准线 $\Gamma$，
+$\forall P(x,y,z)$，过 $P$ 点与 $z$ 轴平行的直线交准线于
+$(x,y,0)$，于是 $x^2+y^2=r^2$。
+
+还有很多柱面，如椭圆柱面
+$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$，双曲柱面
+$\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$，抛物柱面 $y^2=2px$。
+
+\subsection*{3.\ 锥面}
+
+\textbf{锥面}：由一族交于同一点的直线组成的图形。平面是锥面。
+
+该点称为\textbf{顶点}；这些直线叫\textbf{母线}；
+与所有母线相交（顶点除外）的曲线叫做\textbf{准线}。
+由此看来，确定一个锥面，需要顶点 $+$ 准线。
+
+\textbf{圆锥面}：准线是圆，顶点在过准线的圆心且垂直于圆的直线上。
+
+取 $[O;X,Y,Z]$，s.t. $O$ 是锥面 $S$ 的顶点，$S$ 的方程
+$F(x,y,z)=0$。$\forall P(x,y,z)\in S$，则直线 $OP$ 也在锥面
+$S$ 上，即 $\forall t\in\mathbb R$，$(tx,ty,tz)\in S$，于是
+\[
+F(tx,ty,tz)=0 .
+\]
+锥面方程特点：若 $F(x,y,z)=0$，则
+$F(tx,ty,tz)=0$，$\forall t\in\mathbb R$。
+
+反之，若方程满足以上条件，它表示什么图形？
+$\forall P(x,y,z)\in S$，由于 $F(x,y,z)=0
+\Longrightarrow F(tx,ty,tz)=0$，说明
+$(tx,ty,tz)\in S$，$\forall t\in\mathbb R$，于是直线
+$OP\subset S$，可知 $S$ 是顶点在原点的锥面。
+
+\end{document}

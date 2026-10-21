@@ -1,0 +1,241 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{解析几何 0916}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ Recall：线性组合、线性表示、线性相关与线性无关}
+
+\begin{itemize}
+\item \textbf{共线}\quad $\vec a$ 与 $\vec b$ 共线
+$\Longleftrightarrow$ $\exists$ 不全为零的实数
+$\lambda,\mu$，s.t.
+$\lambda\vec a+\mu\vec b=\vec 0$；
+\item \textbf{共面}\quad $\vec a,\vec b,\vec c$ 共面
+$\Longleftrightarrow$ $\exists$ 不全为 $0$ 的数
+$\lambda,\mu,\nu$，s.t.
+$\lambda\vec a+\mu\vec b+\nu\vec c=\vec 0$；
+\item \textbf{线性相关}\quad
+$\vec a_1,\vec a_2,\ldots,\vec a_n$，若存在不全为零的实数
+$k_1,k_2,\ldots,k_n$，s.t.
+$k_1\vec a_1+k_2\vec a_2+\cdots+k_n\vec a_n=\vec 0$，
+则称 $\vec a_1,\ldots,\vec a_n$ 线性相关；
+\item \textbf{线性无关}\quad
+$\vec a_1,\vec a_2,\ldots,\vec a_n$，若不存在不全为零的实数
+$k_1,k_2,\ldots,k_n$，s.t.
+$k_1\vec a_1+k_2\vec a_2+\cdots+k_n\vec a_n=\vec 0$，
+则称 $\vec a_1,\ldots,\vec a_n$ 线性无关；
+\item 向量组 $\vec a_1,\vec a_2,\ldots,\vec a_n$ 线性相关／无关
+$\Longleftrightarrow$ 向量方程
+$k_1\vec a_1+k_2\vec a_2+\cdots+k_n\vec a_n=0$
+有／无非零解，or 方程解不唯一／唯一；
+\item $\vec a_1,\vec a_2,\ldots,\vec a_n$ 线性相关
+$\Longleftrightarrow$ $\exists$ 某个 $\vec a_i$，s.t.
+$\vec a_i$ 能被其余向量线性表示（有多余向量）。
+\end{itemize}
+
+\subsection*{1.\ 向量的坐标表示}
+
+\textbf{定理：}\quad 若 $\vec a,\vec b,\vec c$ 不共面（线性无关），
+则 $\forall\vec d$，存在唯一的实数组 $\lambda,\mu,\nu$，s.t.
+\[
+\vec d=\lambda\vec a+\mu\vec b+\nu\vec c .
+\]
+
+在空间直角坐标系 $[O,X,Y,Z]$ 中，取 $OX,OY,OZ$ 轴方向的单位向量
+$\vec e_1,\vec e_2,\vec e_3$，则 $\forall\vec a$，存在唯一的
+$x,y,z$，s.t.
+\[
+\vec a=x\vec e_1+y\vec e_2+z\vec e_3 .
+\]
+称 $(x,y,z)$ 是 $\vec a$ 在
+$[O;\vec e_1,\vec e_2,\vec e_3]$ 的坐标，记作
+$\vec a=(x,y,z)$。
+
+若 $\vec a=(x_1,y_1,z_1)$，$\vec b=(x_2,y_2,z_2)$，则有
+\[
+\begin{aligned}
+\vec a+\vec b
+&=(x_1\vec e_1+y_1\vec e_2+z_1\vec e_3)
++(x_2\vec e_1+y_2\vec e_2+z_2\vec e_3)\\
+&=(x_1\vec e_1+x_2\vec e_1)+(y_1\vec e_2+y_2\vec e_2)
++(z_1\vec e_3+z_2\vec e_3)\\
+&=(x_1+x_2)\vec e_1+(y_1+y_2)\vec e_2+(z_1+z_2)\vec e_3 ,
+\end{aligned}
+\]
+于是
+$\vec a+\vec b=(x_1+x_2,\ y_1+y_2,\ z_1+z_2)$。
+同样地
+\[
+\begin{aligned}
+\lambda\vec a
+&=\lambda(x_1\vec e_1+y_1\vec e_2+z_1\vec e_3)\\
+&=(\lambda x_1)\vec e_1+(\lambda y_1)\vec e_2+(\lambda z_1)\vec e_3\\
+\Longrightarrow\quad
+\lambda\vec a&=(\lambda x_1,\ \lambda y_1,\ \lambda z_1).
+\end{aligned}
+\]
+
+$\vec e_1,\vec e_2,\vec e_3$ 称为基向量。
+
+\subsection*{2.\ 向量的内积（点乘）前置}
+
+\subsubsection*{投影}
+
+若 $\vec e$ 是单位向量，$\vec a$ 是空间向量，此时
+$\vec e,\vec a$ 可以确定一个平面 $\pi$，在 $\pi$ 中取与
+$\vec e$ 垂直的单位向量 $\vec e'$，于是
+\[
+\vec a=\lambda\vec e+\mu\vec e'
+=\vec a_{\vec e}+\vec a_h .
+\]
+
+\begin{itemize}
+\item 称 $\vec a_{\vec e}$ 是 $\vec a$ 在 $\vec e$ 方向上的投影
+（内支量，水平分量）；
+\item 称 $\vec a_h$ 是 $\vec a$ 在 $\vec e$ 方向上的外支量
+（垂直分量）；
+\item 称 $\lambda$ 是投影值。
+\end{itemize}
+
+从映射的角度看投影：
+\[
+P_{\vec e}:V\to V,\qquad \vec a\longmapsto\vec a_{\vec e} .
+\]
+
+\textbf{性质}
+\[
+\begin{aligned}
+&1.\quad P_{\vec e}(\vec a+\vec b)
+=P_{\vec e}(\vec a)+P_{\vec e}(\vec b);\\
+&2.\quad P_{\vec e}(\lambda\vec a)
+=\lambda P_{\vec e}(\vec a).
+\end{aligned}
+\]
+证明将向量拆成水平分量和垂直分量即可，不在此赘述。
+
+由此可见，$f:V\to V$ 满足
+\[
+\begin{aligned}
+&1.\quad f(\vec a+\vec b)=f(\vec a)+f(\vec b);\\
+&2.\quad f(\lambda\vec a)=\lambda f(\vec a),
+\end{aligned}
+\]
+称 $f$ 是\textbf{线性映射}（保持加法与数乘）。
+
+\subsubsection*{夹角}
+
+$\vec a$ 与 $\vec b$ 的夹角定义成 $\vec a,\vec b$ 方向的夹角，
+用 $\langle\vec a,\vec b\rangle$ 表示。
+
+\textbf{性质}
+\[
+\begin{aligned}
+&1.\quad 0\leq\langle\vec a,\vec b\rangle\leq\pi;\\
+&2.\quad \langle\vec a,\vec b\rangle
+=\langle\vec b,\vec a\rangle;\\
+&3.\quad \langle\lambda\vec a,\vec b\rangle=
+\begin{cases}
+\langle\vec a,\vec b\rangle, & \lambda>0,\\
+\pi-\langle\vec a,\vec b\rangle, & \lambda<0 .
+\end{cases}
+\end{aligned}
+\]
+
+\subsection*{3.\ 向量的内积}
+
+$\vec a$ 与 $\vec b$ 的内积 $\vec a\cdot\vec b$ 定义为
+$|\vec a||\vec b|\cos\langle\vec a,\vec b\rangle$。
+
+$\vec a\cdot\vec e
+=|\vec a||\vec e|\cos\langle\vec a,\vec e\rangle
+=|\vec a|\cos\langle\vec a,\vec e\rangle
+=\vec a$ 在 $\vec e$ 方向的投影值。
+
+于是有
+\[
+\vec a_{\vec e}=(\vec a\cdot\vec e)\vec e .
+\]
+注意到
+\[
+\vec a_{\vec e}\cdot\vec e
+=\bigl((\vec a\cdot\vec e)\vec e\bigr)\cdot\vec e
+=\vec a\cdot\vec e .
+\]
+
+\subsubsection*{内积的性质}
+
+\[
+\begin{aligned}
+&1.\quad \vec a\cdot\vec b=\vec b\cdot\vec a
+&&\text{交换律};\\
+&2.\quad (\lambda\vec a)\cdot\vec b
+=\lambda(\vec a\cdot\vec b) &&\text{结合律};\\
+&3.\quad (\vec a+\vec b)\cdot\vec e
+=\vec a\cdot\vec e+\vec b\cdot\vec e &&\text{分配律}.
+\end{aligned}
+\]
+1、2 证明完全展开即可，在此不再赘述；3 证明见下：
+\[
+\begin{aligned}
+(\vec a+\vec b)\cdot\vec e
+&=(\vec a+\vec b)_{\vec e}\cdot\vec e\\
+&=(\vec a_{\vec e}+\vec b_{\vec e})\cdot\vec e\\
+&=\bigl((\vec a\cdot\vec e)\vec e
++(\vec b\cdot\vec e)\vec e\bigr)\cdot\vec e\\
+&=\bigl((\vec a\cdot\vec e+\vec b\cdot\vec e)\vec e\bigr)\cdot\vec e\\
+&=(\vec a\cdot\vec e+\vec b\cdot\vec e)(\vec e\cdot\vec e)\\
+&=\vec a\cdot\vec e+\vec b\cdot\vec e .
+\end{aligned}
+\]
+
+由此可见 $f:V\times V\to\mathbb R$ 满足
+\[
+\begin{aligned}
+&1.\quad f(\vec a,\vec b)=f(\vec b,\vec a)
+&&\text{对称性};\\
+&2.\quad f(\lambda\vec a,\vec b)=\lambda f(\vec a,\vec b)
+&&\text{双线性性 1};\\
+&3.\quad f(\vec a_1+\vec a_2,\vec b)
+=f(\vec a_1,\vec b)+f(\vec a_2,\vec b)
+&&\text{双线性性 2};\\
+&4.\quad \forall\vec a\neq\vec 0,\ f(\vec a,\vec a)>0
+&&\text{正定性}.
+\end{aligned}
+\]
+
+在 $[O;\vec e_1,\vec e_2,\vec e_3]$ 中，若
+$\vec a=(x_1,y_1,z_1)$，$\vec b=(x_2,y_2,z_2)$，有
+\[
+\begin{aligned}
+\vec a\cdot\vec b
+&=(x_1\vec e_1+y_1\vec e_2+z_1\vec e_3)
+(x_2\vec e_1+y_2\vec e_2+z_2\vec e_3)\\
+&=x_1x_2+y_1y_2+z_1z_2 .
+\end{aligned}
+\]
+
+克氏符号：
+\[
+\delta_{ij}=
+\begin{cases}
+1, & i=j,\\
+0, & i\neq j .
+\end{cases}
+\]
+用克氏符号表示向量点乘的坐标形式：
+\[
+\begin{aligned}
+\vec a\cdot\vec b
+&=\left(\sum_{i=1}^{3}x_i\vec e_i\right)
+\left(\sum_{j=1}^{3}y_j\vec e_j\right)
+=\sum_{i,j=1}^{3}x_iy_j\vec e_i\vec e_j\\
+&=\sum_{i,j=1}^{3}\delta_{ij}x_iy_j
+=\sum_{i=1}^{3}x_iy_i .
+\end{aligned}
+\]
+
+\end{document}

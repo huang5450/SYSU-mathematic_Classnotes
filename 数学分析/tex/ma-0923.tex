@@ -1,0 +1,151 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{数学分析 0923}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ Recall}
+
+原命题 $P\Rightarrow Q$；逆命题 $Q\Rightarrow P$；逆否命题 $\neg Q\Rightarrow\neg P$。
+
+反证法的原理即“原与逆否，同真同假”：通过否定结论 $\neg Q$ 推出条件不成立 $\neg P$，
+达到证明原命题的目的。
+
+\subsection*{1.\ 命题}
+
+\subsubsection*{全称量词 $\forall$}
+
+任意性（对于 $s\in S$，随便取）；一旦取出，就固定。
+
+e.g. $\forall n\in\mathbb Z$ 且 $n\neq0$，$\dfrac{1}{n^2}>0$。
+
+随便取 $n_0\in\mathbb Z$ 且 $n_0\neq0$；一旦取出就固定 $n_0$，接下来只需要验证
+$\dfrac{1}{n_0^2}>0$。
+
+\subsubsection*{存在量词 $\exists$}
+
+e.g. $\{$一班学生都擅长数学$\}$ 用数学语言表示。
+
+$x$：某个人；$S=\{$一班学生$\}$；$P(x)$：擅长数学。我们有
+\[
+\forall x\in S,\quad P(x).
+\]
+它的否命题是“存在一个一班学生，不擅长数学”，即
+\[
+\exists x\in S,\quad \neg P(x).
+\]
+
+\begin{itemize}
+\item $\forall$ 的否命题，要把 $\forall$ 变成 $\exists$；
+\item \textbf{否定的不是条件，是结论}。
+\end{itemize}
+
+回顾否定命题的方法：
+
+\begin{enumerate}
+\item 把 $\forall$ 变成 $\exists$，$\exists$ 变成 $\forall$；
+\item 顺序不变；
+\item 否定最终命题 $P$。
+\end{enumerate}
+
+上面已经对 1、3 两条做出说明，下面来说明第二条。
+
+假设有下面的命题 $\forall x,\forall y,P(x,y)$，现否定此命题。
+
+分析：把后面的 $\forall y,P(x,y)$ 看作是一个命题 $Q(x)$，整个命题变为 $\forall x,Q(x)$。
+不难得出，否命题是 $\exists x,\neg Q(x)$。此时单独看 $Q(x)$，有
+$\neg Q(x)=\exists y,\neg P(x,y)$。最后整理得否命题是
+\[
+\exists x,\ \exists y,\ \neg P(x,y).
+\]
+
+\subsection*{2.\ 牛顿二项式展开}
+
+\[
+(x+y)^n=\sum_{i=0}^{n}\binom{n}{i}x^iy^{n-i}.
+\]
+
+\subsection*{Chapter 1\quad 函数}
+
+\subsubsection*{1.\ 基本定义}
+
+\begin{itemize}
+\item \textbf{函数}：一个特殊的映射，$f:X\to\mathbb R$，$X\subseteq\mathbb R$。
+\item \textbf{定义域}：使对应法则 $f$ 有意义的点组成的集合。
+\item \textbf{函数图像}：
+\begin{itemize}
+\item 符号：$\mathbb R^2=\{(x,y)\mid x,y\in\mathbb R\}$。
+\item 定义：给出 $f:X\to\mathbb R$ 函数，定义 $f$ 的图像为
+$\{(x,y)\in\mathbb R^2\mid x\in X,\ y=f(x)\}$。
+\end{itemize}
+\end{itemize}
+
+一个函数一定是有图像的，如狄利克雷函数，只是我们画不出来罢了。
+注意图像与值域不是一回事：图像是平面上的点集，值域是实数的集合。
+
+\subsubsection*{2.\ 奇偶性}
+
+有函数 $f:X\to\mathbb R$，如果定义域 $X$ 关于原点对称，我们可以讨论它的奇偶性。
+
+\begin{itemize}
+\item 如果 $\forall x\in X,\ f(x)=f(-x)$，则称 $f(x)$ 是偶函数，
+其图像关于 $y$ 轴对称；
+\item 如果 $\forall x\in X,\ f(x)=-f(-x)$，则称 $f(x)$ 是奇函数，
+其图像关于原点对称。
+\end{itemize}
+
+定义里的“$\forall x\in X$”不能省。原笔记写作“如果 $x\in X,\ f(x)=f(-x)$”，
+字面上只是一个条件式，不是对定义域中每个点都成立的要求，会变成“存在 $x$ 满足…”，
+那就不是偶函数了。
+
+\subsubsection*{3.\ 周期性}
+
+有函数 $f:\mathbb R\to\mathbb R$，若 $\exists T>0$，s.t. $\forall x\in\mathbb R$，
+$f(x+T)=f(x)$，则称 $T$ 为 $f$ 的周期。
+
+$\forall x\in\mathbb R,\ \exists T\geq0$，s.t. $f(x+T)=f(x)$ 不是周期性的定义，
+这样会使 $T$ 受到 $x$ 的限制。
+
+e.g. $f(x)=\sin x$ 是周期函数，所有的 $2k\pi\ (k\in\mathbb Z^+)$ 都是它的周期。
+
+\textbf{Def:} 如果对于 $f$ 所有的周期，存在一个最小的正数 $T_0$，则称 $T_0$ 为最小正周期。
+
+不是所有周期函数都有最小正周期，比如狄利克雷函数，所有有理数都是它的周期。
+显然，它没有最小正周期。
+
+\subsubsection*{4.\ 单调性}
+
+设 $f:X\to\mathbb R$ 为一个函数，如果 $\forall x_1,x_2\in X$，当 $x_1\leq x_2$ 时，
+$f(x_1)\leq f(x_2)$，则称 $f$ 在 $X$ 上单调递增；特别地，如果对于所有 $x_1<x_2$，
+都有 $f(x_1)<f(x_2)$，则称 $f$ 在 $X$ 上严格单调递增。
+
+单调性要强调是在哪个区间上增或减。
+
+单调递增的等价形式：
+
+\begin{itemize}
+\item $\forall x_1<x_2,\ f(x_1)<f(x_2)$（严格单调递增）；
+\item $\forall x_1,x_2$，$x_1-x_2$ 与 $f(x_1)-f(x_2)$ 同号；
+\item $\forall x_1,x_2$，$\bigl(x_1-x_2\bigr)\bigl(f(x_1)-f(x_2)\bigr)\geq0$；
+\item $\forall x_1\neq x_2$，$\dfrac{f(x_1)-f(x_2)}{x_1-x_2}\geq0$。
+\end{itemize}
+
+原笔记第 1 条写的是“$\forall x_1\leq x_2,\ f(x_1)\neq f(x_2)$”，那其实是严格单调递增；
+现已还原成严格单调递增的写法。第 2、3、4 条只对 $x_1,x_2$ 作要求，
+没有限定 $x_1\leq x_2$，靠“同号”和“$\geq0$”把这个信息装进去；
+如果把不等号改成 $>0$，得到的才是严格单调递增。
+
+\subsubsection*{5.\ 有界性}
+
+\textbf{Def:} $f:X\to\mathbb R$ 有界是指 $\exists M>0$，s.t. $\forall x\in X$ 有
+$|f(x)|\leq M$，则称 $f(x)$ 在 $X$ 上有界。
+
+反过来当然也不行，如 $\forall x\in X,\ \exists M>0$，s.t. $|f(x)|\leq M$ 会使 $M$ 的值
+依赖于 $x$，错误。（原笔记这里把式子误写成了 $f(x+T)=f(x)$，那是周期性的式子。）
+
+否命题即为无界的定义：$\forall M>0,\ \exists x\in X$，s.t. $|f(x)|>M$。
+
+\end{document}

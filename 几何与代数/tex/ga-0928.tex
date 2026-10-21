@@ -1,0 +1,147 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{几何与代数 0928}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{1.\ 向量的旋转}
+
+$\vec e$ 是单位向量，向量 $\vec a$ 绕 $\vec e$ 旋转 $\theta$ 角，
+得到 $\vec a'$。
+
+\begin{enumerate}
+\item 将 $\vec a$ 分解
+\[
+\vec a=\vec a_{\vec e}+\vec a_h,\qquad
+\vec a_{\vec e}=(\vec a\cdot\vec e)\vec e,\qquad
+\vec a_h=\vec a-\vec a_{\vec e}
+=\vec a-(\vec a\cdot\vec e)\vec e .
+\]
+\item 将两向量 $\vec a_{\vec e},\vec a_h$ 分别绕 $\vec e$
+旋转 $\theta$ 角，得到 $\vec a_{\vec e}',\vec a_h'$，有
+\[
+\vec a_{\vec e}'=\vec a_{\vec e},\qquad
+\vec a_h'=\cos\theta\,\vec a_h+\sin\theta\,(\vec e\times\vec a_h).
+\]
+\item 合并
+\[
+\vec a_{\vec e}'=\vec a_{\vec e},\qquad
+\vec a_h'=\cos\theta\cdot\vec a_h+\sin\theta\,(\vec e\times\vec a_h).
+\]
+\end{enumerate}
+
+\subsubsection*{e.g.}
+
+$\vec a=(1,1,1)$ 绕 $\vec e_1=(1,0,0)$ 右旋
+$\dfrac\pi4$ 得到 $\vec a'$。
+
+\begin{enumerate}
+\item $\vec a=\vec a_{\vec e}+\vec a_h$，
+$\vec a_{\vec e}=(1,0,0)$，$\vec a_h=(0,1,1)$；
+\item
+\[
+\begin{aligned}
+\vec a_h'
+&=\cos\frac\pi4\vec a_h+\sin\frac\pi4(\vec e_1\times\vec a_h)\\
+&=\left(0,\frac{\sqrt2}{2},\frac{\sqrt2}{2}\right)
++\frac{\sqrt2}{2}(0,-1,1)=(0,0,\sqrt2);
+\end{aligned}
+\]
+\item $\vec a'=\vec a_h'+\vec a_{\vec e}=(1,0,\sqrt2)$。
+\end{enumerate}
+
+\subsection*{2.\ 矩阵 (matrix)}
+
+\textbf{定义}\quad $mn$ 个数排成 $m$ 行 $n$ 列的数表，
+称为一个 $m\times n$（阶）矩阵。
+
+例如 $(1,0,1)$ 是 $1\times3$ 矩阵；
+$\begin{pmatrix}1\\0\\1\end{pmatrix}$ 是 $3\times1$ 矩阵。
+
+矩阵一般用 $A,B,C,P,Q$ 表示。用 $[\ ]$ 或者 $(\ )$ 将数字括起来，
+例如
+\[
+A=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+=(a_{ij})_{m\times n}.
+\]
+如果 $m=n$，则称该矩阵是一个 $n$ 阶方阵。如
+$\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}$
+是一个 $3\times3$ 矩阵或三阶方阵。
+
+\subsubsection*{矩阵的运算}
+
+\begin{enumerate}
+\item \textbf{加法}\quad $A=(a_{ij})$，$B=(b_{ij})$ 是
+$m\times n$ 阶矩阵，则
+\[
+A+B\triangleq(a_{ij}+b_{ij})
+\]
+是 $m\times n$ 矩阵。
+\item \textbf{数乘}\quad $k\in\mathbb R$，$A=(a_{ij})$ 是
+$m\times n$ 矩阵，
+\[
+kA\triangleq(ka_{ij}).
+\]
+\item \textbf{乘法}
+
+\textbf{(1) 矩阵与向量相乘}
+\[
+AX=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\x_2\\\vdots\\x_n
+\end{pmatrix}
+\triangleq
+\begin{pmatrix}
+a_{11}x_1+\cdots+a_{1n}x_n\\
+a_{21}x_1+\cdots+a_{2n}x_n\\
+\vdots\\
+a_{m1}x_1+\cdots+a_{mn}x_n
+\end{pmatrix}.
+\]
+
+\textbf{(2) 矩阵与矩阵相乘}\quad $A$ 是 $m\times n$ 矩阵，
+$B$ 是 $n\times s$ 矩阵，
+\[
+\begin{aligned}
+AB&=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+\begin{pmatrix}
+b_{11} & b_{12} & \cdots & b_{1s}\\
+b_{21} & b_{22} & \cdots & b_{2s}\\
+\vdots & \vdots & & \vdots\\
+b_{n1} & b_{n2} & \cdots & b_{ns}
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+\sum\limits_{k=1}^{n}a_{1k}b_{k1} & \cdots & \cdots
+& \sum\limits_{k=1}^{n}a_{1k}b_{ks}\\
+\vdots & & & \vdots\\
+\vdots & & & \vdots\\
+\sum\limits_{k=1}^{n}a_{mk}b_{k1} & \cdots & \cdots
+& \sum\limits_{k=1}^{n}a_{mk}b_{ks}
+\end{pmatrix}.
+\end{aligned}
+\]
+\end{enumerate}
+
+\end{document}

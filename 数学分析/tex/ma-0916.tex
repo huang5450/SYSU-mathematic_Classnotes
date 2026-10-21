@@ -1,0 +1,119 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{定理}
+\newtheorem{example}{例}
+
+\title{数学分析 2024-09-16}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{5. 整数的算术}
+
+整数对加法和乘法封闭。从加法的角度，可以用反复加 \(1\)
+描述正整数；从乘法的角度，大于 \(1\) 的正整数可以分解为素数的乘积。
+素数是仅有 \(1\) 和自身两个正因数的正整数。
+
+\subsection*{带余除法}
+
+对 \(n\in\mathbb Z\)、\(m\in\mathbb Z\setminus\{0\}\)，
+存在唯一的 \(q,r\in\mathbb Z\)，使
+\[
+n=qm+r,\qquad 0\leq r<|m|.
+\]
+其中 \(r\) 是余数。
+
+\subsection*{素数有无穷多个}
+
+反设素数只有 \(p_1,\ldots,p_N\)。
+构造
+\[
+M=p_1p_2\cdots p_N+1.
+\]
+\(M>1\)，因而有素因数；但对每个 \(p_i\)，
+\(M\) 除以 \(p_i\) 的余数均为 \(1\)，矛盾。
+故素数有无穷多个。
+
+每个大于等于 \(2\) 的正整数都可分解为素数的乘积。
+可用归纳法证明：若 \(N\) 为素数，结论显然；
+若 \(N=n_1n_2\) 且 \(1<n_1,n_2<N\)，
+对 \(n_1,n_2\) 分别使用归纳假设，再将其素因子合并。
+
+\paragraph{补充：素数定理.}
+记 \(\pi(x)\) 为不超过 \(x\) 的素数个数，则
+\[
+\lim_{x\to+\infty}\frac{\pi(x)}{x/\log x}=1,
+\qquad
+\lim_{x\to+\infty}\frac{\pi(x)}x=0.
+\]
+其中 \(\log x\) 为自然对数。
+
+\subsection*{素数平方根的无理性}
+
+设 \(p\) 为素数。反设
+\(\sqrt p=n/m\)，其中 \(n,m\) 互素且 \(m\ne0\)。
+由
+\[
+n^2=pm^2
+\]
+可知 \(p\mid n^2\)，故 \(p\mid n\)。设 \(n=pk\)，
+代入得
+\[
+p^2k^2=pm^2,\qquad m^2=pk^2.
+\]
+于是 \(p\mid m\)，与 \(n,m\) 互素矛盾。因此
+\(\sqrt p\notin\mathbb Q\)；特别地，
+\(\sqrt2\notin\mathbb Q\)。
+
+\subsection*{有理数与小数展开}
+
+\[
+\mathbb Q
+=
+\left\{\frac nm:n,m\in\mathbb Z,\ m\ne0\right\}.
+\]
+有理数的小数展开是有限小数或无限循环小数；
+反过来，这两类小数都是有理数。
+
+例如，有限小数可以写成整数与 \(10^k\) 的比。
+设循环节所对应的整数为 \(B\)，长度为 \(m\)，
+则纯循环小数的循环部分可以表示为
+\[
+B\sum_{j=1}^{\infty}10^{-jm}
+=
+\frac{B\,10^{-m}}{1-10^{-m}}\in\mathbb Q.
+\]
+若前面还有 \(k\) 位不循环的小数，再乘 \(10^{-k}\)
+并加上有限小数部分即可。
+
+反过来，对 \(\frac nm\) 作带余除法时，余数只有有限种可能。
+余数一旦重复，之后的商位便重复；若出现余数 \(0\)，
+则小数展开终止。
+
+\section*{6. 补充集合论：映射}
+
+设 \(X,Y\) 为集合。映射 \(f:X\to Y\) 是指：
+对每个 \(x\in X\)，都存在唯一的 \(y\in Y\) 与之对应，
+记为 \(y=f(x)\)。
+
+\(X\) 称为定义域，\(Y\) 称为靶集，而
+\[
+f(X)=\{f(x):x\in X\}
+\]
+称为像集。若 \(y=f(x)\)，则 \(y\) 是 \(x\) 的像，
+\(x\) 是 \(y\) 的一个原像。
+
+\begin{itemize}
+\item \textbf{单射：}
+\(f(x_1)=f(x_2)\Rightarrow x_1=x_2\)。
+\item \textbf{满射：}
+对每个 \(y\in Y\)，存在 \(x\in X\)，使 \(f(x)=y\)。
+\item \textbf{双射：}既是单射又是满射。
+\end{itemize}
+
+\end{document}

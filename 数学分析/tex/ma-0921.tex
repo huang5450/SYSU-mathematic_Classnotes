@@ -1,0 +1,261 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{数学分析 0921}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{1. 实数的连续性}
+
+\subsubsection*{Dedikind 连续性}
+
+设 $S$ 为一个稠密有序数集。若把 $S$ 分成 $A,B$ 两类，满足
+
+\begin{enumerate}
+\item[(i)] \textbf{不空}：$A$ 与 $B$ 都至少包含 $S$ 中的一个数；
+\item[(ii)] \textbf{不漏}：$S$ 中的每个数，或者属于 $A$，或者属于 $B$；
+\item[(iii)] \textbf{不乱}：$A$ 中任一个数 $a$ 都小于 $B$ 中任一个数 $b$，即
+$\forall a\in A,\ b\in B,\ a<b$。
+\end{enumerate}
+
+则称 $A,B$ 为 $S$ 的一个\textbf{分划}，记为 $A\mid B$；
+$A$ 称为下类，$B$ 称为上类。
+
+若 $S$ 的每个分划 $A\mid B$ 都存在唯一的 $c\in S$，使
+$\forall a\in A,\ b\in B$ 有
+\[
+a\leq c\leq b,
+\]
+则称 $S$ 具有 Dedikind 连续性（即 $S$ 是连续的）。
+这里的 $c$ 称为\textbf{分界点}。
+
+上述定义的三个要点：
+
+\begin{enumerate}
+\item \textbf{稠密}：$\forall a,b\in S,\ a<b$，
+$\exists c\in S,\ a<c<b$；
+\item \textbf{存在且唯一}：$\exists!\,c\in S$，即分界点存在且唯一；
+\item 分界点 $c\in S$：$A$ 中的数都不超过 $c$，
+$B$ 中的数都不小于 $c$，即所有 $a\in A$、$b\in B$ 都被
+$c$ 分在两边；而 $c$ 本身必须落在 $S$ 中，
+要么在 $A$ 这一边，要么在 $B$ 这一边。
+\end{enumerate}
+
+由 $c$ 总属于 $A$ 或属于 $B$（“不漏”），
+若 $c\in A$ 则 $c$ 是 $A$ 的最大数，若 $c\in B$ 则 $c$ 是 $B$ 的最小数，
+所以连续性准则也可以这样说：若 $S$ 的每个分划 $A\mid B$，
+或者 $A$ 有最大数，或者 $B$ 有最小数，则称 $S$ 是连续的。
+
+\subsubsection*{$\mathbb Q$ 是不连续的}
+
+找出 $\mathbb Q$ 的一个分划 $A\mid B$，
+使该分划在 $\mathbb Q$ 内没有分界点即可。
+
+考虑分划
+\[
+A=\{x\in\mathbb Q:x<\sqrt2\},\qquad
+B=\{x\in\mathbb Q:x\geq\sqrt2\}.
+\]
+因为 $\sqrt2\notin\mathbb Q$，两集合构成 $\mathbb Q$
+的一个分划（$A\cup B=\mathbb Q$ 且 $A\cap B=\varnothing$）。
+下面证明 $A$ 中没有最大的数，同理 $B$ 中没有最小的数。
+
+我们的目标是寻找一个 $\epsilon$，使得
+\[
+\forall a\in A,\ \exists\epsilon>0,\ \epsilon\in\mathbb Q,\quad
+a+\epsilon\in A,
+\]
+即要求
+\[
+\begin{cases}
+\epsilon>0,\\
+\epsilon\in\mathbb Q,\\
+a+\epsilon<\sqrt2.
+\end{cases}
+\]
+
+先按放缩法估算。由 $a+\epsilon<\sqrt2$ 得
+\[
+(a+\epsilon)^2<2
+\iff a^2+2a\epsilon+\epsilon^2<2.
+\]
+若 $\epsilon<2a$，则 $\epsilon^2<2a\epsilon$，于是
+\[
+a^2+4a\epsilon<2
+\iff \epsilon<\frac{2-a^2}{4a}.
+\]
+故只需取
+\[
+\epsilon<\min\left\{2a,\ \frac{2-a^2}{4a}\right\},
+\]
+即可满足要求。
+（注意：$\epsilon^2<2a\epsilon$ 与 $\epsilon<2a$ 只有在
+$a>0$ 时才等价；而当 $a$ 靠近 $0$ 时，$2a$ 可能已经大于
+$\sqrt2-a$，因此还须补上 $\epsilon<\sqrt2-a$ 这一条限制，
+方能保证 $a+\epsilon<\sqrt2$，也才保证 $\epsilon>0$。）
+
+下面给出一个更直接的取法。对任意 $a\in A$，
+总有 $\sqrt2-a>0$，令
+\[
+\epsilon=\frac12\min\{1,\ \sqrt2-a\}>0 .
+\]
+由 $1,\sqrt2\in\mathbb Q$ 及 $a\in\mathbb Q$ 可知
+$\epsilon\in\mathbb Q$；并且
+\[
+\epsilon\leq\frac12(\sqrt2-a)<\sqrt2-a,
+\]
+从而
+\[
+a+\epsilon<a+(\sqrt2-a)=\sqrt2,
+\]
+即 $a+\epsilon\in A$。
+这说明 $A$ 中不存在最大的数：
+对 $A$ 中任何一个数 $a$，总能在 $A$ 中找到一个比它更大的数。
+（同理，对任意 $b\in B$，取
+$\epsilon=\frac12\min\{1,\ b-\sqrt2\}$，
+可证 $b-\epsilon\in B$，故 $B$ 中不存在最小的数。）
+
+因此，$A$ 中没有最大的数，$B$ 中没有最小的数，
+该分划在 $\mathbb Q$ 内没有分界点，
+即不存在 $c\in\mathbb Q$ 使
+$\forall a\in A,\ b\in B$ 有 $a\leq c\leq b$。
+所以 $\mathbb Q$ 不具有 Dedikind 连续性，$\mathbb Q$ 不连续。
+
+\subsubsection*{定理：实数集是 Dedikind 连续的}
+
+连续需要证明三个条件：$S$ 是有序稠密集；存在一个分界点；
+分界点要唯一。
+
+\noindent\textbf{证：}
+
+\noindent 1) 实数集显然有序且稠密。
+
+\noindent 2) 存在分界点。我们的目标是依据分划的性质构造出一个数，
+再证明它确实是分界点。
+
+先回忆中学里讲过的，什么是实数。实数就是十进无穷小数
+\[
+a_0.a_1a_2a_3\cdots a_k\cdots,
+\]
+其中 $a_0$ 是整数，$a_k\ (k\geq1)$ 是满足
+$0\leq a_k\leq9$ 的整数。
+
+由 $A\cup B=\mathbb R$ 得 $\mathbb Z\subseteq A\cup B$，即
+$\mathbb Z=(\mathbb Z\cap A)\cup(\mathbb Z\cap B)$；
+又由 $A\cap B=\varnothing$ 得
+$(\mathbb Z\cap A)\cap(\mathbb Z\cap B)=\varnothing$。
+也就是说，分划点把整数分成两块：一块全在 $A$ 里，
+一块全在 $B$ 里。
+
+\textbf{声明 1：} $\exists a\in\mathbb Z$，使 $a\in A$ 且 $a+1\in B$。下证。
+
+\textbf{声明 2：} $\exists i_0\in A$ 且 $i_0\in\mathbb Z$。
+
+否则，若 $A$ 中一个整数都没有，即 $\mathbb Z\subseteq B$。
+任取 $A$ 中的一个元素 $a$，它理应小于所有的整数，显然矛盾。
+
+可以论证声明 1 了。若从 $i_0$ 起的整数都属于 $A$，
+即 $\forall i\in\mathbb Z,\ i\geq i_0$ 都有 $i\in A$，
+此时取定 $B$ 中任意数 $b$，则
+$\forall i'\in\mathbb Z,\ i'\geq i_0$ 都有 $i'\leq b$；
+但整数可以取得任意大，总能找到一个 $i'\geq i_0$ 且 $i'>b$，
+这与“不乱”矛盾。所以在 $A$ 中一定可以找到一个最大整数，
+任何大于它的整数都属于 $B$，即
+\[
+\exists a\in\mathbb Z,\quad a\in A\ \text{且}\ a+1\in B .
+\]
+那么我们想要构造的这个数，整数位就为 $i_0$。
+
+对 $i_0\sim i_0+1$ 之间的区间作十等分，考虑
+$i_0.0,\ i_0.1,\ \cdots,\ i_0.9$，其中必有落在 $A$ 中的数。
+
+总存在一个 $i$，使得 $i_0.i$ 属于 $A$ 且
+$i_0.(i+1)$ 属于 $B$。
+否则，若对于 $\forall i_0.i\in A$ 都有
+$i_0.(i+1)\in A$，一路推下去可得
+$i_0.(i+10)\in A$，即 $(i_0+1).0\in A$；
+而由上面整数位的构造，$i_0+1\in B$，与“不漏”矛盾。
+当 $i=9$ 时发生进位，$i_0.(9+1)=(i_0+1).0$，
+上面的写法已经把这一步包含在内。
+
+我们就确定了这个数小数点后一位是 $i$，记它为 $i_1$。
+如此类推，就可以构造出实数
+\[
+r=i_0.i_1i_2i_3\cdots .
+\]
+
+下面证明它确实是分界点。我们证明
+$\forall a\in A,\ a\leq r$，另一边同理即可。
+
+如果存在 $a_0\in A$ 使 $a_0>r$，把两个数都写成十进无穷小数，
+则存在非负整数 $j_0$，使 $a_{j_0}>i_{j_0}$，
+而当 $j<j_0$ 时 $a_j=i_j$。也就是说，$a_0$ 的第 $j_0$ 位上的数
+不小于 $i_{j_0}+1$，因此
+\[
+a_0\geq i_0.i_1\cdots i_{j_0-1}(i_{j_0}+1)
+>i_0.i_1\cdots i_{j_0-1}i_{j_0}=r .
+\]
+而由构造，$i_0.i_1\cdots i_{j_0-1}(i_{j_0}+1)\in B$。
+于是 $a_0$ 不小于 $B$ 中的这个数，由“不乱”知 $a_0\notin A$，
+与 $a_0\in A$ 矛盾。这就证明了
+$\forall a\in A,\ a\leq r$。
+
+同理可证 $\forall b\in B,\ r\leq b$。
+所以 $r$ 确实是分划 $A\mid B$ 的分界点，存在性得证。
+
+\noindent 3) 分界点唯一。
+
+假设存在两个分界点且不相等，不妨设 $r_1<r_2$，取
+\[
+r=\frac{r_1+r_2}{2},
+\]
+显然 $r_1<r<r_2$。
+
+对 $\forall a\in A$ 有 $a\leq r_1<r$，即
+$\forall a\in A,\ a\neq r$。又因为 $r$ 也是分界点，
+应有 $r\leq r_1$，与 $r_1<r$ 矛盾，所以 $r\notin A$。
+
+同理对 $\forall b\in B$ 有 $r<r_2\leq b$，即
+$\forall b\in B,\ b\neq r$；又因为 $r$ 也是分界点，
+应有 $r_2\leq r$，与 $r<r_2$ 矛盾，所以 $r\notin B$。
+
+但分划满足 $A\cup B=\mathbb R$，即 $r$ 总属于 $A$ 或属于 $B$，
+矛盾。假设错误，分界点唯一。证毕。
+
+\medskip
+
+我们从自然数将数集扩充到了实数，使数集对于加减乘除都封闭，
+且稠密并连续，提供了我们数学分析的舞台。
+
+\subsection*{2. 集合、映射与函数}
+
+映射：定义域，靶集，对应法则。
+
+单射 injection/monomorphism；
+满射 surjection/epimorphism；
+双射 bijective/isomorphism。
+
+\subsubsection*{映射的复合}
+
+对于 $f:X\longrightarrow Y,\ g:W\longrightarrow Z$，
+如果 $f(X)\subseteq W$，则定义 $g\circ f$ 是映射
+\[
+x\longmapsto g\bigl(f(x)\bigr).
+\]
+
+\textbf{四个命题：} $f,g$ 可以复合，
+$f:X\longrightarrow Y$、$g:Y\longrightarrow Z$，
+考虑 $g\circ f:X\longrightarrow Z$。
+
+\begin{enumerate}
+\item 如果 $f,g$ 都是单射，则 $g\circ f$ 也是单射；
+\item 如果 $f,g$ 都是满射，则 $g\circ f$ 也是满射；
+\item 如果 $g\circ f$ 是单射，则 $f$ 是单射；
+\item 如果 $g\circ f$ 是满射，则 $g$ 是满射。
+\end{enumerate}
+
+\subsection*{3. 逻辑}
+
+\end{document}

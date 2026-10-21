@@ -1,0 +1,202 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{解析几何 0914}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ Recall}
+
+$V=\{$所有的空间向量$\}$。在 $V$ 上定义运算：
+
+\begin{itemize}
+\item \textbf{加法}\quad $V\times V\longrightarrow V$，
+$(\vec a,\vec b)\longmapsto\vec a+\vec b$；
+
+集合的笛卡尔乘积：$A\times B$ 定义为
+$\{(a,b)\mid a\in A,\ b\in B\}$，例如
+$\mathbb R^2=\mathbb R\times\mathbb R
+=\{(x,y)\mid x,y\in\mathbb R\}$。
+
+\item \textbf{数乘}\quad $\mathbb R\times V\longrightarrow V$，
+$(\lambda,\vec a)\longmapsto\lambda\vec a$。
+\end{itemize}
+
+\subsubsection*{性质}
+
+\begin{enumerate}
+\item 交换律\quad $\vec a+\vec b=\vec b+\vec a$；
+\item 结合律\quad $(\vec a+\vec b)+\vec c=\vec a+(\vec b+\vec c)$；
+\item 有零元\quad $\forall\vec a,\ \vec 0+\vec a=\vec a+\vec 0$；
+\item 有负元\quad $\forall\vec a,\ \exists\vec b=-\vec a$，
+s.t. $\vec a+\vec b=\vec 0$；
+\item 有单位元\quad $\forall 1\cdot\vec a=\vec a$；
+\item 分配律 1\quad $\lambda(\vec a+\vec b)
+=\lambda\vec a+\lambda\vec b$；
+\item 分配律 2\quad $(\lambda+\mu)\vec a
+=\lambda\vec a+\mu\vec a$；
+\item 数乘结合律\quad $(\lambda\mu)\vec a
+=\lambda(\mu\vec a)$。
+\end{enumerate}
+
+某种意义上，单位元和零元是一回事，分开叫只是为了区分。
+以上 8 条就是线性空间的定义中要用到的性质。
+
+\noindent 9. 三角不等式
+\[
+\bigl||\vec a|-|\vec b|\bigr|
+\leq|\vec a+\vec b|
+\leq|\vec a|+|\vec b|,
+\]
+当且仅当共线时取等。
+
+\subsubsection*{共线}
+
+向量 $\vec a,\vec b$ 方向相同或相反。
+
+\textbf{定理 1：}\quad 若 $\vec a\neq\vec 0$，则 $\vec b$ 与
+$\vec a$ 共线 $\Longleftrightarrow$ $\exists$ 唯一的实数 $t$，
+s.t. $\vec b=t\vec a$。
+
+\textbf{证明}\quad
+
+\begin{enumerate}
+\item \textbf{充分性}\quad 显然，根据定义共线。
+\item \textbf{必要性}\quad 先证明存在性：
+\[
+\begin{aligned}
+&\text{if}\ \vec b=\vec 0,\ \text{则存在}\ t=0,\
+\text{s.t.}\ \vec b=t\vec a;\\
+&\text{if}\ \vec b\neq\vec 0\ \text{且方向与}\ \vec a\ \text{相同}，
+\text{令}\ t=\frac{|\vec b|}{|\vec a|},\ \text{则}\ \vec b=t\vec a;\\
+&\text{if}\ \vec b\neq\vec 0\ \text{且方向与}\ \vec a\ \text{相反}，
+\text{令}\ t=-\frac{|\vec b|}{|\vec a|},\ \text{则}\ \vec b=t\vec a .
+\end{aligned}
+\]
+综上，当 $\vec b$ 与 $\vec a$ 共线时，
+$\exists t\in\mathbb R$，s.t. $\vec b=t\vec a$。
+
+下证唯一性：if $\exists t_1,t_2\in\mathbb R$，s.t.
+$\vec b=t_1\vec a=t_2\vec a$，则有
+$\vec 0=(t_1-t_2)\vec a$；而 $\vec a\neq\vec 0$，故
+$t_1=t_2$。
+\end{enumerate}
+
+\textbf{推论 1：}\quad $\vec a$ 与 $\vec b$ 共线
+$\Longleftrightarrow$ $\exists$ 不全为零的实数 $\lambda,\mu$，
+s.t. $\lambda\vec a+\mu\vec b=\vec 0$。
+
+先证明必要性：
+\[
+\begin{aligned}
+&\text{if}\ \vec a=\vec 0,\ \text{取}\ \lambda=1,\ \mu=0,\
+\text{此时有}\ \lambda\vec a+\mu\vec b=\vec 0;\\
+&\text{if}\ \vec a\neq\vec 0,\ \text{由定理 1},\
+\exists t\in\mathbb R,\ \text{s.t.}\ \vec b=t\vec a,\
+\text{取}\ \lambda=t,\ \mu=-1,\ \text{此时有}\
+\lambda\vec a+\mu\vec b=\vec 0 .
+\end{aligned}
+\]
+再说明充分性：由于 $\lambda,\mu$ 不全为 $0$，不妨设
+$\mu\neq0$，于是 $\vec b=-\dfrac{\lambda}{\mu}\vec a$，
+故 $\vec a,\vec b$ 共线。
+
+\subsubsection*{共面}
+
+$\vec a,\vec b,\vec c$ 起点在同一点，终点在同一平面上。
+
+\textbf{定理 2：}\quad 若 $\vec a,\vec b$ 不共线，则
+$\vec a,\vec b,\vec c$ 共面 $\Longleftrightarrow$
+$\exists$ 唯一的实数对 $\lambda,\mu$，s.t.
+\[
+\vec c=\lambda\vec a+\mu\vec b .
+\]
+充分性显然，下证明必要性。
+
+\begin{itemize}
+\item \textbf{存在性}\quad 从同一点 $O$ 作
+$\overrightarrow{OA}=\vec a$，
+$\overrightarrow{OB}=\vec b$，
+$\overrightarrow{OC}=\vec c$。过 $C$ 作 $CD\parallel OB$，
+且与直线 $OA$ 交于 $D$。因为 $\overrightarrow{OD}$ 与
+$\vec a$ 共线，所以有实数 $\lambda$ 使得
+$\overrightarrow{OD}=\lambda\vec a$；同理有
+$\overrightarrow{DC}=\mu\vec b$。因此
+\[
+\vec c=\overrightarrow{OC}
+=\overrightarrow{OD}+\overrightarrow{DC}
+=\lambda\vec a+\mu\vec b .
+\]
+
+\item \textbf{唯一性}\quad 假如
+$\vec c=\lambda\vec a+\mu\vec b
+=\lambda_1\vec a+\mu_1\vec b$，则有
+\[
+(\lambda-\lambda_1)\vec a+(\mu-\mu_1)\vec b=\vec 0 .
+\]
+因为 $\vec a$ 与 $\vec b$ 不共线，根据推论 1 即得
+$\lambda-\lambda_1=0$，$\mu-\mu_1=0$，于是
+$\lambda=\lambda_1$，$\mu=\mu_1$。
+\end{itemize}
+
+\textbf{推论 2：}\quad $\vec a,\vec b,\vec c$ 共面
+$\Longleftrightarrow$ $\exists$ 不全为 $0$ 的数
+$k_1,k_2,k_3$，s.t.
+$k_1\vec a+k_2\vec b+k_3\vec c=\vec 0$。
+
+\begin{itemize}
+\item \textbf{必要性}\quad 设 $\vec a,\vec b,\vec c$ 共面。
+若 $\vec a\nparallel\vec b$，则有实数 $\lambda,\mu$ 使得
+$\vec c=\lambda\vec a+\mu\vec b$，即
+$\lambda\vec a+\mu\vec b+(-1)\vec c=\vec 0$。
+若 $\vec a\parallel\vec b$，则有不全为零的实数 $\lambda,\mu$
+使得 $\lambda\vec a+\mu\vec b=\vec 0$，从而有
+$\lambda\vec a+\mu\vec b+0\vec c=\vec 0$。
+\item \textbf{充分性}\quad 不妨设 $k_1\neq0$，则由上式得
+\[
+\vec a=-\frac{k_2}{k_1}\vec b-\frac{k_3}{k_1}\vec c .
+\]
+\end{itemize}
+
+\textbf{定理 3：}\quad $\vec a,\vec b,\vec c$ 不共面，则
+$\forall\vec d$，$\exists$ 唯一的实数组 $\lambda,\mu,\nu$，
+s.t.
+\[
+\vec d=\lambda\vec a+\mu\vec b+\nu\vec c .
+\]
+
+\subsubsection*{线性组合、线性表示、线性相关与线性无关}
+
+\begin{itemize}
+\item \textbf{线性组合}\quad 设
+$\vec a_1,\vec a_2,\ldots,\vec a_n$ 是一组向量，
+$k_1,k_2,\ldots,k_n$ 是一组实数，则
+$k_1\vec a_1+k_2\vec a_2+\cdots+k_n\vec a_n$ 是一个向量，
+称其是向量组 $\vec a_1,\vec a_2,\ldots,\vec a_n$ 的一个线性组合，
+称 $k_1,k_2,\ldots,k_n$ 是这个组合的系数。
+\item \textbf{线性表示}\quad 若
+$\vec b=k_1\vec a_1+k_2\vec a_2+\cdots+k_n\vec a_n$，
+则称 $\vec b$ 可被 $\vec a_1,\ldots,\vec a_n$ 线性表示。
+\item \textbf{线性相关}\quad $\vec a_1,\vec a_2,\ldots,\vec a_n$，
+若存在不全为零的实数 $k_1,k_2,\ldots,k_n$，s.t.
+$k_1\vec a_1+k_2\vec a_2+\cdots+k_n\vec a_n=\vec 0$，
+则称 $\vec a_1,\ldots,\vec a_n$ 线性相关。
+\item \textbf{线性无关}\quad $\vec a_1,\vec a_2,\ldots,\vec a_n$，
+若不存在不全为零的实数 $k_1,k_2,\ldots,k_n$，s.t.
+$k_1\vec a_1+k_2\vec a_2+\cdots+k_n\vec a_n=\vec 0$，
+则称 $\vec a_1,\ldots,\vec a_n$ 线性无关。
+\end{itemize}
+
+\textbf{定理：}\quad $\vec a_1,\vec a_2,\ldots,\vec a_n$ 线性相关
+$\Longleftrightarrow$ $\exists$ 某个 $\vec a_i$，s.t.
+$\vec a_i$ 能被其余向量线性表示。
+
+\textbf{证明}\quad 向量组
+$\vec a_1,\vec a_2,\ldots,\vec a_n$ 线性相关／无关
+$\Longleftrightarrow$ 向量方程
+$k_1\vec a_1+k_2\vec a_2+\cdots+k_n\vec a_n=\vec 0$
+有／无非零解，or 方程解不唯一／唯一。
+
+\end{document}

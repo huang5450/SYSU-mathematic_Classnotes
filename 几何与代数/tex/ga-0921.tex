@@ -1,0 +1,235 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{几何与代数 0921}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ Recall：向量的外积}
+
+$\vec a\times\vec b$ 定义为长度为
+$|\vec a||\vec b|\sin\langle\vec a,\vec b\rangle$、方向满足
+①与 $\vec a,\vec b$ 垂直，②$(\vec a,\vec b,\vec a\times\vec b)$
+是右手系的向量。
+
+\subsubsection*{几何意义}
+
+\begin{itemize}
+\item $|\vec a\times\vec b|$ 是平行四边形的面积；
+\item $\vec e\times\vec a=\vec e\times\vec a_h$，
+即右旋 $\dfrac\pi2$。
+\end{itemize}
+
+\subsubsection*{外积性质}
+
+\begin{itemize}
+\item 反交换律\quad
+$\vec a\times\vec b=-\vec b\times\vec a$；
+\item 结合律\quad
+$(\lambda\vec a)\times\vec b=\lambda(\vec a\times\vec b)$；
+\item 分配律\quad
+$\vec e\times(\vec a+\vec b)
+=\vec e\times\vec a+\vec e\times\vec b$，
+左乘同理。
+\end{itemize}
+
+\subsubsection*{坐标表示}
+
+在右手直角坐标系
+$[O;\vec e_1,\vec e_2,\vec e_3]$ 中，
+$\vec a=(x_1,y_1,z_1)$，$\vec b=(x_2,y_2,z_2)$，则
+\[
+\vec a\times\vec b
+=(y_1z_2-y_2z_1,\ z_1x_2-z_2x_1,\ x_1y_2-x_2y_1).
+\]
+
+\subsection*{1.\ 行列式}
+
+\subsubsection*{二阶行列式}
+
+\[
+\begin{cases}
+a_{11}x+a_{12}y=b_1,\\
+a_{21}x+a_{22}y=b_2.
+\end{cases}
+\]
+假设方程有唯一解
+$\Longleftrightarrow a_{11}a_{22}\neq a_{12}a_{21}$，
+有如下的解：
+\[
+x=\frac{b_1a_{22}-b_2a_{12}}{a_{11}a_{22}-a_{12}a_{21}},\qquad
+y=\frac{a_{11}b_2-a_{21}b_1}{a_{11}a_{22}-a_{12}a_{21}} .
+\]
+记作二阶行列式如下
+\[
+\begin{vmatrix}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{vmatrix}
+\stackrel{\Delta}{=}a_{11}a_{22}-a_{21}a_{12},
+\]
+上面的解就可以记作
+\[
+x=\frac{
+\begin{vmatrix}
+b_1 & a_{12}\\
+b_2 & a_{22}
+\end{vmatrix}
+}{
+\begin{vmatrix}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{vmatrix}
+},\qquad
+y=\frac{
+\begin{vmatrix}
+a_{11} & b_1\\
+a_{21} & b_2
+\end{vmatrix}
+}{
+\begin{vmatrix}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{vmatrix}
+}.
+\]
+
+\subsubsection*{三阶行列式}
+
+扩展到三阶行列式，有三元一次方程
+\[
+\begin{cases}
+a_{11}x+a_{12}y+a_{13}z=b_1,\\
+a_{21}x+a_{22}y+a_{23}z=b_2,\\
+a_{31}x+a_{32}y+a_{33}z=b_3 .
+\end{cases}
+\]
+下定义三阶行列式
+\[
+\begin{vmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}
+\stackrel{\Delta}{=}
+a_{11}\begin{vmatrix}
+a_{22} & a_{23}\\
+a_{32} & a_{33}
+\end{vmatrix}
+-a_{12}\begin{vmatrix}
+a_{21} & a_{23}\\
+a_{31} & a_{33}
+\end{vmatrix}
++a_{13}\begin{vmatrix}
+a_{21} & a_{22}\\
+a_{31} & a_{32}
+\end{vmatrix}.
+\]
+有了三阶行列式，我们就可以写方程组的解了
+\[
+x=\frac{
+\begin{vmatrix}
+b_1 & a_{12} & a_{13}\\
+b_2 & a_{22} & a_{23}\\
+b_3 & a_{32} & a_{33}
+\end{vmatrix}
+}{
+\begin{vmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}
+},\qquad
+y,z\ \text{类似}.
+\]
+
+借用行列式，我们可以把叉乘写成如下模式
+\[
+\vec a\times\vec b=
+\begin{vmatrix}
+x_1 & x_2 & \vec e_1\\
+y_1 & y_2 & \vec e_2\\
+z_1 & z_2 & \vec e_3
+\end{vmatrix}
+\]
+也可以写成线性组合的形式
+\[
+=\begin{vmatrix}
+y_1 & y_2\\
+z_1 & z_2
+\end{vmatrix}\vec e_1
+-\begin{vmatrix}
+x_1 & x_2\\
+z_1 & z_2
+\end{vmatrix}\vec e_2
++\begin{vmatrix}
+x_1 & x_2\\
+y_1 & y_2
+\end{vmatrix}\vec e_3 .
+\]
+
+\subsubsection*{叉乘理解直线和坐标面平行}
+
+直线 $L$
+\[
+\begin{cases}
+A_1x+B_1y+C_1z+D_1=0,\\
+A_2x+B_2y+C_2z+D_2=0,
+\end{cases}
+\]
+则 $L$ 的方向向量为
+\[
+\vec v=\vec n_1\times\vec n_2
+=\begin{vmatrix}
+A_1 & A_2 & \vec e_1\\
+B_1 & B_2 & \vec e_2\\
+C_1 & C_2 & \vec e_3
+\end{vmatrix}
+=(B_1C_2-B_2C_1,\ -A_1C_2+A_2C_1,\ A_1B_2-A_2B_1).
+\]
+与 $xy$ 平面平行即 $A_1B_2-A_2B_1=0$。
+
+\subsubsection*{点到直线的距离}
+
+有直线
+\[
+L:\ \frac{x-x_0}{l}=\frac{y-y_0}{m}=\frac{z-z_0}{n},
+\]
+又有
+\[
+d=|(\overrightarrow{P_0P_1})_h|,
+\]
+而
+\[
+\overrightarrow{P_0P_1}
+=(\overrightarrow{P_0P_1})_{\vec e}
++(\overrightarrow{P_0P_1})_h,
+\]
+可知
+\[
+|\overrightarrow{P_0P_1}\times\vec v|
+=|(\overrightarrow{P_0P_1})_h\times\vec v|
+=|(\overrightarrow{P_0P_1})_h||\vec v|,
+\]
+\[
+d=|(\overrightarrow{P_0P_1})_h|
+=\frac{|\overrightarrow{P_0P_1}\times\vec v|}{|\vec v|}.
+\]
+
+\subsubsection*{点乘、叉乘与水平分量、垂直分量}
+
+\[
+|\vec a_h|=|\vec a\times\vec e|,\qquad
+|\vec a_{\vec e}|=|\vec a\cdot\vec e| .
+\]
+
+\subsection*{2.\ 二重外积公式}
+
+\[
+\vec a\times(\vec b\times\vec c)
+=(\vec a\cdot\vec c)\vec b-(\vec a\cdot\vec b)\vec c .
+\]
+
+\end{document}

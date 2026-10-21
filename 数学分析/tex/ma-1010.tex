@@ -1,0 +1,188 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{数学分析 1010}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0.\ Recall}
+
+\textbf{定理：}单调上升且有上界的数列，极限一定存在。
+
+我们想证明
+\[
+\lim_{n\to+\infty}\left(1+\frac1n\right)^n
+\]
+存在，只需证明该数列单调递增且有上界。
+
+\textbf{回顾：均值不等式}
+\[
+\sqrt[n]{a_1a_2\cdots a_n}\leq\frac{a_1+a_2+\cdots+a_n}{n},
+\]
+当且仅当 $a_1=\cdots=a_n$ 时取等。
+
+\subsection*{1.\ $e$}
+
+\subsubsection*{单调递增}
+
+令 $a_n=\left(1+\dfrac1n\right)^n$，要说明 $\{a_n\}$ 单增，只需证明
+$\forall n,\ a_n\leq a_{n+1}$，即
+\[
+\left(1+\frac1n\right)^n\leq\left(1+\frac{1}{n+1}\right)^{n+1}.
+\]
+想用均值不等式，两边项数必须相同：给 LHS 乘上一个 $1$，
+既不改变原式的值，又多出来了一项。
+\[
+\underbrace{\left(1+\frac1n\right)\cdots\left(1+\frac1n\right)}_{n\ \text{个}}\times1
+\leq\left(\frac{n\left(1+\frac1n\right)+1}{n+1}\right)^{n+1}
+=\left(1+\frac{1}{n+1}\right)^{n+1}.
+\]
+右边括号里的算术平均 $\dfrac{n\left(1+\frac1n\right)+1}{n+1}
+=\dfrac{n+2}{n+1}=1+\dfrac{1}{n+1}$，正是要证的右边。
+可知数列 $\{a_n\}$ 单调递增。
+
+\subsubsection*{有界}
+
+注意到 $b_n=\left(1+\dfrac1n\right)^{n+1}$ 单调递减，则对于所有 $n$，有
+\[
+a_n\leq b_n=a_n\left(1+\frac1n\right)\leq\cdots\leq b_1=4,
+\]
+可知整个数列是有界的。下补证 $\{b_n\}$ 单调递减：
+\[
+b_{n+1}\leq b_n
+\iff\left(1+\frac{1}{n+1}\right)^{n+2}
+\leq\left(1+\frac1n\right)^{n+1}.
+\]
+整理、取倒有
+\[
+\left(1-\frac{1}{n+1}\right)^{n+1}
+\leq\left(1-\frac{1}{n+2}\right)^{n+2}.
+\]
+对 $n+2$ 个正数 $\underbrace{\left(1-\frac{1}{n+2}\right),\ldots,
+\left(1-\frac{1}{n+2}\right)}_{n+1\ \text{个}},1$ 用均值不等式，得
+\[
+\left(1-\frac{1}{n+2}\right)^{n+1}\cdot1
+\leq\left(\frac{(n+1)\left(1-\frac{1}{n+2}\right)+1}{n+2}\right)^{n+2}
+=\left(\frac{n+1}{n+2}\right)^{n+2},
+\]
+两边开 $n+1$ 次方即得所需不等式，故 $\{b_n\}$ 单调递减。
+
+由单调有界定理，$\displaystyle\lim_{n\to+\infty}\left(1+\frac1n\right)^n$ 存在，
+这个极限记作 $\mathrm e$。
+
+\subsubsection*{例题：$1^\infty$ 型的极限}
+
+下面通过几个例题来进一步阐释 $\mathrm e$。
+\[
+\lim_{n\to+\infty}\left(1+\frac{1}{n+1}\right)^n
+=\lim_{n\to+\infty}\left(1+\frac{1}{n+1}\right)^{(n+1)\times\frac{n}{n+1}}
+=\mathrm e .
+\]
+推而广之
+\[
+\lim_{n\to+\infty}\left(1+\frac{1}{n^2}\right)^{\frac{3n^3}{n+1}}
+=\lim_{n\to+\infty}\left(1+\frac{1}{n^2}\right)^{n^2\times\frac{3n}{n+1}}
+=\mathrm e^3 .
+\]
+
+\subsubsection*{Remark：数列趋向负无穷}
+
+当数列趋向负无穷时，又会有什么性质呢？
+\[
+\lim_{n\to-\infty}\left(1+\frac1n\right)^n=?
+\]
+令 $m=-n$，有
+\[
+\begin{aligned}
+\lim_{m\to+\infty}\left(1-\frac1m\right)^{-m}
+&=\lim_{m\to+\infty}\left(\frac{m}{m-1}\right)^{-m}\\
+&=\lim_{m\to+\infty}\left(1+\frac{1}{m-1}\right)^m\\
+&=\lim_{m\to+\infty}\left(1+\frac{1}{m-1}\right)^{m-1}
+\cdot\left(1+\frac{1}{m-1}\right)\\
+&=\mathrm e .
+\end{aligned}
+\]
+可见，极限也是 $\mathrm e$。
+
+\subsection*{2.\ 归一原理}
+
+设 $\{a_n\}$ 极限存在，那对于 $\{a_{2k+1}\}$ 和 $\{a_{2k}\}$，
+当 $k\to+\infty$ 时，是否存在极限？
+
+反过来，若 $\{a_{2k+1}\}$ 和 $\{a_{2k}\}$，当 $k\to+\infty$ 时有相同的
+极限，$a_n$ 是否存在极限？
+
+\subsubsection*{正方向}
+
+设 $\{a_n\}$ 有极限，即
+\[
+\lim_{n\to+\infty}a_n=A,
+\]
+则有
+\[
+\lim_{k\to+\infty}a_{2k}=A .
+\]
+由极限定义易得
+$\forall\varepsilon>0$，$\exists N$，$\forall n>N$，
+$|a_n-A|<\varepsilon$。我们要寻找 $K$，只要 $k>K$ 有
+$|b_k-A|<\varepsilon$，只需 $2K>N$，那么
+$\forall k>K$，
+\[
+|b_k-A|=|a_{2k}-A|<\varepsilon\qquad(2k>2K>N).
+\]
+
+\subsubsection*{反方向}
+
+反过来，设
+\[
+\lim_{k\to+\infty}a_{2k}=\lim_{k\to+\infty}a_{2k+1}=A,
+\]
+下证明
+\[
+\lim_{n\to+\infty}a_n=A .
+\]
+由极限定义易得
+\[
+\begin{aligned}
+\forall\varepsilon>0,\quad
+&\exists K_1\ \text{s.t.}\ \forall k>K_1,\ |a_{2k}-A|<\varepsilon;\\
+&\exists K_2\ \text{s.t.}\ \forall k>K_2,\ |a_{2k+1}-A|<\varepsilon .
+\end{aligned}
+\]
+取 $K=\max\{K_1,K_2\}$，
+\[
+\begin{aligned}
+\forall k>K,\ \text{有}\quad
+&|a_{2k}-A|<\varepsilon,\\
+&|a_{2k+1}-A|<\varepsilon .
+\end{aligned}
+\]
+取 $N=2K$，则 $\forall n>N=2K$，无论 $n=2l$ or $2l+1$
+都能得出 $l>K$，即得 $|a_n-A|<\varepsilon$。
+
+\subsubsection*{推而广之}
+
+数列 $\{a_n\}$ 有极限，等价于其任意子列都有极限。
+
+设
+\[
+\lim_{n\to+\infty}a_n=A,
+\]
+根据极限定义翻译有
+\[
+\forall\varepsilon>0,\ \exists N_\varepsilon,\ \forall n>N_\varepsilon,\
+\text{s.t.}\ |a_n-A|<\varepsilon .
+\]
+对于 $N_\varepsilon$ 总能找到 $k$ 使得 $n_k>N_\varepsilon$，那么有
+\[
+\forall k>K,\ n_k>N_\varepsilon,\ \text{s.t.}\ |a_{n_k}-A|<\varepsilon,
+\]
+即
+\[
+\lim_{k\to+\infty}a_{n_k}=A .
+\]
+反过来，特别地，数列 $\{a_n\}$ 本身就是自己的子列。
+
+\end{document}

@@ -1,0 +1,189 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{数学分析 0928}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0. Recall：极限定义}
+
+\[
+\forall\epsilon>0,\ \exists N_\epsilon,\ \forall n>N_\epsilon,\
+|a_n-a|<\epsilon .
+\]
+
+\subsection*{1. 例题}
+
+下面，我们通过一些例题，使用极限定义来证明极限。
+
+\begin{itemize}
+\item \textbf{例 1}\quad 证明
+\[
+\lim_{n\to+\infty}\frac{1}{n^p}=0\qquad(p>0).
+\]
+
+分析：$\forall\epsilon>0$，寻找 $N_\epsilon$，s.t.
+$\forall n>N_\epsilon$ 有 $\left|\dfrac{1}{n^p}\right|<\epsilon$。
+“$\forall\epsilon$”任意给后是固定的，所以我们已知 $\epsilon$ 和不等式，
+通过求解不等式，我们能拿到目标值。目前，不等式中还不含有 $N$，
+只有 $n$，我们可以通过放缩，一方面简化式子，另一方面把 $n$ 放缩掉，
+替换成 $N$。
+
+\textbf{证明：}\quad 放大 LHS，得
+$\left|\dfrac{1}{n^p}\right|\leq\dfrac{1}{N^p}$，
+即解不等式 $\dfrac{1}{N^p}<\epsilon$。解不等式得
+\[
+N>\sqrt[p]{\frac1\epsilon},
+\]
+我们取
+\[
+N_\epsilon=\left\lfloor\sqrt[p]{\frac1\epsilon}\right\rfloor+1,
+\]
+那么，$\forall n>N_\epsilon$，有
+\[
+\frac{1}{n^p}<\frac{1}{N_\epsilon^p}<\epsilon .
+\]
+
+\item \textbf{例 2}\quad 证明
+\[
+\lim_{n\to+\infty}\frac{n^2}{n^2-n-2}=1 .
+\]
+
+\textbf{证明：}\quad
+$\forall\epsilon>0$，$\exists N_\epsilon$，$\forall n>N_\epsilon$，
+$\left|\dfrac{n^2}{n^2-n-2}-1\right|<\epsilon$。
+\[
+\left|\frac{n^2}{n^2-n-2}-1\right|
+=\left|\frac{n+3}{n^2-n-2}\right| .
+\]
+当 $n>3$ 时 $n^2-n-2>0$，且
+\[
+\frac{n+3}{n^2-n-2}<\frac{2n}{\frac12 n^2}=\frac4n,
+\]
+这里用到当 $n\geq6$ 时 $n+3\leq2n$，$n^2-n-2\geq\dfrac12n^2$。
+于是
+\[
+\left|\frac{n^2}{n^2-n-2}-1\right|<\frac4n<\frac4N .
+\]
+解之得 $N>\dfrac4\epsilon$，我们取
+\[
+N_\epsilon=\max\left\{\left\lfloor\frac4\epsilon\right\rfloor+1,\ 6\right\},
+\]
+只要 $n>N_\epsilon$，有
+\[
+\left|\frac{n^2}{n^2-n-2}-1\right|<\frac{4}{N_\epsilon}<\epsilon .
+\]
+
+\item \textbf{例 3}\quad 证明
+\[
+\lim_{n\to+\infty}q^n=0\qquad(|q|<1).
+\]
+
+\textbf{证明：}\quad $\forall\epsilon>0$，寻找 $N_\epsilon$，s.t.
+$\forall n>N_\epsilon$ 有 $|q^n|<\epsilon$。
+\[
+LHS=|q^n|=|q|^n<|q|^N .
+\]
+因为 $|q|<1$，$\log_{|q|}$ 是减函数，故
+\[
+|q|^N<\epsilon\iff N>\log_{|q|}\epsilon .
+\]
+我们取
+\[
+N_\epsilon=\left\lfloor\log_{|q|}\epsilon\right\rfloor+1,
+\]
+只要 $n>N_\epsilon$，有
+\[
+|q^n|<|q|^{N_\epsilon}<\epsilon .
+\]
+
+\item \textbf{例 4}\quad 证明
+\[
+\text{if}\ a>0,\qquad \lim_{n\to+\infty}\sqrt[n]{a}=1 .
+\]
+
+\textbf{证明：}\quad 不妨设 $a>1$，$\forall\epsilon>0$，寻找 $N_\epsilon$，
+s.t. $\forall n>N_\epsilon$ 有 $\left|\sqrt[n]{a}-1\right|<\epsilon$。
+\[
+LHS=\left|\sqrt[n]{a}-1\right|
+=\sqrt[n]{a}-1<\sqrt[N]{a}-1<\epsilon .
+\]
+解之得 $N>\log_{1+\epsilon}a$，我们取
+\[
+N_\epsilon=\left\lfloor\log_{1+\epsilon}a\right\rfloor+1,
+\]
+只要 $n>N_\epsilon$，有
+\[
+\left|\sqrt[n]{a}-1\right|<\sqrt[N_\epsilon]{a}-1<\epsilon .
+\]
+
+$0<a<1$ 的情形：此时 $\dfrac1a>1$，对 $\dfrac1a$ 用上面的结论得
+$\lim\limits_{n\to+\infty}\sqrt[n]{\dfrac1a}=1$，于是
+\[
+\lim_{n\to+\infty}\sqrt[n]{a}
+=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[n]{\frac1a}}=1 .
+\]
+\end{itemize}
+
+\subsection*{2. 极限的性质}
+
+\subsubsection*{有界性}
+
+\begin{itemize}
+\item 有极限存在的数列必有界，即：设
+$\lim\limits_{n\to+\infty}a_n=a$，则 $\exists M>0$，s.t.
+$\forall n$ 有 $|a_n|<M$。
+\item $\lim\limits_{n\to+\infty}n^2=+\infty$，极限不存在；
+\item $\lim\limits_{n\to+\infty}(-1)^n=\mathrm{DNE}$，数列有界，但是没有趋势；
+\item $\lim\limits_{n\to+\infty}\sin\dfrac1n=\mathrm{DNE}$，它在 $[-1,1]$
+之间剧烈震荡。
+\end{itemize}
+
+分析：有限数列一定有界，下界是最小值，上界是最大值。
+有了数列极限，我们可知抛去有限多项后的无限多项是有界的，
+而剩下的有限多项显然有界，两个有界的部分组合到一起必然有界。
+
+\textbf{证明：}\quad 取 $\epsilon=1$，
+$\exists N_\epsilon$，$\forall n>N_\epsilon$，$|a_n-a|<1$。
+取
+\[
+M=\max\{|a_1|,|a_2|,\cdots,|a_N|,|a-1|,|a+1|\}+1,
+\]
+则 $\forall n$ 均有 $|a_n|<M$。
+
+\subsubsection*{保号性}
+
+设 $\lim\limits_{n\to+\infty}a_n=a$，则：
+
+\begin{itemize}
+\item \textbf{定理 1：}\quad if $a_n\geq0$，则 $a\geq0$。
+
+\textbf{证明：}\quad
+$\forall\epsilon>0$，$\exists N_\epsilon$，$\forall n>N_\epsilon$，
+$|a_n-a|<\epsilon$。可得
+\[
+a_n-\epsilon<a<a_n+\epsilon,
+\]
+即 $a>-\epsilon$。$a$ 比任意负数都大，即 $a$ 非负，证毕。
+
+\item \textbf{定理 2：}\quad if $a>0$，则存在 $N$ s.t.
+$\forall n>N$，有 $a_n>0$。
+
+\textbf{证明：}\quad
+$\forall\epsilon>0$，$\exists N_\epsilon$，$\forall n>N_\epsilon$，
+\[
+|a_n-a|<\epsilon\iff a-\epsilon<a_n<a+\epsilon .
+\]
+现选 $\epsilon_0=\dfrac12a$，对于这个 $\epsilon_0>0$，
+$\exists N_{\epsilon_0}$，$\forall n>N_{\epsilon_0}$ 有
+$|a_n-a|<\epsilon_0$，即
+\[
+a_n\in(a-\epsilon_0,\ a+\epsilon_0)
+\quad\Longrightarrow\quad
+a_n>a-\epsilon_0=\frac12a>0 .
+\]
+\end{itemize}
+
+\end{document}

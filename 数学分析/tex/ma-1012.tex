@@ -1,0 +1,242 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\title{数学分析 1012}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{0. Recall}
+
+函数的极限分为两部分,函数值的趋势与自变量的趋势
+数列的极限一般考虑趋向正/负无穷
+而函数的极限考虑趋向正/负无穷,趋向一点,从左/右趋向一点,即
+$$
+x \to +\infty \quad x \to -\infty \quad x \to x_0 \quad x \to x_0^+ \quad x \to x_0^-
+$$
+它们会对应函数极限的定义,即
+\[
+\begin{aligned}
+&\forall\varepsilon>0,\ \exists N>0,\ \forall x>N,\quad
+|f(x)-A|<\varepsilon &&(x\to+\infty),\\
+&\forall\varepsilon>0,\ \exists N>0,\ \forall x<-N,\quad
+|f(x)-A|<\varepsilon &&(x\to-\infty),\\
+&\forall\varepsilon>0,\ \exists\delta>0,\ \forall x,\quad
+0<|x-x_0|<\delta\Longrightarrow |f(x)-A|<\varepsilon
+&&(x\to x_0),\\
+&\forall\varepsilon>0,\ \exists\delta>0,\ \forall x,\quad
+0<x-x_0<\delta\Longrightarrow |f(x)-A|<\varepsilon
+&&(x\to x_0^+),\\
+&\forall\varepsilon>0,\ \exists\delta>0,\ \forall x,\quad
+0<x_0-x<\delta\Longrightarrow |f(x)-A|<\varepsilon
+&&(x\to x_0^-).
+\end{aligned}
+\]
+\subsection*{1. 函数极限的性质}
+
+1. 极限存在即唯一
+$$
+\text{if} \lim\limits_{x \to x_0}f(x) = A \  \text{\&} \lim\limits_{x \to x_0}f(x) = B \to A=B
+$$
+证明
+将极限写成定义形式有
+$$\begin{aligned}
+\lim\limits_{x \to x_0}f(x) = A \to \forall \varepsilon > 0 , \exists \delta > 0 , \forall x \ s.t. \ 0<|x-x_0|< \delta , \ s.t. \ |f(x)-A|< \frac{\varepsilon}{2} \\
+\lim\limits_{x \to x_0}f(x) = B \to \forall \varepsilon > 0 , \exists \delta > 0 , \forall x \ s.t. \ 0<|x-x_0|< \delta , \ s.t. \ |f(x)-B|< \frac{\varepsilon}{2}
+\end{aligned}
+$$
+之前我们已经证明过,$\varepsilon$前有任意定系数不影响极限,我们这里取前系数为$\frac{1}{2}$
+考虑$|A-B|$有
+$$
+|A-B| \leq |A-f(x)|+|f(x)-B| < \frac{\varepsilon}{2}+\frac{\varepsilon}{2} = \varepsilon
+$$
+即A=B
+2. 局部有界性
+$$
+\text{if} \lim\limits_{x \to x_0}f(x) = A , \exists M > 0 , \exists \delta > 0 \ s.t. \ \forall x (0<|x-x_0|< \delta) , |f(x)| \leq M
+$$
+回顾数列的有界性,我们知道"收敛数列必有界". 在数列中,我们对于$n>N$的无限多项有界,而前面是有限多项,所以整个数列必然有界
+而在函数中,我们仍然可以得到$x_0$附近的函数是有界的,但是在这之外函数有无穷多个点,我们只能控制在$x_0$附近的点,故称"局部有界性"
+证明
+依旧利用极限的定义
+$$
+\lim\limits_{x \to x_0}f(x) = A \to \forall \varepsilon > 0 , \exists \delta > 0 , \forall x \ s.t. \ 0<|x-x_0|< \delta , \ s.t. \ |f(x)-A|< \varepsilon
+$$
+此时,我们取一个特定的$\varepsilon = 1$有
+$$\begin{aligned}
+\exists \delta_{1} > 0 , \forall x (0<|x-x_0|<\delta) , |f(x)-A|<1 \\
+\Rightarrow f(x)| \leq max \{ |A|+1 , |A|-1 \}
+\end{aligned}
+$$
+3. 保号性
+$$
+\text{if} \lim\limits_{x \to x_0}f(x) = A > 0 , \exists \delta > 0 , \forall x (0<|x-x_0|<\delta)) , f(x) > \frac{1}{2}A > 0
+$$
+取$\varepsilon = \frac{1}{2} A$易证
+4. 四则运算
+$$
+\lim_{x\to x_0}f(x)=A,\qquad
+\lim_{x\to x_0}g(x)=B
+$$
+则有
+$$
+\lim_{x\to x_0}\bigl(f(x)\pm g(x)\bigr)=A\pm B,
+\qquad
+\lim_{x\to x_0}\bigl(f(x)g(x)\bigr)=AB
+$$
+若 $B\neq0$，则
+$$
+\lim_{x\to x_0}\frac{f(x)}{g(x)}
+=\frac{A}{B}
+$$
+\begin{quote}
+参与四则运算的极限要是同一个极限过程
+\end{quote}
+
+
+\subsection*{2. 海涅原理}
+
+定理:
+$$
+\lim\limits_{x \to x_0}f(x) = A
+\Leftrightarrow
+\forall x_n \to x_0 (x_n \neq x_0)
+数列\{ f(x_n) \}有
+\lim\limits_{n \to +\infty}f(x_n) = A
+$$
+与归一原理类似,海涅原理完成了整体与局部,连续与离散的转换
+\begin{quote}
+$\{ f(x_n) \}$ 是一个数列 , 第n项的值是$f(x_n)$
+$x_n \to x_0$ , $\{ x_n \}$本身也是数列
+\end{quote}
+
+
+证明
+$\Rightarrow$ 由$\lim\limits_{x\to x_0}f(x)=A$可知
+$$
+\forall\varepsilon>0,\ \exists\delta>0,\ 
+\forall x,\quad
+0<|x-x_0|<\delta
+\Longrightarrow
+|f(x)-A|<\varepsilon.
+$$
+任取数列 $\{x_n\}$，$(x_n \to x_0)$ 寻找N , $\forall n , n > N , |f(x)-A| < \varepsilon$
+要证明$\lim\limits_{n\to+\infty}f(x_n)=A$
+只需证明
+$$
+\forall\varepsilon>0,\ \exists N,\ \forall n>N,
+\quad
+|f(x_n)-A|<\varepsilon.
+$$
+给定 $\varepsilon>0$，由函数极限的定义，存在 $\delta>0$，使得
+$$
+0<|x-x_0|<\delta
+\Longrightarrow
+|f(x)-A|<\varepsilon.
+$$
+又因为 $x_n\to x_0$，所以对于上述 $\delta>0$，存在 $N$，使得当 $n>N$ 时，
+$$
+|x_n-x_0|<\delta.
+$$
+同时，由于 $x_n\neq x_0$，有
+$$
+0<|x_n-x_0|<\delta.
+$$
+因此$|f(x_n)-A|<\varepsilon$
+故
+$$
+\lim_{n\to+\infty}f(x_n)=A
+$$
+
+$\Leftarrow$用反证法
+假设
+$$
+\lim_{x\to x_0}f(x)\neq A.
+$$
+则存在 $\varepsilon>0$，使得对于任意 $\delta>0$，都存在 $x$，满足
+$$
+0<|x-x_0|<\delta,
+\qquad
+|f(x)-A|\geq\varepsilon.
+$$
+
+特别地，取
+$$
+\delta=\frac{1}{n},
+$$
+则对于任意 $n\in\mathbb{N}$，存在 $x_n$，使得
+$$
+0<|x_n-x_0|<\frac{1}{n},
+\qquad
+|f(x_n)-A|\geq\varepsilon.
+$$
+
+由
+$$
+0<|x_n-x_0|<\frac{1}{n}
+$$
+可知
+$$
+\lim_{n\to+\infty}x_n=x_0.
+$$
+
+但是
+$$
+|f(x_n)-A|\geq\varepsilon,
+$$
+所以
+$$
+\lim_{n\to+\infty}f(x_n)\neq A.
+$$
+
+这与题设“对于任意满足 $x_n\neq x_0$ 且 $x_n\to x_0$ 的数列 $\{x_n\}$，都有 $f(x_n)\to A$矛盾。
+
+因此
+$$
+\lim_{x\to x_0}f(x)=A.
+$$
+
+e.g. 极限
+$$
+\lim\limits_{x \to 0} sin \frac{1}{x}
+$$
+不存在
+分析
+$sin\frac{1}{x_1} = sin\frac{1}{x_2} \Leftarrow \frac{1}{x_1} - \frac{1}{x_2} = 2\pi$
+据此,我们可以得到
+$$
+|x_2-x_1| = 2\pi x_1x_2 < 2\pi x_2^2
+$$
+随着$x_2 \to 0$,$|x_2-x_1| \to 0$,震荡变得越来越激烈,直观上看没有极限
+我们用海涅原理来证明,只需要构造出两条点列,当两个点列都有$n \to +\infty$时,$a_n$的趋势不一
+
+证明
+构造
+$$
+x_n = \frac{1}{2n\pi} \quad y_n = \frac{1}{2n\pi + \frac{\pi}{2}}
+$$
+我们有
+$$\begin{aligned}
+\sin{\frac{1}{x_n}} = \sin{2n\pi} = 0 \\
+\sin(\frac{1}{y_n}) = \sin{2n\pi + \frac{\pi}{2}} = 1
+\end{aligned}
+$$
+故极限不存在
+
+\subsection*{3. 夹迫定理}
+
+定理:
+$$\begin{aligned}
+\text{if} \ \exists \delta>0 , \forall x , 0<|x-x_0|<\delta 有
+f(x) \leq g(x) \leq h(x)\\
+且\lim_{x \to x_0}f(x) = \lim_{x \to x_0}h(x) = A
+\end{aligned}
+$$
+则
+$$
+\lim_{x \to x_0}g(x) = A
+$$
+
+\end{document}

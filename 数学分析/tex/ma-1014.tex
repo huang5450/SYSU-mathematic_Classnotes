@@ -1,0 +1,110 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{数学分析 1014}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{数学分析 1014}
+\subsection*{0. Recall 夹迫原理}
+$\exists \delta > 0 . \forall x . 0<|x-x_0|< \delta$ , 有$f(x) \leq g(x) \leq h(x)$, 若$\lim\limits_{x \to x_0}f(x) = \lim\limits_{x \to x_0}h(x) = A$, 则$\lim\limits_{x \to x_0}g(x) = A$
+
+e.g. 
+\[
+\lim\limits_{x \to x_0}g(x) = A
+\]
+回顾不等式
+\[
+\sin{x} \leq x \leq \tan{x}
+\]
+由$\sin{x} \leq x \ \Rightarrow \ \frac{\sin{x}}{x} \leq 1$
+$x \leq \tan{x} = \frac{\sin{x}}{\cos{x}} \ \Rightarrow \ \cos{x} \leq \frac{\sin{x}}{x}$
+我们就得到了$\cos{x} \leq \frac{\sin{x}}{x} \leq 1$我们希望$\cos{x}$趋于0的极限也是1,通过夹迫原理夹出极限的值
+我们已知$\cos{x} = 1 - 2\sin{\frac{x}{2}}^2$
+易得
+\[
+0 \leq |\cos{x}-1| \leq 2\sin{\frac{x}{2}}^2 \leq 2 \times (\frac{x}{2})^2 = \frac{1}{2}x^2
+\]
+夹迫定理易得
+\[
+\lim_{x \to 0} \cos{x} = 1
+\]
+即得
+\[
+\lim_{x \to 0^+} \frac{\sin{x}}{x} = 1
+\]
+接下来考虑$0^-$
+注意到原函数为偶函数
+或说明不等式在$(-\frac{\pi}{2} , 0)$也成立
+可知x趋于0的左右极限均相等,均等于1
+
+命题:
+\[
+\lim_{x \to x_0}f(x) = A \Leftrightarrow \lim_{x \to x_0^-}f(x) = \lim_{x \to x_0^+}f(x) = A
+\]
+证明不在此赘述
+值得注意的是,此命题成立的根本原因在于$\mathbb{R}$是线性的,趋于零只有左右两个方式
+
+e.g.
+\[
+\lim_{x \to +\infty}(1+\frac{1}{x})^x = e
+\]
+这次我们用数列极限来证明函数极限
+不妨设x充分大 , 又已知$[x] \leq x \leq [x]+1$,由放缩易得
+\[
+(1+\frac{1}{[x]+1})^{[x]} \leq (1+\frac{1}{x})^x \leq (1+\frac{1}{[x]})^{[x]+1}
+\]
+此时两边已经可以套用数列极限,等价于
+\[
+\lim_{n \to +\infty}(1+\frac{1}{n+1})^n \qquad \lim_{n \to +\infty}(1+\frac{1}{n})^{n+1}
+\]
+由数列知识易得,两边都等于e,由夹迫定理可知$\lim\limits_{x \to +\infty}(1+\frac{1}{x})^x = e$
+
+\subsection*{1. 复合函数求极限}
+假设$\lim\limits_{u \to u_0}f(x) = A , \lim\limits_{x \to x_0}g(x) = B$,$\exists x_0$的空心邻域, s.t. $g(x) \neq u_0$$\lim\limits_{x \to x_0}f(g(x)) = A$
+
+从外向里进行证明
+证明:
+\[
+\lim\limits_{u \to u_0}f(x) = A \ \Leftrightarrow \ \forall \varepsilon > 0 , \exists u , 0<|u-u_0|<\eta , 有|f(u)-A|<\varepsilon
+\]
+对于上面的$\eta >0$ , 由于$\lim\limits_{x \to x_0}g(x) = u_0$
+
+那么有
+\[
+\exists \delta > 0 , \ s.t. \ \forall x (0<|x-x_0|<\delta) , |g(x)-u_o|<\eta
+\]
+而又有g(x)在某个$x_0$的空心邻域里,$g(x) \neq u_0$
+即得$0 < |g(x)-u_0| < \eta$
+所以$f(g(x))-A|<\eta$
+\begin{quote}
+如果$\lim\limits_{u \to u_0}f(x) = f(u_0)$,上面定理中高亮部分可以去掉
+\end{quote}
+
+\begin{quote}
+$\lim\limits_{u \to u_0}f(x) = f(u_0) \Leftrightarrow f(x)$在$u_0$处连续,而所有初等函数在定义域中都连续,故高亮部分一般不用验证
+\end{quote}
+
+\subsection*{2. 单调有界定理}
+\noindent 定理:
+\noindent $f$在$(x_0-\eta,x_0)$上单调上升且有上界,则$\lim\limits_{x \to x_0^-}f(x)$存在\par
+\noindent $f$在$(x_0,x_0+\eta)$上单调上升且有上界,则$\lim\limits_{x \to x_0^+}f(x)$存在\par
+\noindent 但是即使两个都满足,也不保证$\lim\limits_{x \to x_0}$存在\par
+\noindent 证明:
+\noindent 取$\{ X_n \}$ s.t. $x_n<x_0$且$x_n \to x_0$严格递增,可知$\{ f(x_n) \}$单调递增且有上界
+\noindent 可知$\lim\limits_{n \to +\infty}$存在且为A
+\noindent 下面证明$\lim\limits_{x \to x_0^-}=A$
+\[
+\forall \varepsilon > 0 , 寻找 \delta > 0 , \forall x , x_0-\delta<x<x_0 , 有A-\varepsilon<f(x) \leq A \\
+\exists N , \forall n > N , 有A-\varepsilon < f(x_n) \leq A
+\]
+\noindent 取$\delta = \frac{1}{2} (x_0-X_{N+1})$
+
+\noindent 那么$\forall x , x_0-\delta<x<x_0 \Rightarrow x>x_{N+1}$
+\noindent 则$f(x) > f(x_{N+1}>A- \varepsilon \Rightarrow f(x)>A- \varepsilon$
+\noindent 又$x_n \to x_0$对于任意固定x,$\exists M , x_m>x$
+\noindent 有$f(x) \leq f(x_M) \leq A$
+\noindent 
+
+\end{document}
