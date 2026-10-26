@@ -1,0 +1,198 @@
+% !TeX program = xelatex
+
+
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+\section{数学分析 1017}
+
+\subsection{0. Recall}
+
+若在同一极限过程中有
+\[
+\lim_{x\to x_0}f(x)=\lim_{x\to x_0}g(x)=0,
+\]
+则称 $f,g$ 为该极限过程中的无穷小量。若
+\[
+\lim_{x\to x_0}\frac{f}{g}=0,
+\]
+则称 $f$ 为 $g$ 的高阶无穷小；若 $\lim\limits_{x\to x_0}\dfrac{f}{g}=A\neq 0$，则称 $f$ 与 $g$ 同阶；若 $\lim\limits_{x\to x_0}\dfrac{f}{g}=1$，则称 $f$ 与 $g$ 等价。
+
+下面，我们尝试证明
+\[
+\log n<n<n\log n<n^2<\cdots<n^k<\cdots<e^n<n!<n^n
+\quad(n\to+\infty).
+\]
+
+\begin{itemize}
+\item $\log n<n$：
+\[
+\lim_{n\to+\infty}\frac{\log n}{n}
+=\lim_{n\to+\infty}\frac{1}{n}\log n
+=\lim_{n\to+\infty}\log\sqrt[n]{n}
+=\lim_{n\to+\infty}\log 1=0.
+\]
+
+\item $n\log n<n^2$：
+\[
+\lim_{n\to+\infty}\frac{n\log n}{n^2}
+=\lim_{n\to+\infty}\frac{\log n}{n}=0.
+\]
+
+\item $n<e^n$：将 $e^n$ 视作
+\[
+e^n=\bigl(1+(e-1)\bigr)^n=(1+\delta)^n,\qquad \delta=e-1>0,
+\]
+那么
+\[
+e^n=1+n\delta+\binom{n}{2}\delta^2+\cdots
+\]
+缩放可知
+\[
+e^n>\binom{n}{2}\delta^2=\frac{n(n-1)}{2}\delta^2,
+\]
+可得
+\[
+0\le\frac{n}{e^n}\le\frac{n}{\frac{n(n-1)}{2}\delta^2}=\frac{2}{(n-1)\delta^2}.
+\]
+由夹逼定理可知 $\lim\limits_{n\to+\infty}\dfrac{n}{e^n}=0$。
+
+下面考虑 $\lim\limits_{n\to+\infty}\dfrac{n^2}{e^n}$。同样有 $e^n=(1+\delta)^n\ge\binom{n}{3}\delta^3$，可得
+\[
+0\le\frac{n^2}{e^n}\le\frac{n^2}{\binom{n}{3}\delta^3}
+=\frac{6n^2}{n(n-1)(n-2)\delta^3},
+\]
+易知 $\lim\limits_{n\to+\infty}\dfrac{n^2}{e^n}=0$。由上，我们不难得出
+\[
+\forall k\ge 1,\quad n^k<e^n\quad(n\to+\infty).
+\]
+
+\item $e^n<n!$：注意到（$n\ge 2$ 时）
+\[
+n!=1\times\cdots\times k\times\cdots\times n\ge 3^{n-2}.
+\]
+运用此缩放，不难得出
+\[
+0\le\frac{e^n}{n!}\le\frac{e^n}{3^{n-2}}=9\Bigl(\frac{e}{3}\Bigr)^n,
+\]
+由夹逼定理易得 $\lim\limits_{n\to+\infty}\dfrac{e^n}{n!}=0$。
+
+\item $n!<n^n$：
+\[
+0<\frac{n!}{n^n}\le\frac{1}{n},
+\]
+由夹逼定理得 $\lim\limits_{n\to+\infty}\dfrac{n!}{n^n}=0$。
+\end{itemize}
+
+\subsection{1. 无穷小代换}
+
+考虑 $x\to x_0$ 时，$f$ 与 $g$ 是无穷小量。如果 $g$ 与 $h$ 是等价无穷小，则有
+\[
+\lim_{x\to x_0}\frac{f}{h}=\lim_{x\to x_0}\frac{f}{g}.
+\]
+证明：
+\[
+\begin{aligned}
+\lim_{x\to x_0}\frac{f}{h}
+&=\lim_{x\to x_0}\Bigl(\frac{f}{g}\cdot\frac{g}{h}\Bigr)\\
+&=\lim_{x\to x_0}\frac{f}{g}\cdot\lim_{x\to x_0}\frac{g}{h}\\
+&=\lim_{x\to x_0}\frac{f}{g}.
+\end{aligned}
+\]
+\begin{quote}
+无穷小代换仅用于乘除，不用于加减。
+\end{quote}
+
+\subsection{2. 函数的连续性}
+
+定义：设 $f(x)$ 在 $x_0$ 点的一个邻域（含 $x_0$ 的一个开区间）内有定义。如果 $\lim\limits_{x\to x_0}f(x)$ 存在且等于 $f(x_0)$，则称 $f(x)$ 在 $x_0$ 处连续。
+
+分析：当 $x\to x_0$ 时，令 $\Delta x=x-x_0$，则有
+\[
+x\to x_0\iff \Delta x\to 0.
+\]
+此时，记 $f(x)-f(x_0)\triangleq\Delta f$，$f$ 在 $x_0$ 处连续是指当 $\Delta x\to 0$ 时，有
+\[
+\lim_{\Delta x\to 0}\Delta f
+=\lim_{x\to x_0}\bigl(f(x)-f(x_0)\bigr)
+=\lim_{x\to x_0}f(x)-f(x_0)=0.
+\]
+
+如果用 $\varepsilon$-$\delta$ 语言描述连续性，则有如下表述：
+\[
+\forall\varepsilon>0,\ \exists\delta>0,\ \forall x\ (|x-x_0|<\delta),\quad
+|f(x)-f(x_0)|<\varepsilon.
+\]
+
+区间上的连续。
+
+定义：$f:(a,b)\to\mathbb{R}$，如果 $\forall x_0\in(a,b)$ 都有 $f$ 在 $x_0$ 处连续，则称 $f$ 在 $(a,b)$ 上连续。以上是在开区间上连续的定义；若在闭区间上连续，则有：$f:[a,b]\to\mathbb{R}$，如果 $f$ 在 $(a,b)$ 上连续且
+\[
+\lim_{x\to a^+}f(x)=f(a),\qquad
+\lim_{x\to b^-}f(x)=f(b),
+\]
+则称 $f$ 在 $[a,b]$ 上连续。
+
+下面，我们来研究开/闭集的相关性质。
+
+定义：$U$ 称为 $\mathbb{R}$ 上的开集，是指
+\[
+\forall x_0\in U,\ \exists\varepsilon>0\ \text{s.t.}\
+(x_0-\varepsilon,x_0+\varepsilon)\subseteq U.
+\]
+$F\subseteq\mathbb{R}$ 是闭集 $\iff\mathbb{R}\setminus F$ 是开集。
+
+无限个闭集取并不一定还是闭集，如
+\[
+(0,1)=\bigcup_{n=2}^{+\infty}\Bigl[\frac{1}{n},1-\frac{1}{n}\Bigr].
+\]
+下给出证明。易知 $\bigl[\frac{1}{n},1-\frac{1}{n}\bigr]\subseteq(0,1)$，显然
+\[
+\bigcup_{n=2}^{+\infty}\Bigl[\frac{1}{n},1-\frac{1}{n}\Bigr]\subseteq(0,1).
+\]
+反过来，我们取 $x_0\in(0,1)$，证明它必然属于某个 $\bigl[\frac{1}{n},1-\frac{1}{n}\bigr]$。$\forall x_0\in(0,1)$，又有 $\lim\limits_{n\to+\infty}\frac{1}{n}=0$，可知
+\[
+\forall x_0,\ \exists N_1,\ \forall n>N_1,\quad \frac{1}{n}<x_0.
+\]
+同理，由 $\lim\limits_{n\to+\infty}\bigl(1-\frac{1}{n}\bigr)=1$ 可知
+\[
+\forall x_0,\ \exists N_2,\ \forall n>N_2,\quad 1-\frac{1}{n}>x_0.
+\]
+于是 $\forall n>\max\{N_1,N_2\}$，有 $x_0\in\bigl(\frac{1}{n},1-\frac{1}{n}\bigr)\subseteq\bigl[\frac{1}{n},1-\frac{1}{n}\bigr]$，即
+\[
+(0,1)\subseteq\bigcup_{n=2}^{+\infty}\Bigl[\frac{1}{n},1-\frac{1}{n}\Bigr].
+\]
+证毕。
+
+同样地，无限个开集相交也可能是闭集：
+\[
+\bigcap_{n=1}^{+\infty}\Bigl(1-\frac{1}{n},\frac{3}{2}+\frac{1}{n}\Bigr)
+=\Bigl[1,\frac{3}{2}\Bigr].
+\]
+但是，任意开集的并一定是开集，有限多个开集的交也是开集。
+
+证明：任意开集的并一定是开集。$\forall x_0\in\bigcup\limits_{i\in I}U_i\Rightarrow\exists i_0$ s.t. $x_0\in U_{i_0}$，即
+\[
+\exists\delta_{x_0}\ \text{s.t.}\
+(x_0-\delta_{x_0},x_0+\delta_{x_0})\subseteq U_{i_0}
+\subseteq\bigcup_{i\in I}U_i.
+\]
+
+证明：两个开集的交也是开集。$\forall x_0\in U_1\cap U_2$，有 $x_0\in U_1$ 且 $x_0\in U_2$，由开集的定义可知
+\[
+\begin{aligned}
+&\exists\delta_1>0\ \text{s.t.}\ (x_0-\delta_1,x_0+\delta_1)\subseteq U_1,\\
+&\exists\delta_2>0\ \text{s.t.}\ (x_0-\delta_2,x_0+\delta_2)\subseteq U_2.
+\end{aligned}
+\]
+取 $\delta=\min\{\delta_1,\delta_2\}$，即有
+\[
+(x_0-\delta,x_0+\delta)\subseteq U_1\cap U_2.
+\]
+有限多个开集的交的情况由归纳即得。
+
+\end{document}

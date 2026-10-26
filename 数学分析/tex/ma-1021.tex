@@ -1,0 +1,121 @@
+% !TeX program = xelatex
+
+
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+\section{数学分析 1021}
+
+\subsection{1. 紧集}
+
+$S\subseteq\mathbb{R}$ 称为紧集，是指：若
+\[
+S\subseteq\bigcup_{i\in I}U_i,\qquad U_i\ \text{均为开集},
+\]
+则 $\exists i_1,\cdots,i_k$ s.t.
+\[
+S\subseteq U_{i_1}\cup\cdots\cup U_{i_k}.
+\]
+回顾有限覆盖定理，我们易知有界闭区间一定是紧集。
+
+\textbf{定理：$C$ 是 $\mathbb{R}$ 上的紧集 $\iff C$ 是有界的且 $C$ 是闭集。}
+
+分析：我们已知有界闭区间一定是紧集，只需证明紧集一定是有界闭集。即设 $X\subseteq\mathbb{R}$ 是紧集，我们需要证明：1. $X$ 有界；2. $\mathbb{R}\setminus X$ 是开集。
+
+1. 有界。$\forall x\in X$，构造开区间 $(x-1,x+1)$，得到开覆盖
+\[
+X\subseteq\bigcup_{x\in X}(x-1,x+1).
+\]
+由紧集的定义可知，一定 $\exists x_1,\cdots,x_k\in X$，s.t.
+\[
+X\subseteq(x_1-1,x_1+1)\cup\cdots\cup(x_k-1,x_k+1),
+\]
+于是 $X$ 有界。
+
+2. 闭集。取定任意 $y_0\in\mathbb{R}\setminus X$，因为 $y_0$ 和 $X$ 内任意元素分属于两个不同的集合，不相等，一定有
+\[
+\forall x\in X,\ \exists\delta_x,\eta_x\ \text{s.t.}\
+(y_0-\delta_x,y_0+\delta_x)\cap(x-\eta_x,x+\eta_x)=\varnothing.
+\]
+这些邻域构成 $X$ 的一个开覆盖：
+\[
+X\subseteq\bigcup_{x\in X}(x-\eta_x,x+\eta_x).
+\]
+而 $X$ 是紧集，一定有有限的子覆盖，即
+\[
+\exists x_1,\cdots,x_k\ \text{s.t.}\
+X\subseteq(x_1-\eta_{x_1},x_1+\eta_{x_1})\cup\cdots\cup(x_k-\eta_{x_k},x_k+\eta_{x_k}),
+\]
+且有
+\[
+(y_0-\delta_{x_j},y_0+\delta_{x_j})\cap(x_j-\eta_{x_j},x_j+\eta_{x_j})=\varnothing
+\quad(j=1,\cdots,k).
+\]
+不妨取 $\delta=\min\{\delta_{x_1},\cdots,\delta_{x_k}\}$。由于 $\delta\le\delta_{x_j}$，有
+\[
+(y_0-\delta,y_0+\delta)\subseteq(y_0-\delta_{x_j},y_0+\delta_{x_j}),
+\]
+故 $(y_0-\delta,y_0+\delta)$ 与每个 $(x_j-\eta_{x_j},x_j+\eta_{x_j})$ 都不相交，即有
+\[
+(y_0-\delta,y_0+\delta)\cap X=\varnothing.
+\]
+这说明 $\mathbb{R}\setminus X$ 是开集，故 $X$ 是闭集。证毕。
+
+\subsection{极值定理}
+
+考虑 $f:[a,b]\to\mathbb{R}$ 连续。已知 $[a,b]$ 是紧集，目标证明 $f([a,b])$ 是有界闭区间。其中，区间由介值定理保证，我们只需证明其有界且闭，即是紧集。
+
+取 $\operatorname{Im}f$ 的任一开覆盖 $\{U_i\}_{i\in I}$，即
+\[
+\operatorname{Im}f\subseteq\bigcup_{i\in I}U_i.
+\]
+目标：找到 $i_1,i_2,\cdots,i_k$，s.t.
+\[
+\operatorname{Im}f\subseteq U_{i_1}\cup\cdots\cup U_{i_k}.
+\]
+
+证明：由 $\operatorname{Im}f\subseteq\bigcup\limits_{i\in I}U_i$ 且
+\[
+f^{-1}(U_i)=f^{-1}(U_i\cap\operatorname{Im}f).
+\]
+由于 $f$ 连续，开集的原像仍为开集，所以 $f^{-1}(U_i)$ 是 $[a,b]$ 中的开集。对 $\operatorname{Im}f\subseteq\bigcup\limits_{i\in I}U_i$ 取原像有
+\[
+[a,b]\subseteq\bigcup_{i\in I}f^{-1}(U_i).
+\]
+由有限覆盖定理，一定有
+\[
+\exists j_1,\cdots,j_k\ \text{s.t.}\
+[a,b]\subseteq f^{-1}(U_{j_1})\cup\cdots\cup f^{-1}(U_{j_k}).
+\]
+全部拉回，有
+\[
+f([a,b])\subseteq U_{j_1}\cup\cdots\cup U_{j_k}.
+\]
+因此，$f([a,b])$ 是紧集，为有界闭区间，即 $\sup,\inf$ 存在（且可以取到）。
+
+\subsection{道路连通}
+
+取 $S\subseteq\mathbb{R}$，定义 $S$ 上的一条道路为
+\[
+\alpha:[0,1]\to\mathbb{R}\ \text{连续},\qquad \alpha([0,1])\subseteq S.
+\]
+
+\textbf{定义：如果 $\forall x,y\in S$，存在 $S$ 中的道路 $\alpha:[0,1]\to\mathbb{R}$ 使得 $\alpha(0)=x$，$\alpha(1)=y$，则称 $S$ 为（道路）连通的。}
+
+对于道路连通，我们有以下猜想：$\mathbb{R}$ 中道路连通的子集必为区间。
+
+在上述猜想成立的情况下，由介值定理可知，连续函数会把一个区间映成一个区间，猜想保证了区间必然道路连通。所以对于连续函数，我们猜想它会把一个道路连通的集合映成一个道路连通的集合，即
+
+\textbf{对于 $f:I\to\mathbb{R}$，若 $I$ 道路连通且 $f$ 连续，那么 $\operatorname{Im}f$ 也是道路连通的。}
+
+证明：即 $\forall y_1,y_2\in\operatorname{Im}f$，找一个连续映射 $\beta:[0,1]\to\mathbb{R}$，使得
+\[
+\beta(0)=y_1,\quad \beta(1)=y_2,\quad \beta([0,1])\subseteq\operatorname{Im}f.
+\]
+取 $x_1,x_2\in I$ 使 $f(x_1)=y_1$，$f(x_2)=y_2$。对于 $I$，因为其道路连通，一定有其中的道路 $\alpha:[0,1]\to\mathbb{R}$ 使得 $\alpha(0)=x_1$，$\alpha(1)=x_2$。$f$ 连续，连续函数的复合也是连续的，因此 $f\circ\alpha$ 就是我们要找的 $\beta$。
+
+\end{document}

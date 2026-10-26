@@ -1,0 +1,101 @@
+% !TeX program = xelatex
+
+
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+\section{数学分析 1019}
+
+\subsection{1. 连续函数}
+
+定义：$f(x)$ 在 $x_0$ 处连续是指
+\[
+\lim_{x\to x_0}f(x)=f(x_0).
+\]
+
+注：$\lim\limits_{x\to x_0}f(x)$ 存在 $\iff\lim\limits_{x\to x_0^-}f(x)=\lim\limits_{x\to x_0^+}f(x)$。由上，$f(x)$ 在 $x_0$ 处连续 $\iff$
+\[
+\lim_{x\to x_0^-}f(x)=\lim_{x\to x_0^+}f(x)=f(x_0).
+\]
+
+定义：若 $\lim\limits_{x\to x_0^-}f(x)=f(x_0)$，则称 $f$ 在 $x_0$ 处左连续。
+
+由上，我们可以将 $f(x)$ 在 $x_0$ 处的连续性分类（图略）。
+
+\subsection{2. 连续函数的性质}
+
+\begin{enumerate}
+\item 若 $f(x)$ 和 $g(x)$ 在 $x=x_0$ 处连续，则 $f(x)\pm g(x)$、$f(x)\times g(x)$ 连续；若 $g(x_0)\neq 0$，则 $\dfrac{f}{g}$ 在 $x=x_0$ 处连续。
+\item 若 $g(x)$ 在 $x_0$ 处连续且 $g(x_0)=u_0$，$f(u)$ 在 $u=u_0$ 处连续，则 $f(g(x))$ 在 $x=x_0$ 处连续。
+\end{enumerate}
+
+那么，我们是否有
+\[
+\lim_{x\to x_0}f(g(x))=f(g(x_0))\,?
+\]
+
+Recall：若 $\lim\limits_{u\to u_0}f(u)=A$，$\lim\limits_{x\to x_0}g(x)=u_0$，且存在 $x_0$ 的去心邻域使 $g(x)\neq u_0$，则 $\lim\limits_{x\to x_0}f(g(x))=A$。当 $A=f(u_0)$ 时，条件可以去掉。
+
+对于我们的情况，有
+\[
+A=f(u_0)=f(g(x_0))=f\Bigl(\lim_{x\to x_0}g(x)\Bigr)
+=\lim_{x\to x_0}f(g(x)).
+\]
+
+\begin{quote}
+如果 $g(x)$ 在 $x_0$ 附近趋近于 $u_0$，且 $f$ 在 $u_0$ 处连续，那么 $f$ 和 $\lim$ 可以交换。
+
+如果 $f,g$ 在各自的定义域上都连续，那么对于任何在复合函数定义域上的 $x_0$，$f$ 和 $\lim\limits_{x\to x_0}$ 都可以交换。
+\end{quote}
+
+定理：初等函数在其定义域中总连续。
+
+Recall：闭区间套定理。若 $[a_{n+1},b_{n+1}]\subseteq[a_n,b_n]$ 且 $\lim\limits_{n\to+\infty}(b_n-a_n)=0$，则存在唯一的 $c$ 属于所有的 $[a_n,b_n]$。
+
+介值定理：$f:[a,b]\to\mathbb{R}$ 是连续函数，如果 $f(a)<0$ 且 $f(b)>0$，则 $\exists c\in(a,b)$ 满足
+\[
+f(c)=0.
+\]
+证明：取 $c_1=\frac{a+b}{2}$。若 $f(c_1)=0$，则已成立；若 $f(c_1)>0$，则取 $[a_1,b_1]=[a,c_1]$，若 $f(c_1)<0$，则取 $[a_1,b_1]=[c_1,b]$。可知 $b_1-a_1=\frac{b-a}{2}$。以此类推，如果在过程中点始终不为 $0$，则构造出
+\[
+[a_{n+1},b_{n+1}]\subseteq[a_n,b_n],
+\]
+且 $b_n-a_n=\frac{1}{2^n}(b-a)$，即
+\[
+\lim_{n\to+\infty}(b_n-a_n)=0.
+\]
+由此，$\exists!\,c\in\bigcap\limits_{n=1}^{+\infty}[a_n,b_n]$，且 $f(a_n)<0$、$f(b_n)>0$，
+\[
+\lim_{n\to+\infty}a_n=\lim_{n\to+\infty}b_n=c.
+\]
+易知
+\[
+f(c)=f\Bigl(\lim_{n\to+\infty}a_n\Bigr)=\lim_{n\to+\infty}f(a_n)\le 0,
+\]
+同理有 $f(c)\ge 0$，即得 $f(c)=0$。
+
+定理：$f:[a,b]\to\mathbb{R}$ 连续，如果 $f(a)<\xi$、$f(b)>\xi$，则 $\exists c\in(a,b)$ s.t. $f(c)=\xi$。
+
+\begin{quote}
+\begin{enumerate}
+\item 结论中的 $c$ 取在开区间 $(a,b)$ 内：端点显然不满足。
+\item $f:(a,b)\to\mathbb{R}$，如果 $c<d\in(a,b)$ 且 $f(c)<\xi$、$f(d)>\xi$，则 $\exists e\in(c,d)$ s.t. $f(e)=\xi$。
+
+（$f:(a,b)\to\mathbb{R}$ 连续，显然 $f:[c,d]\to\mathbb{R}$ 连续。）
+\item $f:I\to\mathbb{R}$，$I$ 是区间，$f$ 在 $I$ 上连续，$\forall a,b\in I$，则 $f$ 可以取到 $f(a)$ 与 $f(b)$ 中间的所有值，即
+\[
+\forall\eta\in[f(a),f(b)],\ \exists x_0\in I\ \text{s.t.}\ f(x_0)=\eta.
+\]
+进一步有：$\forall\xi_1,\xi_2\in\operatorname{Im}f$，$[\xi_1,\xi_2]\subseteq\operatorname{Im}f$。
+\end{enumerate}
+\end{quote}
+
+Q：如果 $I$ 为有界闭区间，$f$ 连续，那么 $\operatorname{Im}f$ 是什么？
+
+$\operatorname{Im}f$ 也是有界闭区间，即对 $f:[a,b]\to\mathbb{R}$，$f$ 在 $[a,b]$ 上一定存在 $\sup$ 和 $\inf$（事实上可以取到）。
+
+\end{document}
