@@ -10,9 +10,9 @@
 \subsection*{0. Recall}
 
 \textbf{有界性：}\quad 若 $\{a_n\}$ 满足
-$\lim\limits_{n\to+\infty}a_n=a$ 存在，那么 $\{a_n\}$ 有界。
+$\lim_{n\to+\infty}a_n=a$ 存在，那么 $\{a_n\}$ 有界。
 
-\textbf{保号性：}\quad $\lim\limits_{n\to+\infty}a_n=a$，那么下面的性质成立：
+\textbf{保号性：}\quad $\lim_{n\to+\infty}a_n=a$，那么下面的性质成立：
 
 \begin{itemize}
 \item 若 $a>0$，则 $\exists N,\ \forall n>N,\ a_n>0$；
@@ -21,7 +21,7 @@ $\lim\limits_{n\to+\infty}a_n=a$ 存在，那么 $\{a_n\}$ 有界。
 
 下给出证明。
 
-\noindent 1) 由 $\lim\limits_{n\to+\infty}a_n=a$ 可知：
+\noindent 1) 由 $\lim_{n\to+\infty}a_n=a$ 可知：
 $\forall\epsilon>0$，$\exists N$，$\forall n>N$，有
 $|a_n-a|<\epsilon$。若 $a>0$，取 $\epsilon_0=\dfrac12a$，
 对于此 $\epsilon_0$，$\exists N$，$\forall n>N$ 有
@@ -48,16 +48,16 @@ a>-\epsilon\ \Longrightarrow\ a\geq0 .
 即使 2) 中要求 $\exists N$，s.t. $\forall n>N,\ a_n>0$，
 仍然只能得到 $a\geq0$ 而不是 $a>0$。
 如 $a_n=\dfrac1n$，$\forall n$ 有 $a_n>0$，但
-$\lim\limits_{n\to+\infty}a_n=0$。
+$\lim_{n\to+\infty}a_n=0$。
 
 \subsection*{1. 极限的唯一性}
 
-\textbf{定理：}\quad 若 $\lim\limits_{n\to+\infty}a_n$ 存在，
-则极限值 $\lim\limits_{n\to+\infty}a_n$ 唯一。
+\textbf{定理：}\quad 若 $\lim_{n\to+\infty}a_n$ 存在，
+则极限值 $\lim_{n\to+\infty}a_n$ 唯一。
 
 分析：反设如果存在两个极限
-$\lim\limits_{n\to+\infty}a_n=a$ 和
-$\lim\limits_{n\to+\infty}a_n=b$，我们目前只知道极限定义，
+$\lim_{n\to+\infty}a_n=a$ 和
+$\lim_{n\to+\infty}a_n=b$，我们目前只知道极限定义，
 我们把这两个极限写出来，即
 \begin{align*}
 &\forall\epsilon>0,\ \exists N,\ \forall n>N,\ |a_n-a|<\epsilon,\\
@@ -75,7 +75,7 @@ $n>\tilde N$，有 $|a_n-a|<\epsilon$ 且 $|a_n-b|<\epsilon$，
 $\forall\varepsilon>0$，$\exists N$，$\forall n>N$，
 $|c_n-A|<k\varepsilon$，其中 $k$ 是固定的、不依赖于
 $\varepsilon$ 和 $N$ 的正数，则
-$\lim\limits_{n\to\infty}c_n=A$。
+$\lim_{n\to\infty}c_n=A$。
 
 证明：$\forall\varepsilon>0$，找 $M$，$\forall n>M$，有
 $|c_n-A|<\varepsilon$。对于 $\varepsilon>0$，
@@ -87,20 +87,20 @@ $\exists N_{\frac1k\varepsilon}$，$\forall n>N_{\frac1k\varepsilon}$，s.t.
 
 \subsection*{2. 极限的四则运算法则}
 
-若 $\lim\limits_{n\to\infty}a_n=a$ 且
-$\lim\limits_{n\to\infty}b_n=b$，则：
+若 $\lim_{n\to\infty}a_n=a$ 且
+$\lim_{n\to\infty}b_n=b$，则：
 
 \begin{itemize}
-\item $\lim\limits_{n\to\infty}(a_n\pm b_n)=a\pm b$，
-$\lim\limits_{n\to\infty}(a_nb_n)=ab$；
+\item $\lim_{n\to\infty}(a_n\pm b_n)=a\pm b$，
+$\lim_{n\to\infty}(a_nb_n)=ab$；
 \item if $b\neq0$：
-$\lim\limits_{n\to\infty}\left(\dfrac{a_n}{b_n}\right)=\dfrac ab$。
+$\lim_{n\to\infty}\left(\dfrac{a_n}{b_n}\right)=\dfrac ab$。
 \end{itemize}
 
 \subsubsection*{加法证明}
 
-设 $\lim\limits_{n\to\infty}a_n=a$，
-$\lim\limits_{n\to\infty}b_n=b$。
+设 $\lim_{n\to\infty}a_n=a$，
+$\lim_{n\to\infty}b_n=b$。
 $\forall\varepsilon>0$，$\exists N>0$，对 $\forall n>N$ s.t.
 $|a_n-a|<\varepsilon$；$\exists M$ s.t. $\forall n>M$ s.t.
 $|b_n-b|<\varepsilon$。
@@ -113,16 +113,16 @@ $|a_n-a|<\varepsilon$ 且 $|b_n-b|<\varepsilon$。
 |c_n-(a+b)|=|(a_n-a)+(b_n-b)|
 \leq|a_n-a|+|b_n-b|<2\varepsilon .
 \]
-$\Longrightarrow\ \lim\limits_{n\to\infty}(a_n+b_n)=a+b$。
+$\Longrightarrow\ \lim_{n\to\infty}(a_n+b_n)=a+b$。
 
 \subsubsection*{乘法证明}
 
-$\lim\limits_{n\to\infty}a_n=a$ 且
-$\lim\limits_{n\to\infty}b_n=b$，则
-$\lim\limits_{n\to\infty}a_n\cdot b_n=a\cdot b$。
+$\lim_{n\to\infty}a_n=a$ 且
+$\lim_{n\to\infty}b_n=b$，则
+$\lim_{n\to\infty}a_n\cdot b_n=a\cdot b$。
 
 令 $c_n=a_n\cdot b_n$，则 $\{c_n\}$ 是一个数列，
-目标 $\lim\limits_{n\to\infty}c_n=a\cdot b$。
+目标 $\lim_{n\to\infty}c_n=a\cdot b$。
 
 \textbf{证明}\quad
 $\forall\varepsilon>0$，$\exists N_1$，$\forall n>N_1$，
@@ -136,7 +136,7 @@ $\forall n>N_2$，$|b_n-b|<\varepsilon$。
 =|a_n(b_n-b)+b(a_n-a)|
 \leq|a_n||b_n-b|+|b||a_n-a| .
 \]
-又 $\lim\limits_{n\to\infty}a_n=a$，$\{a_n\}$ 有界，
+又 $\lim_{n\to\infty}a_n=a$，$\{a_n\}$ 有界，
 $\exists M>0$，s.t. $\forall n,\ |a_n|\leq M$。
 
 取 $\tilde N=\max\{N_1,N_2\}$，只要 $n>\tilde N$，有：
@@ -149,9 +149,9 @@ $\exists M>0$，s.t. $\forall n,\ |a_n|\leq M$。
 
 \subsubsection*{除法证明}
 
-$\lim\limits_{n\to\infty}a_n=a$，
-$\lim\limits_{n\to\infty}b_n=b\neq0$，目标
-$\lim\limits_{n\to\infty}\dfrac{a_n}{b_n}=\dfrac ab$。
+$\lim_{n\to\infty}a_n=a$，
+$\lim_{n\to\infty}b_n=b\neq0$，目标
+$\lim_{n\to\infty}\dfrac{a_n}{b_n}=\dfrac ab$。
 
 $\forall\varepsilon>0$，$\exists N$，$\forall n>N$，
 $|a_n-a|<\varepsilon$ 且 $|b_n-b|<\varepsilon$。考虑：

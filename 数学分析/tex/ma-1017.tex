@@ -20,7 +20,7 @@
 \[
 \lim_{x\to x_0}\frac{f}{g}=0,
 \]
-则称 $f$ 为 $g$ 的高阶无穷小；若 $\lim\limits_{x\to x_0}\dfrac{f}{g}=A\neq 0$，则称 $f$ 与 $g$ 同阶；若 $\lim\limits_{x\to x_0}\dfrac{f}{g}=1$，则称 $f$ 与 $g$ 等价。
+则称 $f$ 为 $g$ 的高阶无穷小；若 $\lim_{x\to x_0}\dfrac{f}{g}=A\neq 0$，则称 $f$ 与 $g$ 同阶；若 $\lim_{x\to x_0}\dfrac{f}{g}=1$，则称 $f$ 与 $g$ 等价。
 
 下面，我们尝试证明
 \[
@@ -59,14 +59,14 @@ e^n>\binom{n}{2}\delta^2=\frac{n(n-1)}{2}\delta^2,
 \[
 0\le\frac{n}{e^n}\le\frac{n}{\frac{n(n-1)}{2}\delta^2}=\frac{2}{(n-1)\delta^2}.
 \]
-由夹逼定理可知 $\lim\limits_{n\to+\infty}\dfrac{n}{e^n}=0$。
+由夹逼定理可知 $\lim_{n\to+\infty}\dfrac{n}{e^n}=0$。
 
-下面考虑 $\lim\limits_{n\to+\infty}\dfrac{n^2}{e^n}$。同样有 $e^n=(1+\delta)^n\ge\binom{n}{3}\delta^3$，可得
+下面考虑 $\lim_{n\to+\infty}\dfrac{n^2}{e^n}$。同样有 $e^n=(1+\delta)^n\ge\binom{n}{3}\delta^3$，可得
 \[
 0\le\frac{n^2}{e^n}\le\frac{n^2}{\binom{n}{3}\delta^3}
 =\frac{6n^2}{n(n-1)(n-2)\delta^3},
 \]
-易知 $\lim\limits_{n\to+\infty}\dfrac{n^2}{e^n}=0$。由上，我们不难得出
+易知 $\lim_{n\to+\infty}\dfrac{n^2}{e^n}=0$。由上，我们不难得出
 \[
 \forall k\ge 1,\quad n^k<e^n\quad(n\to+\infty).
 \]
@@ -79,13 +79,13 @@ n!=1\times\cdots\times k\times\cdots\times n\ge 3^{n-2}.
 \[
 0\le\frac{e^n}{n!}\le\frac{e^n}{3^{n-2}}=9\Bigl(\frac{e}{3}\Bigr)^n,
 \]
-由夹逼定理易得 $\lim\limits_{n\to+\infty}\dfrac{e^n}{n!}=0$。
+由夹逼定理易得 $\lim_{n\to+\infty}\dfrac{e^n}{n!}=0$。
 
 \item $n!<n^n$：
 \[
 0<\frac{n!}{n^n}\le\frac{1}{n},
 \]
-由夹逼定理得 $\lim\limits_{n\to+\infty}\dfrac{n!}{n^n}=0$。
+由夹逼定理得 $\lim_{n\to+\infty}\dfrac{n!}{n^n}=0$。
 \end{itemize}
 
 \subsection{1. 无穷小代换}
@@ -109,7 +109,7 @@ n!=1\times\cdots\times k\times\cdots\times n\ge 3^{n-2}.
 
 \subsection{2. 函数的连续性}
 
-定义：设 $f(x)$ 在 $x_0$ 点的一个邻域（含 $x_0$ 的一个开区间）内有定义。如果 $\lim\limits_{x\to x_0}f(x)$ 存在且等于 $f(x_0)$，则称 $f(x)$ 在 $x_0$ 处连续。
+定义：设 $f(x)$ 在 $x_0$ 点的一个邻域（含 $x_0$ 的一个开区间）内有定义。如果 $\lim_{x\to x_0}f(x)$ 存在且等于 $f(x_0)$，则称 $f(x)$ 在 $x_0$ 处连续。
 
 分析：当 $x\to x_0$ 时，令 $\Delta x=x-x_0$，则有
 \[
@@ -154,11 +154,11 @@ $F\subseteq\mathbb{R}$ 是闭集 $\iff\mathbb{R}\setminus F$ 是开集。
 \[
 \bigcup_{n=2}^{+\infty}\Bigl[\frac{1}{n},1-\frac{1}{n}\Bigr]\subseteq(0,1).
 \]
-反过来，我们取 $x_0\in(0,1)$，证明它必然属于某个 $\bigl[\frac{1}{n},1-\frac{1}{n}\bigr]$。$\forall x_0\in(0,1)$，又有 $\lim\limits_{n\to+\infty}\frac{1}{n}=0$，可知
+反过来，我们取 $x_0\in(0,1)$，证明它必然属于某个 $\bigl[\frac{1}{n},1-\frac{1}{n}\bigr]$。$\forall x_0\in(0,1)$，又有 $\lim_{n\to+\infty}\frac{1}{n}=0$，可知
 \[
 \forall x_0,\ \exists N_1,\ \forall n>N_1,\quad \frac{1}{n}<x_0.
 \]
-同理，由 $\lim\limits_{n\to+\infty}\bigl(1-\frac{1}{n}\bigr)=1$ 可知
+同理，由 $\lim_{n\to+\infty}\bigl(1-\frac{1}{n}\bigr)=1$ 可知
 \[
 \forall x_0,\ \exists N_2,\ \forall n>N_2,\quad 1-\frac{1}{n}>x_0.
 \]
@@ -175,7 +175,7 @@ $F\subseteq\mathbb{R}$ 是闭集 $\iff\mathbb{R}\setminus F$ 是开集。
 \]
 但是，任意开集的并一定是开集，有限多个开集的交也是开集。
 
-证明：任意开集的并一定是开集。$\forall x_0\in\bigcup\limits_{i\in I}U_i\Rightarrow\exists i_0$ s.t. $x_0\in U_{i_0}$，即
+证明：任意开集的并一定是开集。$\forall x_0\in\bigcup_{i\in I}U_i\Rightarrow\exists i_0$ s.t. $x_0\in U_{i_0}$，即
 \[
 \exists\delta_{x_0}\ \text{s.t.}\
 (x_0-\delta_{x_0},x_0+\delta_{x_0})\subseteq U_{i_0}

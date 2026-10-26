@@ -8,7 +8,7 @@
 
 \section*{数学分析 1014}
 \subsection*{0. Recall 夹迫原理}
-$\exists \delta > 0 . \forall x . 0<|x-x_0|< \delta$ , 有$f(x) \leq g(x) \leq h(x)$, 若$\lim\limits_{x \to x_0}f(x) = \lim\limits_{x \to x_0}h(x) = A$, 则$\lim\limits_{x \to x_0}g(x) = A$
+$\exists \delta > 0 . \forall x . 0<|x-x_0|< \delta$ , 有$f(x) \leq g(x) \leq h(x)$, 若$\lim_{x \to x_0}f(x) = \lim_{x \to x_0}h(x) = A$, 则$\lim_{x \to x_0}g(x) = A$
 
 e.g. 
 \[
@@ -59,17 +59,17 @@ e.g.
 \[
 \lim_{n \to +\infty}(1+\frac{1}{n+1})^n \qquad \lim_{n \to +\infty}(1+\frac{1}{n})^{n+1}
 \]
-由数列知识易得,两边都等于e,由夹迫定理可知$\lim\limits_{x \to +\infty}(1+\frac{1}{x})^x = e$
+由数列知识易得,两边都等于e,由夹迫定理可知$\lim_{x \to +\infty}(1+\frac{1}{x})^x = e$
 
 \subsection*{1. 复合函数求极限}
-假设$\lim\limits_{u \to u_0}f(x) = A , \lim\limits_{x \to x_0}g(x) = B$,$\exists x_0$的空心邻域, s.t. $g(x) \neq u_0$$\lim\limits_{x \to x_0}f(g(x)) = A$
+假设$\lim_{u \to u_0}f(x) = A , \lim_{x \to x_0}g(x) = B$,$\exists x_0$的空心邻域, s.t. $g(x) \neq u_0$$\lim_{x \to x_0}f(g(x)) = A$
 
 从外向里进行证明
 证明:
 \[
 \lim\limits_{u \to u_0}f(x) = A \ \Leftrightarrow \ \forall \varepsilon > 0 , \exists u , 0<|u-u_0|<\eta , \text{有}|f(u)-A|<\varepsilon
 \]
-对于上面的$\eta >0$ , 由于$\lim\limits_{x \to x_0}g(x) = u_0$
+对于上面的$\eta >0$ , 由于$\lim_{x \to x_0}g(x) = u_0$
 
 那么有
 \[
@@ -79,22 +79,22 @@ e.g.
 即得$0 < |g(x)-u_0| < \eta$
 所以$f(g(x))-A|<\eta$
 \begin{quote}
-如果$\lim\limits_{u \to u_0}f(x) = f(u_0)$,上面定理中高亮部分可以去掉
+如果$\lim_{u \to u_0}f(x) = f(u_0)$,上面定理中高亮部分可以去掉
 \end{quote}
 
 \begin{quote}
-$\lim\limits_{u \to u_0}f(x) = f(u_0) \Leftrightarrow f(x)$在$u_0$处连续,而所有初等函数在定义域中都连续,故高亮部分一般不用验证
+$\lim_{u \to u_0}f(x) = f(u_0) \Leftrightarrow f(x)$在$u_0$处连续,而所有初等函数在定义域中都连续,故高亮部分一般不用验证
 \end{quote}
 
 \subsection*{2. 单调有界定理}
 \noindent 定理:
-\noindent $f$在$(x_0-\eta,x_0)$上单调上升且有上界,则$\lim\limits_{x \to x_0^-}f(x)$存在\par
-\noindent $f$在$(x_0,x_0+\eta)$上单调上升且有上界,则$\lim\limits_{x \to x_0^+}f(x)$存在\par
-\noindent 但是即使两个都满足,也不保证$\lim\limits_{x \to x_0}$存在\par
+\noindent $f$在$(x_0-\eta,x_0)$上单调上升且有上界,则$\lim_{x \to x_0^-}f(x)$存在\par
+\noindent $f$在$(x_0,x_0+\eta)$上单调上升且有上界,则$\lim_{x \to x_0^+}f(x)$存在\par
+\noindent 但是即使两个都满足,也不保证$\lim_{x \to x_0}$存在\par
 \noindent 证明:
 \noindent 取$\{ X_n \}$ s.t. $x_n<x_0$且$x_n \to x_0$严格递增,可知$\{ f(x_n) \}$单调递增且有上界
-\noindent 可知$\lim\limits_{n \to +\infty}$存在且为A
-\noindent 下面证明$\lim\limits_{x \to x_0^-}=A$
+\noindent 可知$\lim_{n \to +\infty}$存在且为A
+\noindent 下面证明$\lim_{x \to x_0^-}=A$
 \[
 \forall \varepsilon > 0 , \text{寻找} \delta > 0 , \forall x , x_0-\delta<x<x_0 , \text{有}A-\varepsilon<f(x) \leq A \\
 \exists N , \forall n > N , \text{有}A-\varepsilon < f(x_n) \leq A
