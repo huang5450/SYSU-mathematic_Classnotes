@@ -1,0 +1,89 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{高等代数 1021}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{高等代数 1021}
+
+\subsection*{3. 集合与映射}
+
+集合 $S=\{P\mid P\text{ 满足某个性质}\}$；子集 $A=\{P\in S\}$；交集 $A\cap B$；并集 $A\cup B$；差集 $A\setminus B$；笛卡尔乘积
+\[
+A\times B=\{(a,b)\mid a\in A,\ b\in B\}.
+\]
+$\#S$：$S$ 中元素的个数。
+
+\begin{quote}
+注：$A\times B\neq B\times A$。
+\end{quote}
+
+映射：若 $A,B$ 是两个集合，且 $\forall a\in A$，$B$ 中存在唯一的元素 $b$ 与之对应，我们把这样的对应法则称为 $A$ 到 $B$ 的映射，记作 $f:A\to B$。
+
+若 $f:A\to B$ 是映射，$A$ 称为定义域（domain），$B$ 称为陪域（codomain），
+\[
+f(A)=\{b\in B\mid \exists a\in A,\ \text{s.t.}\ b=f(a)\}
+\]
+称为值域（像集，Image）。若 $B_1\subseteq B$，则
+\[
+f^{-1}(B_1)=\{a\in A\mid f(a)\in B_1\}
+\]
+称为 $B_1$ 的原像集。
+
+性质 1：设 $f:A\to B$，$A_1,A_2\subseteq A$，$B_1,B_2\subseteq B$，则
+\begin{enumerate}
+\item $f(A_1\cup A_2)=f(A_1)\cup f(A_2)$；
+\item $f(A_1\cap A_2)\subseteq f(A_1)\cap f(A_2)$；
+\item $f^{-1}(B_1\cup B_2)=f^{-1}(B_1)\cup f^{-1}(B_2)$；
+\item $f^{-1}(B_1\cap B_2)=f^{-1}(B_1)\cap f^{-1}(B_2)$。
+\end{enumerate}
+
+若 $f:A\to A$，则称 $f$ 是 $A$ 上的变换。特别地，
+\[
+id_A:A\to A,\qquad a\mapsto a
+\]
+称为 $A$ 上的恒同变换。记 $\mathcal{F}=\{f:A\to A\}$，$\forall f\in\mathcal{F}$，有 $f\cdot id_A=f$，$id_A\cdot f=f$。
+
+Q：$(\mathcal{F},\cdot)$ 是否是群？
+
+性质 2：若 $f:A\to B$，$g:B\to C$，$h:C\to D$，则
+\[
+h\cdot(gf)=(hg)\cdot f.
+\]
+
+设 $f:A\to B$。
+\begin{enumerate}
+\item 单射（injective）：$\forall b\in B$，$\#f^{-1}(b)\le 1$；等价地，若 $a_1\neq a_2\in A$，则 $f(a_1)\neq f(a_2)$；或若 $f(a_1)=f(a_2)$，则 $a_1=a_2$。
+\item 满射（surjective）：$f(A)=B$，即 $\forall b\in B$，$f^{-1}(b)\neq\varnothing$。
+\item 双射（bijective）：既是单射又是满射。
+\end{enumerate}
+
+若 $f:A\to B$ 是双射，则 $\#A=\#B$。
+
+Q：双射的复合是不是双射？
+
+逆映射：设 $f:A\to B$，如果存在 $g:B\to A$ 使得
+\[
+gf=id_A,\qquad fg=id_B,
+\]
+则称 $g$ 是 $f$ 的逆映射，此时称 $f$ 是可逆的，$g$ 也可记作 $f^{-1}$。
+
+定理 1：$f:A\to B$ 可逆 $\iff$ $f$ 是双射。
+
+证明：
+
+1. 充分性。由于 $f$ 是双射，则 $\forall b\in B$，存在唯一的 $a\in A$ 使得 $f(a)=b$，该对应法则记为 $g$。此时有
+\[
+gf(a)=a,\qquad fg(b)=b,
+\]
+于是 $gf=id_A$，$fg=id_B$，即 $f$ 可逆。
+
+2. 必要性。由于 $f$ 可逆，则存在 $g:B\to A$ 使得 $gf=id_A$，$fg=id_B$。首先，若 $f(a_1)=f(a_2)$，则有
+\[
+a_1=gf(a_1)=gf(a_2)=a_2,
+\]
+故 $f$ 是单射。又 $\forall b\in B$，$b=f(g(b))$ 且 $g(b)\in A$，故 $f$ 是满射，于是 $f$ 是双射。证毕。
+
+\end{document}
