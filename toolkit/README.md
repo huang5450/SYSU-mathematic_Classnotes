@@ -13,6 +13,12 @@
 toolkit\workflow.cmd -Tex "数学分析\tex\ma-1021.tex" -Message "更新 1021"
 ```
 
+几何与代数（另一门课）用另一份配置：
+
+```bat
+toolkit\workflow.cmd -Tex "几何与代数\tex\ga-1012.tex" -Config toolkit\overleaf.config.geometry.json -Message "更新 ga-1012"
+```
+
 也可以只给 md，让它自动找同名 tex：
 
 ```bat
@@ -68,7 +74,14 @@ toolkit\workflow.cmd -Md "数学分析\md\ma-1021.md"
 python toolkit\overleaf_push.py status
 ```
 
-> `overleaf.config.json` 含登录态，**已在 .gitignore 里**，不会被提交。
+目前有两份配置，cookie 相同、项目不同：
+
+| 文件 | 项目 |
+|---|---|
+| `overleaf.config.json` | 数学分析笔记-2026级1班 |
+| `overleaf.config.geometry.json` | 几何与代数笔记-2026级1班（root folder `6ac8585a8f92fa166d095d0f`） |
+
+> 两份配置都含登录态，**已在 .gitignore 里**，不会被提交。
 > cookie 会过期（几周），失效时重做第 1–3 步。
 
 ### 依赖
@@ -86,6 +99,7 @@ python toolkit\overleaf_push.py status
 | `-Tex <路径>` | 要发布的 tex（与 `-Md` 二选一） |
 | `-Md <路径>` | 由 md 推出同名 tex |
 | `-Message "..."` | git 提交信息（默认「更新 <文件名>」） |
+| `-Config <路径>` | 用哪份 Overleaf 配置（默认 `toolkit\overleaf.config.json`，数学分析） |
 | `-SkipGit` | 不提交、不推送（只编译 + 桌面 PDF） |
 | `-SkipOverleaf` | 不推 Overleaf（cookie 没配好时用） |
 | `-KeepAux` | 保留 `<名>_ol.pdf` 和 `<名>_ol_p*.png` |

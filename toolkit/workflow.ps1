@@ -17,6 +17,7 @@ param(
   [string]$Tex,
   [string]$Md,
   [string]$Message,
+  [string]$Config,
   [switch]$SkipGit,
   [switch]$SkipOverleaf,
   [switch]$KeepAux
@@ -107,14 +108,14 @@ else { Info "[2/4] 已跳过 git" }
 # ---------- 3. Overleaf ----------
 if (-not $SkipOverleaf) {
   Info "[3/4] 推送 Overleaf 并触发服务器编译"
-  $cfg = Join-Path $toolkit "overleaf.config.json"
+  $cfg = if ($Config) { (Resolve-Path -LiteralPath $Config).Path } else { Join-Path $toolkit "overleaf.config.json" }
   $py = "C:\Users\huang\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe"
   if (-not (Test-Path -LiteralPath $py)) {
     $c = Get-Command python -ErrorAction SilentlyContinue
     if ($c) { $py = $c.Source }
   }
   if (-not (Test-Path -LiteralPath $cfg)) {
-    Warn "缺少 toolkit\overleaf.config.json，跳过 Overleaf（配置方法见 toolkit\README.md）"
+    Warn "缺少配置文件 $cfg，跳过 Overleaf（配置方法见 toolkit\README.md）"
   }
   elseif (-not $py) {
     Warn "找不到 python，跳过 Overleaf"
@@ -123,7 +124,9 @@ if (-not $SkipOverleaf) {
     if (Select-String -LiteralPath $TexPath -Pattern '\\includegraphics' -Quiet) {
       Warn "这篇含图片：Overleaf 端若没有对应图片，服务器编译会失败"
     }
-    & $py (Join-Path $toolkit "publish.py") $TexPath
+    $pyArgs = @((Join-Path $toolkit "publish.py"), $TexPath)
+    if ($Config) { $pyArgs += @("--config", $cfg) }
+    & $py @pyArgs
     if ($LASTEXITCODE -ne 0) { Warn "Overleaf 步骤失败（本地 PDF 不受影响）" }
   }
 }

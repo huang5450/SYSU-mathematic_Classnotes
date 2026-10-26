@@ -19,6 +19,7 @@
 
 # toolkit 本地配置与缓存（含登录 cookie，禁止提交）
 toolkit/overleaf.config.json
+toolkit/overleaf.config.*.json
 toolkit/overleaf.config.json.bak
 toolkit/.overleaf_ids.json
 toolkit/__pycache__/
