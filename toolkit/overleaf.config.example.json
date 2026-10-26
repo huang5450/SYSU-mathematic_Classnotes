@@ -1,0 +1,6 @@
+{
+  "base": "https://latex.sysu.edu.cn",
+  "project_id": "在这里填项目 id（URL 里 /project/ 后面那串）",
+  "folder_id": "在这里填项目根目录 id（不是 project_id）",
+  "cookie": "_qddaz=...; overleaf.sid=..."
+}

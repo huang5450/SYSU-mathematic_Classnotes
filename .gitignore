@@ -13,6 +13,16 @@
 *.bbl
 *.blg
 
+# 编译 / 发布产物
+*.pdf
+*_ol_p*.png
+
+# toolkit 本地配置与缓存（含登录 cookie，禁止提交）
+toolkit/overleaf.config.json
+toolkit/overleaf.config.json.bak
+toolkit/.overleaf_ids.json
+toolkit/__pycache__/
+
 # 编辑器 / 系统
 .DS_Store
 Thumbs.db
