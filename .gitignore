@@ -1,0 +1,19 @@
+# LaTeX 编译产物（不该进版本库）
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.xdv
+*.bbl
+*.blg
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.vscode/
