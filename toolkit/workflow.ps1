@@ -22,7 +22,7 @@ param(
   [switch]$KeepAux
 )
 
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"   # 原生程序写 stderr 在 Stop 下会变成终止错误；流程用显式 throw 控制
 $toolkit = $PSScriptRoot
 $repo = Split-Path $toolkit -Parent
 
@@ -81,17 +81,26 @@ if (-not $SkipGit) {
   git -C $repo add -A
   if (git -C $repo status --porcelain) {
     if (-not $Message) { $Message = "更新 $name" }
-    git -C $repo -c user.name="Huang Ziheng" -c user.email="86883261+huang5450@users.noreply.github.com" commit -m "$Message" | Out-Null
+    git -C $repo -c user.name="Huang Ziheng" -c user.email="86883261+huang5450@users.noreply.github.com" commit -m "$Message" 2>&1 | Out-Null
+    Info "已提交：$Message"
+  }
+  else { Info "工作区没有改动，跳过提交" }
+
+  # 不管这次有没有新提交，只要领先远端就推（上次推送失败的情况也能补推）
+  $ahead = 0
+  $n = git -C $repo rev-list --count "origin/main..HEAD" 2>$null
+  if ($n) { $ahead = [int]$n }
+  if ($ahead -gt 0) {
     $pushed = $false
-    for ($i = 1; $i -le 5; $i++) {
-      git -C $repo push origin main 2>$null
+    for ($i = 1; $i -le 6; $i++) {
+      git -C $repo push origin main 2>&1 | Out-Null
       if ($LASTEXITCODE -eq 0) { $pushed = $true; break }
       Warn "push 第 $i 次失败，2 秒后重试"
       Start-Sleep -Seconds 2
     }
-    if ($pushed) { Info "已推送：$Message" } else { Warn "git push 最终失败，稍后在 VS Code 里点 Sync Changes" }
+    if ($pushed) { Info "已推送（$ahead 个提交）" } else { Warn "git push 最终失败，稍后在 VS Code 里点 Sync Changes" }
   }
-  else { Info "工作区没有改动，跳过提交" }
+  else { Info "远端已是最新" }
 }
 else { Info "[2/4] 已跳过 git" }
 
