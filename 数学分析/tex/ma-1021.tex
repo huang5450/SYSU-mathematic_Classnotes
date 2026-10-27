@@ -36,7 +36,7 @@ X\subseteq(x_1-1,x_1+1)\cup\cdots\cup(x_k-1,x_k+1),
 \]
 于是 $X$ 有界。
 
-2. 闭集。取定任意 $y_0\in\mathbb{R}\setminus X$，因为 $y_0$ 和 $X$ 内任意元素分属于两个不同的集合，不相等，一定有
+2. 闭集。若 $X=\varnothing$，则 $\mathbb{R}\setminus X=\mathbb{R}$ 是开集，结论平凡；以下设 $X\neq\varnothing$。取定任意 $y_0\in\mathbb{R}\setminus X$，则对每个 $x\in X$ 有 $x\neq y_0$，取 $\delta_x=\eta_x=\frac{|x-y_0|}{2}>0$，一定有
 \[
 \forall x\in X,\ \exists\delta_x,\eta_x\ \text{s.t.}\
 (y_0-\delta_x,y_0+\delta_x)\cap(x-\eta_x,x+\eta_x)=\varnothing.
@@ -55,7 +55,7 @@ X\subseteq(x_1-\eta_{x_1},x_1+\eta_{x_1})\cup\cdots\cup(x_k-\eta_{x_k},x_k+\eta_
 (y_0-\delta_{x_j},y_0+\delta_{x_j})\cap(x_j-\eta_{x_j},x_j+\eta_{x_j})=\varnothing
 \quad(j=1,\cdots,k).
 \]
-不妨取 $\delta=\min\{\delta_{x_1},\cdots,\delta_{x_k}\}$。由于 $\delta\le\delta_{x_j}$，有
+取 $\delta=\min\{\delta_{x_1},\cdots,\delta_{x_k}\}>0$（这里用到 $k\ge 1$，即 $X\neq\varnothing$）。由于 $\delta\le\delta_{x_j}$，有
 \[
 (y_0-\delta,y_0+\delta)\subseteq(y_0-\delta_{x_j},y_0+\delta_{x_j}),
 \]
@@ -67,7 +67,7 @@ X\subseteq(x_1-\eta_{x_1},x_1+\eta_{x_1})\cup\cdots\cup(x_k-\eta_{x_k},x_k+\eta_
 
 \subsection{极值定理}
 
-考虑 $f:[a,b]\to\mathbb{R}$ 连续。已知 $[a,b]$ 是紧集，目标证明 $f([a,b])$ 是有界闭区间。其中，区间由介值定理保证，我们只需证明其有界且闭，即是紧集。
+考虑 $f:[a,b]\to\mathbb{R}$ 连续。已知 $[a,b]$ 是紧集，目标证明 $f([a,b])$ 是有界闭区间：其中「是区间」由介值定理（见 1019）保证；「有界且闭」这里不再去用「有界闭 $\Rightarrow$ 紧」那一半，而是把 $[a,b]$ 的紧性直接推给 $\operatorname{Im}f$。
 
 取 $\operatorname{Im}f$ 的任一开覆盖 $\{U_i\}_{i\in I}$，即
 \[
@@ -82,7 +82,7 @@ X\subseteq(x_1-\eta_{x_1},x_1+\eta_{x_1})\cup\cdots\cup(x_k-\eta_{x_k},x_k+\eta_
 \[
 f^{-1}(U_i)=f^{-1}(U_i\cap\operatorname{Im}f).
 \]
-由于 $f$ 连续，开集的原像仍为开集，所以 $f^{-1}(U_i)$ 是 $[a,b]$ 中的开集。对 $\operatorname{Im}f\subseteq\bigcup_{i\in I}U_i$ 取原像有
+由于 $f$ 连续，开集的原像仍为开集，所以 $f^{-1}(U_i)$ 是 $[a,b]$ 中的（相对）开集：严格地说 $f^{-1}(U_i)=O_i\cap[a,b]$，其中 $O_i$ 是 $\mathbb{R}$ 中的开集。对 $\operatorname{Im}f\subseteq\bigcup_{i\in I}U_i$ 取原像有
 \[
 [a,b]\subseteq\bigcup_{i\in I}f^{-1}(U_i).
 \]
@@ -95,7 +95,11 @@ f^{-1}(U_i)=f^{-1}(U_i\cap\operatorname{Im}f).
 \[
 f([a,b])\subseteq U_{j_1}\cup\cdots\cup U_{j_k}.
 \]
-因此，$f([a,b])$ 是紧集，为有界闭区间，即 $\sup,\inf$ 存在（且可以取到）。
+因此，$f([a,b])$ 是紧集，从而是有界闭区间。特别地 $\operatorname{Im}f$ 有界且闭，故 $\sup\operatorname{Im}f$、$\inf\operatorname{Im}f$ 都属于 $\operatorname{Im}f$，即存在 $\xi,\eta\in[a,b]$ 使
+\[
+f(\xi)=\inf f,\qquad f(\eta)=\sup f,
+\]
+这就是极值定理。
 
 \subsection{道路连通}
 

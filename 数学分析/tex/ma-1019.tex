@@ -83,19 +83,23 @@ f(c)=f\Bigl(\lim_{n\to+\infty}a_n\Bigr)=\lim_{n\to+\infty}f(a_n)\le 0,
 \begin{quote}
 \begin{enumerate}
 \item 结论中的 $c$ 取在开区间 $(a,b)$ 内：端点显然不满足。
-\item $f:(a,b)\to\mathbb{R}$，如果 $c<d\in(a,b)$ 且 $f(c)<\xi$、$f(d)>\xi$，则 $\exists e\in(c,d)$ s.t. $f(e)=\xi$。
+\item $f:(a,b)\to\mathbb{R}$，如果 $c,d\in(a,b)$、$c<d$ 且 $f(c)<\xi$、$f(d)>\xi$，则 $\exists e\in(c,d)$ s.t. $f(e)=\xi$。
 
 （$f:(a,b)\to\mathbb{R}$ 连续，显然 $f:[c,d]\to\mathbb{R}$ 连续。）
 \item $f:I\to\mathbb{R}$，$I$ 是区间，$f$ 在 $I$ 上连续，$\forall a,b\in I$，则 $f$ 可以取到 $f(a)$ 与 $f(b)$ 中间的所有值，即
 \[
-\forall\eta\in[f(a),f(b)],\ \exists x_0\in I\ \text{s.t.}\ f(x_0)=\eta.
+\forall\eta\in\bigl[\min\{f(a),f(b)\},\max\{f(a),f(b)\}\bigr],\ \exists x_0\in I\ \text{s.t.}\ f(x_0)=\eta.
 \]
-进一步有：$\forall\xi_1,\xi_2\in\operatorname{Im}f$，$[\xi_1,\xi_2]\subseteq\operatorname{Im}f$。
+进一步有：$\forall\xi_1,\xi_2\in\operatorname{Im}f$（不妨设 $\xi_1\le\xi_2$），$[\xi_1,\xi_2]\subseteq\operatorname{Im}f$。
 \end{enumerate}
 \end{quote}
 
 Q：如果 $I$ 为有界闭区间，$f$ 连续，那么 $\operatorname{Im}f$ 是什么？
 
-$\operatorname{Im}f$ 也是有界闭区间，即对 $f:[a,b]\to\mathbb{R}$，$f$ 在 $[a,b]$ 上一定存在 $\sup$ 和 $\inf$（事实上可以取到）。
+$\operatorname{Im}f$ 也是有界闭区间。即对连续函数 $f:[a,b]\to\mathbb{R}$，存在 $\xi,\eta\in[a,b]$ 使得
+\[
+f(\xi)=\inf_{[a,b]}f,\qquad f(\eta)=\sup_{[a,b]}f,
+\]
+这就是极值定理（证明见 1021：$\operatorname{Im}f$ 有界且闭，故 $\sup\operatorname{Im}f$、$\inf\operatorname{Im}f$ 都属于 $\operatorname{Im}f$，即确界可以取到）。
 
 \end{document}

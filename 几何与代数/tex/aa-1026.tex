@@ -1,0 +1,213 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\title{高等代数 1026}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{高等代数 1026}
+
+\subsection*{一元 $n$ 次方程与多项式}
+
+设 $K$ 是数域，$a_0,\cdots,a_n\in K$，且 $a_0\neq0$，$n\geq1$，称
+\[
+a_0x^n+a_1x^{n-1}+\cdots+a_n=0
+\]
+是 $K$ 上的一元 $n$ 次方程。若 $x=\alpha$ 满足方程，则称 $\alpha$ 是方程的解或根。由代数基本定理可知，上述方程在 $\mathbb{C}$ 上一定有解。
+
+称
+\[
+a_0x^n+\cdots+a_n\qquad(a_0\neq0)
+\]
+是 $K$ 上的一元 $n$ 次多项式，用 $f(x),g(x)$ 等表示。$a_0$ 称为首项系数，$n$ 称为次数，用 $\deg f(x)$ 表示 $f(x)$ 的次数。例如
+\[
+\deg(c)=0,\qquad \deg(0)=-\infty.
+\]
+若
+\[
+f(x)=a_0x^n+a_1x^{n-1}+\cdots+a_n,
+\]
+且 $\alpha\in\mathbb{C}$ 满足 $f(\alpha)=0$，则称 $\alpha$ 是 $f(x)$ 的零点。
+
+代数基本定理：$\forall\deg f(x)\geq1$ 的 $f(x)$ 在 $\mathbb{C}$ 上必有零点。
+
+\subsection*{引理 1}
+
+若 $f(x)$ 是 $K$ 上的 $n$ 次多项式，$\forall\alpha\in\mathbb{C}$，则存在首项系数为 $a_0$ 的 $(n-1)$ 次多项式 $g(x)$，使得
+\[
+f(x)=(x-\alpha)g(x)+f(\alpha).
+\]
+\textbf{证明}
+\[
+\begin{aligned}
+f(x)-f(\alpha)
+&=a_0(x^{n}-\alpha^{n})+a_1(x^{n-1}-\alpha^{n-1})+\cdots+a_{n-1}(x-\alpha)\\
+&=a_0(x-\alpha)(x^{n-1}+x^{n-2}\alpha+\cdots+\alpha^{n-1})
+  +a_1(x-\alpha)(\cdots)+\cdots\\
+&=(x-\alpha)\bigl[\,a_0(x^{n-1}+x^{n-2}\alpha+\cdots+\alpha^{n-1})+a_1(\cdots)+\cdots\bigr]
+\end{aligned}
+\]
+这里用了 $x^{k}-\alpha^{k}=(x-\alpha)(x^{k-1}+x^{k-2}\alpha+\cdots+\alpha^{k-1})$（$1\leq k\leq n$）。
+
+令 $g(x)$ 为上式中方括号内的多项式。由于 $x^{n-1}$ 这一项只能由第一项 $a_0(x^{n-1}+x^{n-2}\alpha+\cdots+\alpha^{n-1})$ 产生，后面每个 $a_i$ 对应的括号最高次都低于 $n-1$，故 $g(x)$ 的最高次项为 $a_0x^{n-1}$，即 $g(x)$ 是首项系数为 $a_0$ 的 $(n-1)$ 次多项式，且
+\[
+f(x)=(x-\alpha)g(x)+f(\alpha).
+\]
+
+特别地，若 $\alpha$ 是 $f(x)$ 的零点，则
+\[
+f(x)=(x-\alpha)\cdot g(x).
+\]
+
+\subsection*{命题 2}
+
+若 $f(x)$ 是首项系数为 $a_0$ 的 $n$ 次多项式（$n\geq1$），则 $\exists\alpha_1,\cdots,\alpha_n\in\mathbb{C}$，使得
+\[
+f(x)=a_0(x-\alpha_1)\cdots(x-\alpha_n).
+\]
+\textbf{证明（对次数 $n$ 归纳）}
+
+（1）当 $n=1$ 时，$f(x)=a_0x+a_1=a_0\left(x+\dfrac{a_1}{a_0}\right)$（因 $a_0\neq0$）。令 $\alpha_1=-\dfrac{a_1}{a_0}$，则 $f(x)=a_0(x-\alpha_1)$，命题成立。
+
+（2）假设命题对 $n=k$ 成立，考察次数为 $k+1$ 的 $f(x)$。由代数基本定理，存在 $\alpha\in\mathbb{C}$ 使得 $f(\alpha)=0$；由引理 1，存在首项系数为 $a_0$、次数为 $k$ 的多项式 $g(x)$ 使得
+\[
+f(x)=(x-\alpha)g(x)+f(\alpha)=(x-\alpha)g(x).
+\]
+对 $g(x)$ 用归纳假设，存在 $\alpha_1,\cdots,\alpha_k\in\mathbb{C}$ 使得 $g(x)=a_0(x-\alpha_1)\cdots(x-\alpha_k)$，于是
+\[
+f(x)=a_0(x-\alpha)(x-\alpha_1)\cdots(x-\alpha_k),
+\]
+即命题对 $n=k+1$ 成立。故命题对一切 $n\geq1$ 成立。
+
+\subsection*{推论 3}
+
+$f(x)$ 有且仅有 $n$ 个零点：
+\[
+\beta\notin\{\alpha_1,\cdots,\alpha_n\}\ \Longrightarrow\ f(\beta)\neq0.
+\]
+
+记 $\beta_1,\cdots,\beta_s$ 是 $\alpha_1,\cdots,\alpha_n$ 中两两不同的数，则
+\[
+f(x)=a_0(x-\beta_1)^{e_1}\cdots(x-\beta_s)^{e_s},
+\]
+称 $e_i$ 是 $\beta_i$ 的重数。
+
+\subsection*{推论 4}
+
+$f(x),g(x)$ 分别是 $m$ 次、$n$ 次多项式，记 $l=\max\{m,n\}$。如果存在 $l+1$ 个数 $\alpha_1,\cdots,\alpha_{l+1}$ 使得
+\[
+f(\alpha_i)=g(\alpha_i),\qquad i=1,\cdots,l+1,
+\]
+则 $f(x)=g(x)$。
+
+\textbf{证明}
+令 $h(x)=f(x)-g(x)$。因 $\deg f=m$、$\deg g=n$，故 $\deg h\leq l=\max\{m,n\}$。又对 $i=1,\cdots,l+1$，
+\[
+h(\alpha_i)=f(\alpha_i)-g(\alpha_i)=0,
+\]
+即 $h(x)$ 至少有 $l+1$ 个（互不相同的）零点。
+
+若 $\deg h\geq1$，则由推论 3，非零的 $\deg h$ 次多项式至多有 $\deg h\leq l$ 个零点，与 $h$ 至少有 $l+1$ 个零点矛盾。故 $\deg h=0$ 或 $-\infty$。若 $\deg h=0$，则 $h$ 是非零常数，没有零点，与 $h(\alpha_1)=0$ 矛盾。于是只能有 $\deg h=-\infty$，即 $h(x)\equiv0$，亦即 $f(x)=g(x)$。
+
+（等价的说法：把 $h$ 的系数逐个比较，也得到所有系数为 $0$。）
+
+\subsection*{引理 5}
+
+$f(x)=a_0x^n+a_1x^{n-1}+\cdots+a_n=a_0(x-\alpha_1)\cdots(x-\alpha_n)$。记 $\sigma_i(\alpha_1,\cdots,\alpha_n)$ 表示从 $\alpha_1,\cdots,\alpha_n$ 中取 $i$ 个数相乘，再将这 $\binom{n}{i}$ 个数相加，则
+\[
+(x-\alpha_1)\cdots(x-\alpha_n)=\sum_{i=0}^{n}(-1)^i\sigma_i(\alpha_1,\cdots,\alpha_n)x^{n-i}.
+\]
+\textbf{证明（对 $n$ 归纳）}
+
+约定 $\sigma_0(\alpha_1,\cdots,\alpha_k)=1$，且当 $i>k$ 时 $\sigma_i(\alpha_1,\cdots,\alpha_k)=0$。
+
+（1）当 $n=1$ 时，右边 $=\sigma_0x-\sigma_1=x-\alpha_1$，结论成立。
+
+（2）假设 $n=k$ 时结论成立，考察 $n=k+1$。由归纳假设
+\[
+\begin{aligned}
+&\prod_{j=1}^{k+1}(x-\alpha_j)
+=(x-\alpha_{k+1})\sum_{i=0}^{k}(-1)^i\sigma_i(\alpha_1,\cdots,\alpha_k)x^{k-i}\\
+={}&\sum_{i=0}^{k}(-1)^i\sigma_i(\alpha_1,\cdots,\alpha_k)x^{k+1-i}
++\sum_{i=0}^{k}(-1)^{i+1}\sigma_i(\alpha_1,\cdots,\alpha_k)\alpha_{k+1}x^{k-i}\\
+={}&x^{k+1}+\sum_{i=1}^{k}(-1)^i\sigma_i(\alpha_1,\cdots,\alpha_k)x^{k+1-i}
++\sum_{i=1}^{k}(-1)^{i}\sigma_{i-1}(\alpha_1,\cdots,\alpha_k)\alpha_{k+1}x^{k+1-i}\\
+&\qquad+(-1)^{k+1}\sigma_k(\alpha_1,\cdots,\alpha_k)\alpha_{k+1}\\
+={}&x^{k+1}+\sum_{i=1}^{k}(-1)^i\Bigl[\sigma_i(\alpha_1,\cdots,\alpha_k)
++\sigma_{i-1}(\alpha_1,\cdots,\alpha_k)\alpha_{k+1}\Bigr]x^{k+1-i}
++(-1)^{k+1}\sigma_{k+1}(\alpha_1,\cdots,\alpha_{k+1})\\
+={}&\sum_{i=0}^{k+1}(-1)^i\sigma_i(\alpha_1,\cdots,\alpha_{k+1})x^{k+1-i},
+\end{aligned}
+\]
+最后一步用了
+\[
+\sigma_i(\alpha_1,\cdots,\alpha_{k+1})=\sigma_i(\alpha_1,\cdots,\alpha_k)+\sigma_{i-1}(\alpha_1,\cdots,\alpha_k)\alpha_{k+1}\quad(1\leq i\leq k),
+\]
+以及 $\sigma_{k+1}(\alpha_1,\cdots,\alpha_{k+1})=\sigma_k(\alpha_1,\cdots,\alpha_k)\alpha_{k+1}$（因为 $\alpha_{k+1}$ 只出现在第 $k+1$ 个因子中）。故结论对 $n=k+1$ 成立，由归纳法得证。
+
+\subsection*{韦达定理}
+
+由引理 5，并除以首项系数 $a_0$，
+\[
+(x-\alpha_1)\cdots(x-\alpha_n)=\sum_{i=0}^{n}(-1)^i\sigma_i(\alpha_1,\cdots,\alpha_n)x^{n-i},
+\]
+故
+\[
+a_0(x-\alpha_1)\cdots(x-\alpha_n)=\sum_{i=0}^{n}a_0(-1)^i\sigma_i(\alpha_1,\cdots,\alpha_n)x^{n-i}.
+\]
+把它与 $f(x)=a_0x^n+a_1x^{n-1}+\cdots+a_n$ 逐项比较系数（$n+1$ 个系数），得
+\[
+a_i=a_0(-1)^i\sigma_i(\alpha_1,\cdots,\alpha_n),\qquad i=0,1,\cdots,n.
+\]
+特别地
+\[
+\alpha_1+\cdots+\alpha_n=-\frac{a_1}{a_0},\qquad
+\alpha_1\alpha_2\cdots\alpha_n=(-1)^n\frac{a_n}{a_0}.
+\]
+
+\subsection*{实系数虚根成对}
+
+设 $a_0,\cdots,a_n\in\mathbb{R}$，$a_0\neq0$，$\alpha\in\mathbb{C}$ 且 $f(\alpha)=0$，即
+\[
+a_0\alpha^n+a_1\alpha^{n-1}+\cdots+a_n=0.
+\]
+两边取共轭，并注意 $\overline{a_i}=a_i$、共轭保持加法与乘法，得
+\[
+a_0\overline{\alpha}^{\,n}+a_1\overline{\alpha}^{\,n-1}+\cdots+a_n=0,
+\]
+即 $f(\overline{\alpha})=0$。故虚根 $\alpha\notin\mathbb{R}$ 必与 $\overline{\alpha}\neq\alpha$ 成对出现。
+
+重数也相同：记 $\overline{p}(x)$ 为把多项式 $p$ 的系数逐个取共轭所得的多项式，因 $f$ 的系数都是实数，故 $\overline{f}=f$。若 $(x-\alpha)^{e}\mid f$，即 $f(x)=(x-\alpha)^e h(x)$，两边系数取共轭得 $f(x)=(x-\overline{\alpha})^{e}\,\overline{h}(x)$，故 $(x-\overline{\alpha})^{e}\mid f$；把 $\alpha$ 与 $\overline{\alpha}$ 互换即得反向。
+
+\subsection*{整系数方程的因式定理}
+
+设 $a_0,\cdots,a_n\in\mathbb{Z}$，$a_0\neq0$，$f(x)=a_0x^n+a_1x^{n-1}+\cdots+a_n$。若 $\alpha=\dfrac{q}{p}$（$p,q\in\mathbb{Z}$，$p>0$，$\gcd(p,q)=1$）是 $f$ 的零点，则
+\[
+p\mid a_0,\qquad q\mid a_n.
+\]
+\textbf{证明}
+
+先证一个引理：若 $\gcd(p,q)=1$ 且 $p\mid qm$，则 $p\mid m$。事实上由辗转相除法（裴蜀等式），存在 $u,v\in\mathbb{Z}$ 使 $up+vq=1$，两边乘 $m$ 得 $upm+vqm=m$；因 $p\mid upm$ 且 $p\mid qm$，故 $p\mid vqm$，从而 $p\mid m$。
+
+由 $f\!\left(\dfrac{q}{p}\right)=0$，
+\[
+a_0\frac{q^n}{p^n}+a_1\frac{q^{n-1}}{p^{n-1}}+\cdots+a_n=0,
+\]
+两边乘 $p^n$ 得
+\[
+a_0q^n+a_1q^{n-1}p+\cdots+a_{n-1}qp^{n-1}+a_np^n=0.
+\]
+由上式，
+\[
+a_0q^n=-\bigl(a_1q^{n-1}p+\cdots+a_np^n\bigr),
+\]
+右边每一项都含因子 $p$，故 $p\mid a_0q^n$；又 $\gcd(p,q)=1$ 推出 $\gcd(p,q^n)=1$，用上面的引理得 $p\mid a_0$。
+
+同理，
+\[
+a_np^n=-\bigl(a_0q^n+a_1q^{n-1}p+\cdots+a_{n-1}qp^{n-1}\bigr),
+\]
+右边每一项都含因子 $q$，故 $q\mid a_np^n$；而 $\gcd(q,p)=1$ 推出 $\gcd(q,p^n)=1$，故 $q\mid a_n$。
+
+\end{document}
