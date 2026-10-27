@@ -1,42 +1,77 @@
-% !TeX program = xelatex
-
-
-\documentclass[UTF8]{ctexart}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage{geometry}
-\geometry{margin=2.5cm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,1021}
+\title{数学分析 1021}
+\date{}
 \begin{document}
+\maketitle
 
-\section{数学分析 1021}
+\section{紧集}
 
-\subsection{1. 紧集}
-
+\begin{defn}[紧集]
 $S\subseteq\mathbb{R}$ 称为紧集，是指：若
 \[
 S\subseteq\bigcup_{i\in I}U_i,\qquad U_i\ \text{均为开集},
 \]
-则 $\exists i_1,\cdots,i_k$ s.t.
-\[
-S\subseteq U_{i_1}\cup\cdots\cup U_{i_k}.
-\]
-回顾有限覆盖定理，我们易知有界闭区间一定是紧集。
+则 $\exists i_1,\cdots,i_k$ s.t. $S\subseteq U_{i_1}\cup\cdots\cup U_{i_k}$。
+\end{defn}
 
-\textbf{定理：$C$ 是 $\mathbb{R}$ 上的紧集 $\iff C$ 是有界的且 $C$ 是闭集。}
+回顾有限覆盖定理：有界闭区间一定是紧集。
 
-分析：我们已知有界闭区间一定是紧集，只需证明紧集一定是有界闭集。即设 $X\subseteq\mathbb{R}$ 是紧集，我们需要证明：1. $X$ 有界；2. $\mathbb{R}\setminus X$ 是开集。
+\begin{thm}[紧集的刻画]
+$C$ 是 $\mathbb{R}$ 上的紧集 $\iff C$ 是有界的且 $C$ 是闭集。
+\end{thm}
 
-1. 有界。$\forall x\in X$，构造开区间 $(x-1,x+1)$，得到开覆盖
+分析：已知有界闭区间一定是紧集，只需证明紧集一定是有界闭集。即设 $X\subseteq\mathbb{R}$ 是紧集，需要证明：1. $X$ 有界；2. $\mathbb{R}\setminus X$ 是开集。
+
+\begin{proof}
+（1）$X$ 有界。$\forall x\in X$，构造开区间 $(x-1,x+1)$，得到开覆盖
 \[
 X\subseteq\bigcup_{x\in X}(x-1,x+1).
 \]
-由紧集的定义可知，一定 $\exists x_1,\cdots,x_k\in X$，s.t.
+由紧集的定义，一定 $\exists x_1,\cdots,x_k\in X$，s.t.
 \[
 X\subseteq(x_1-1,x_1+1)\cup\cdots\cup(x_k-1,x_k+1),
 \]
 于是 $X$ 有界。
+\end{proof}
 
-2. 闭集。若 $X=\varnothing$，则 $\mathbb{R}\setminus X=\mathbb{R}$ 是开集，结论平凡；以下设 $X\neq\varnothing$。取定任意 $y_0\in\mathbb{R}\setminus X$，则对每个 $x\in X$ 有 $x\neq y_0$，取 $\delta_x=\eta_x=\frac{|x-y_0|}{2}>0$，一定有
+\begin{proof}
+（2）$\mathbb{R}\setminus X$ 是开集。若 $X=\varnothing$，则 $\mathbb{R}\setminus X=\mathbb{R}$ 是开集，结论平凡；以下设 $X\neq\varnothing$。取定任意 $y_0\in\mathbb{R}\setminus X$，则对每个 $x\in X$ 有 $x\neq y_0$，取 $\delta_x=\eta_x=\frac{|x-y_0|}{2}>0$，一定有
 \[
 \forall x\in X,\ \exists\delta_x,\eta_x\ \text{s.t.}\
 (y_0-\delta_x,y_0+\delta_x)\cap(x-\eta_x,x+\eta_x)=\varnothing.
@@ -63,26 +98,34 @@ X\subseteq(x_1-\eta_{x_1},x_1+\eta_{x_1})\cup\cdots\cup(x_k-\eta_{x_k},x_k+\eta_
 \[
 (y_0-\delta,y_0+\delta)\cap X=\varnothing.
 \]
-这说明 $\mathbb{R}\setminus X$ 是开集，故 $X$ 是闭集。证毕。
+这说明 $\mathbb{R}\setminus X$ 是开集，故 $X$ 是闭集。
+\end{proof}
 
-\subsection{极值定理}
+\section{极值定理}
 
-考虑 $f:[a,b]\to\mathbb{R}$ 连续。已知 $[a,b]$ 是紧集，目标证明 $f([a,b])$ 是有界闭区间：其中「是区间」由介值定理（见 1019）保证；「有界且闭」这里不再去用「有界闭 $\Rightarrow$ 紧」那一半，而是把 $[a,b]$ 的紧性直接推给 $\operatorname{Im}f$。
+\begin{thm}[极值定理]
+设 $f:[a,b]\to\mathbb{R}$ 连续，则 $\operatorname{Im}f=f([a,b])$ 是有界闭区间；特别地，存在 $\xi,\eta\in[a,b]$ 使得
+\[
+f(\xi)=\inf_{[a,b]}f,\qquad f(\eta)=\sup_{[a,b]}f.
+\]
+\end{thm}
+
+\begin{proof}
+已知 $[a,b]$ 是紧集。「是区间」由介值定理（见 1019）保证；「有界且闭」这里不去用「有界闭 $\Rightarrow$ 紧」那一半，而是把 $[a,b]$ 的紧性直接推给 $\operatorname{Im}f$。
 
 取 $\operatorname{Im}f$ 的任一开覆盖 $\{U_i\}_{i\in I}$，即
 \[
-\operatorname{Im}f\subseteq\bigcup_{i\in I}U_i.
+\operatorname{Im}f\subseteq\bigcup_{i\in I}U_i,
 \]
-目标：找到 $i_1,i_2,\cdots,i_k$，s.t.
+目标是找到 $i_1,i_2,\cdots,i_k$，s.t.
 \[
 \operatorname{Im}f\subseteq U_{i_1}\cup\cdots\cup U_{i_k}.
 \]
-
-证明：由 $\operatorname{Im}f\subseteq\bigcup_{i\in I}U_i$ 且
+由 $\operatorname{Im}f\subseteq\bigcup_{i\in I}U_i$ 且
 \[
 f^{-1}(U_i)=f^{-1}(U_i\cap\operatorname{Im}f).
 \]
-由于 $f$ 连续，开集的原像仍为开集，所以 $f^{-1}(U_i)$ 是 $[a,b]$ 中的（相对）开集：严格地说 $f^{-1}(U_i)=O_i\cap[a,b]$，其中 $O_i$ 是 $\mathbb{R}$ 中的开集。对 $\operatorname{Im}f\subseteq\bigcup_{i\in I}U_i$ 取原像有
+由于 $f$ 连续，开集的原像仍为开集，所以 $f^{-1}(U_i)$ 是 $[a,b]$ 中的（相对）开集：严格地说 $f^{-1}(U_i)=O_i\cap[a,b]$，其中 $O_i$ 是 $\mathbb{R}$ 中的开集。取原像有
 \[
 [a,b]\subseteq\bigcup_{i\in I}f^{-1}(U_i).
 \]
@@ -95,31 +138,40 @@ f^{-1}(U_i)=f^{-1}(U_i\cap\operatorname{Im}f).
 \[
 f([a,b])\subseteq U_{j_1}\cup\cdots\cup U_{j_k}.
 \]
-因此，$f([a,b])$ 是紧集，从而是有界闭区间。特别地 $\operatorname{Im}f$ 有界且闭，故 $\sup\operatorname{Im}f$、$\inf\operatorname{Im}f$ 都属于 $\operatorname{Im}f$，即存在 $\xi,\eta\in[a,b]$ 使
-\[
-f(\xi)=\inf f,\qquad f(\eta)=\sup f,
-\]
-这就是极值定理。
+因此 $f([a,b])$ 是紧集，从而是有界闭区间，故 $\sup\operatorname{Im}f$、$\inf\operatorname{Im}f$ 都属于 $\operatorname{Im}f$。
+\end{proof}
 
-\subsection{道路连通}
+\section{介值定理与道路连通}
 
-取 $S\subseteq\mathbb{R}$，定义 $S$ 上的一条道路为
+看完了极值定理的拓扑证明，不禁要问：上一节用分析的手段证过介值定理，那么对介值定理，是否也能用类似的手段简单地证出来？为此引入道路连通。
+
+\begin{defn}[道路]
+取 $S\subseteq\mathbb{R}$，$S$ 上的一条道路是指
 \[
 \alpha:[0,1]\to\mathbb{R}\ \text{连续},\qquad \alpha([0,1])\subseteq S.
 \]
+\end{defn}
 
-\textbf{定义：如果 $\forall x,y\in S$，存在 $S$ 中的道路 $\alpha:[0,1]\to\mathbb{R}$ 使得 $\alpha(0)=x$，$\alpha(1)=y$，则称 $S$ 为（道路）连通的。}
+\begin{defn}[道路连通]
+如果 $\forall x,y\in S$，存在 $S$ 中的道路 $\alpha:[0,1]\to\mathbb{R}$ 使得 $\alpha(0)=x$、$\alpha(1)=y$，则称 $S$ 为（道路）连通的。
+\end{defn}
 
-对于道路连通，我们有以下猜想：$\mathbb{R}$ 中道路连通的子集必为区间。
+\begin{conj}
+$\mathbb{R}$ 中道路连通的子集必为区间。
+\end{conj}
 
-在上述猜想成立的情况下，由介值定理可知，连续函数会把一个区间映成一个区间，猜想保证了区间必然道路连通。所以对于连续函数，我们猜想它会把一个道路连通的集合映成一个道路连通的集合，即
+在上述猜想成立的情况下，由介值定理可知，连续函数会把一个区间映成一个区间，猜想保证了区间必然道路连通。所以对连续函数，猜想它会把一个道路连通的集合映成一个道路连通的集合，即
 
-\textbf{对于 $f:I\to\mathbb{R}$，若 $I$ 道路连通且 $f$ 连续，那么 $\operatorname{Im}f$ 也是道路连通的。}
+\begin{thm}[连续像保持道路连通]
+对于 $f:I\to\mathbb{R}$，若 $I$ 道路连通且 $f$ 连续，那么 $\operatorname{Im}f$ 也是道路连通的。
+\end{thm}
 
-证明：即 $\forall y_1,y_2\in\operatorname{Im}f$，找一个连续映射 $\beta:[0,1]\to\mathbb{R}$，使得
+\begin{proof}
+即 $\forall y_1,y_2\in\operatorname{Im}f$，找一个连续映射 $\beta:[0,1]\to\mathbb{R}$，使得
 \[
 \beta(0)=y_1,\quad \beta(1)=y_2,\quad \beta([0,1])\subseteq\operatorname{Im}f.
 \]
-取 $x_1,x_2\in I$ 使 $f(x_1)=y_1$，$f(x_2)=y_2$。对于 $I$，因为其道路连通，一定有其中的道路 $\alpha:[0,1]\to\mathbb{R}$ 使得 $\alpha(0)=x_1$，$\alpha(1)=x_2$。$f$ 连续，连续函数的复合也是连续的，因此 $f\circ\alpha$ 就是我们要找的 $\beta$。
+取 $x_1,x_2\in I$ 使 $f(x_1)=y_1$，$f(x_2)=y_2$。对于 $I$，因为其道路连通，一定有其中的道路 $\alpha:[0,1]\to\mathbb{R}$ 使得 $\alpha(0)=x_1$，$\alpha(1)=x_2$。$f$ 连续，连续函数的复合也是连续的，因此 $f\circ\alpha$ 就是所要的 $\beta$。
+\end{proof}
 
 \end{document}

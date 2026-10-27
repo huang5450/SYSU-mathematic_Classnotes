@@ -1,66 +1,114 @@
-% !TeX program = xelatex
-
-
-\documentclass[UTF8]{ctexart}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage{geometry}
-\geometry{margin=2.5cm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,1019}
+\title{数学分析 1019}
+\date{}
 \begin{document}
+\maketitle
 
-\section{数学分析 1019}
+\section{连续函数}
 
-\subsection{1. 连续函数}
-
-定义：$f(x)$ 在 $x_0$ 处连续是指
+\begin{defn}[连续]
+$f(x)$ 在 $x_0$ 处连续是指
 \[
 \lim_{x\to x_0}f(x)=f(x_0).
 \]
+\end{defn}
 
-注：$\lim_{x\to x_0}f(x)$ 存在 $\iff\lim_{x\to x_0^-}f(x)=\lim_{x\to x_0^+}f(x)$。由上，$f(x)$ 在 $x_0$ 处连续 $\iff$
+\begin{rem}
+$\lim_{x\to x_0}f(x)$ 存在 $\iff\lim_{x\to x_0^-}f(x)=\lim_{x\to x_0^+}f(x)$。由上，$f(x)$ 在 $x_0$ 处连续 $\iff$
 \[
 \lim_{x\to x_0^-}f(x)=\lim_{x\to x_0^+}f(x)=f(x_0).
 \]
+\end{rem}
 
-定义：若 $\lim_{x\to x_0^-}f(x)=f(x_0)$，则称 $f$ 在 $x_0$ 处左连续。
+\begin{defn}[左连续]
+若 $\lim_{x\to x_0^-}f(x)=f(x_0)$，则称 $f$ 在 $x_0$ 处左连续。
+\end{defn}
 
-由上，我们可以将 $f(x)$ 在 $x_0$ 处的连续性分类（图略）。
+由上，可以按 $f$ 在 $x_0$ 处左、右连续的情形对连续性分类（图略）。
 
-\subsection{2. 连续函数的性质}
+\section{连续函数的性质}
 
-\begin{enumerate}
-\item 若 $f(x)$ 和 $g(x)$ 在 $x=x_0$ 处连续，则 $f(x)\pm g(x)$、$f(x)\times g(x)$ 连续；若 $g(x_0)\neq 0$，则 $\dfrac{f}{g}$ 在 $x=x_0$ 处连续。
-\item 若 $g(x)$ 在 $x_0$ 处连续且 $g(x_0)=u_0$，$f(u)$ 在 $u=u_0$ 处连续，则 $f(g(x))$ 在 $x=x_0$ 处连续。
-\end{enumerate}
+\begin{thm}[四则运算]
+若 $f(x)$ 和 $g(x)$ 在 $x=x_0$ 处连续，则 $f(x)\pm g(x)$、$f(x)\cdot g(x)$ 连续；若 $g(x_0)\neq 0$，则 $\dfrac{f}{g}$ 在 $x=x_0$ 处连续。
+\end{thm}
 
-那么，我们是否有
+\begin{thm}[复合]
+若 $g(x)$ 在 $x_0$ 处连续且 $g(x_0)=u_0$，$f(u)$ 在 $u=u_0$ 处连续，则 $f(g(x))$ 在 $x=x_0$ 处连续。
+\end{thm}
+
+于是自然要问：是否总有
 \[
 \lim_{x\to x_0}f(g(x))=f(g(x_0))\,?
 \]
 
-Recall：若 $\lim_{u\to u_0}f(u)=A$，$\lim_{x\to x_0}g(x)=u_0$，且存在 $x_0$ 的去心邻域使 $g(x)\neq u_0$，则 $\lim_{x\to x_0}f(g(x))=A$。当 $A=f(u_0)$ 时，条件可以去掉。
+\begin{rem}[复合的极限]
+若 $\lim_{u\to u_0}f(u)=A$，$\lim_{x\to x_0}g(x)=u_0$，且存在 $x_0$ 的去心邻域使 $g(x)\neq u_0$，则 $\lim_{x\to x_0}f(g(x))=A$。当 $A=f(u_0)$ 时，去心邻域这一条件可以去掉。
+\end{rem}
 
-对于我们的情况，有
+回到上面的问题，有
 \[
-A=f(u_0)=f(g(x_0))=f\Bigl(\lim_{x\to x_0}g(x)\Bigr)
-=\lim_{x\to x_0}f(g(x)).
+A=f(u_0)=f(g(x_0))=f\Bigl(\lim_{x\to x_0}g(x)\Bigr)=\lim_{x\to x_0}f(g(x)),
 \]
+最后一步正是上面的注（取 $A=f(u_0)$，条件可去）。
 
-\begin{quote}
+\begin{rem}
 如果 $g(x)$ 在 $x_0$ 附近趋近于 $u_0$，且 $f$ 在 $u_0$ 处连续，那么 $f$ 和 $\lim$ 可以交换。
 
-如果 $f,g$ 在各自的定义域上都连续，那么对于任何在复合函数定义域上的 $x_0$，$f$ 和 $\lim_{x\to x_0}$ 都可以交换。
-\end{quote}
+如果 $f,g$ 在各自的定义域上都连续，那么对复合函数定义域内任何 $x_0$，$f$ 与 $\lim_{x\to x_0}$ 都可以交换。
+\end{rem}
 
-定理：初等函数在其定义域中总连续。
+\begin{thm}[初等函数]
+初等函数在其定义域内连续。
+\end{thm}
 
-Recall：闭区间套定理。若 $[a_{n+1},b_{n+1}]\subseteq[a_n,b_n]$ 且 $\lim_{n\to+\infty}(b_n-a_n)=0$，则存在唯一的 $c$ 属于所有的 $[a_n,b_n]$。
+\section{介值定理}
 
-介值定理：$f:[a,b]\to\mathbb{R}$ 是连续函数，如果 $f(a)<0$ 且 $f(b)>0$，则 $\exists c\in(a,b)$ 满足
-\[
-f(c)=0.
-\]
-证明：取 $c_1=\frac{a+b}{2}$。若 $f(c_1)=0$，则已成立；若 $f(c_1)>0$，则取 $[a_1,b_1]=[a,c_1]$，若 $f(c_1)<0$，则取 $[a_1,b_1]=[c_1,b]$。可知 $b_1-a_1=\frac{b-a}{2}$。以此类推，如果在过程中点始终不为 $0$，则构造出
+\begin{lem}[闭区间套定理]
+若 $[a_{n+1},b_{n+1}]\subseteq[a_n,b_n]$ 且 $\lim_{n\to+\infty}(b_n-a_n)=0$，则存在唯一的 $c$ 属于所有 $[a_n,b_n]$。
+\end{lem}
+
+\begin{thm}[介值定理]
+$f:[a,b]\to\mathbb{R}$ 是连续函数，如果 $f(a)<0$ 且 $f(b)>0$，则 $\exists c\in(a,b)$ 满足 $f(c)=0$。
+\end{thm}
+
+\begin{proof}
+取 $c_1=\frac{a+b}{2}$。若 $f(c_1)=0$，则已成立；若 $f(c_1)>0$，则取 $[a_1,b_1]=[a,c_1]$；若 $f(c_1)<0$，则取 $[a_1,b_1]=[c_1,b]$。可知 $b_1-a_1=\frac{b-a}{2}$。以此类推，如果过程中点始终不为 $0$，则构造出
 \[
 [a_{n+1},b_{n+1}]\subseteq[a_n,b_n],
 \]
@@ -68,7 +116,7 @@ f(c)=0.
 \[
 \lim_{n\to+\infty}(b_n-a_n)=0.
 \]
-由此，$\exists!\,c\in\bigcap_{n=1}^{+\infty}[a_n,b_n]$，且 $f(a_n)<0$、$f(b_n)>0$，
+由此，$\exists!\,c\in\bigcap_{n=1}^{+\infty}[a_n,b_n]$，且由构造有 $f(a_n)<0$、$f(b_n)>0$，
 \[
 \lim_{n\to+\infty}a_n=\lim_{n\to+\infty}b_n=c.
 \]
@@ -77,24 +125,25 @@ f(c)=0.
 f(c)=f\Bigl(\lim_{n\to+\infty}a_n\Bigr)=\lim_{n\to+\infty}f(a_n)\le 0,
 \]
 同理有 $f(c)\ge 0$，即得 $f(c)=0$。
+\end{proof}
 
-定理：$f:[a,b]\to\mathbb{R}$ 连续，如果 $f(a)<\xi$、$f(b)>\xi$，则 $\exists c\in(a,b)$ s.t. $f(c)=\xi$。
+\begin{thm}[一般形式的介值定理]
+$f:[a,b]\to\mathbb{R}$ 连续，如果 $f(a)<\xi$、$f(b)>\xi$，则 $\exists c\in(a,b)$ s.t. $f(c)=\xi$。
+\end{thm}
 
-\begin{quote}
+\begin{rem}
 \begin{enumerate}
 \item 结论中的 $c$ 取在开区间 $(a,b)$ 内：端点显然不满足。
-\item $f:(a,b)\to\mathbb{R}$，如果 $c,d\in(a,b)$、$c<d$ 且 $f(c)<\xi$、$f(d)>\xi$，则 $\exists e\in(c,d)$ s.t. $f(e)=\xi$。
-
-（$f:(a,b)\to\mathbb{R}$ 连续，显然 $f:[c,d]\to\mathbb{R}$ 连续。）
+\item $f:(a,b)\to\mathbb{R}$，如果 $c,d\in(a,b)$、$c<d$ 且 $f(c)<\xi$、$f(d)>\xi$，则 $\exists e\in(c,d)$ s.t. $f(e)=\xi$。（$f$ 在 $(a,b)$ 上连续，显然 $f:[c,d]\to\mathbb{R}$ 连续。）
 \item $f:I\to\mathbb{R}$，$I$ 是区间，$f$ 在 $I$ 上连续，$\forall a,b\in I$，则 $f$ 可以取到 $f(a)$ 与 $f(b)$ 中间的所有值，即
 \[
 \forall\eta\in\bigl[\min\{f(a),f(b)\},\max\{f(a),f(b)\}\bigr],\ \exists x_0\in I\ \text{s.t.}\ f(x_0)=\eta.
 \]
 进一步有：$\forall\xi_1,\xi_2\in\operatorname{Im}f$（不妨设 $\xi_1\le\xi_2$），$[\xi_1,\xi_2]\subseteq\operatorname{Im}f$。
 \end{enumerate}
-\end{quote}
+\end{rem}
 
-Q：如果 $I$ 为有界闭区间，$f$ 连续，那么 $\operatorname{Im}f$ 是什么？
+问题：如果 $I$ 为有界闭区间，$f$ 连续，那么 $\operatorname{Im}f$ 是什么？
 
 $\operatorname{Im}f$ 也是有界闭区间。即对连续函数 $f:[a,b]\to\mathbb{R}$，存在 $\xi,\eta\in[a,b]$ 使得
 \[
