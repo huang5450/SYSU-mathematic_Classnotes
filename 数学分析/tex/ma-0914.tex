@@ -1,19 +1,49 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage{amsthm}
-\usepackage[a4paper,margin=2.5cm]{geometry}
-\usepackage{graphicx}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,0914}
+\title{数学分析 2024-09-14}
+\usepackage{graphicx}
 \newtheorem{theorem}{定理}
 \newtheorem{example}{例}
-
-\title{数学分析 2024-09-14}
 \date{}
-
 \begin{document}
 \maketitle
 
-\section*{0. Recall}
+\section{Recall}
 
 % 原文图片：Figure_1.png；图片文件未附
 % 若图片已上传到项目，取消下一段注释即可显示
@@ -41,7 +71,7 @@
 \]
 在两者均可积的前提下，答案是肯定的。因为改变有限个点的函数值不改变积分的值。
 
-\section*{1. 丢掉高阶无穷小}
+\section{丢掉高阶无穷小}
 
 以 \(f(x)=x^2\) 为例。函数在 \(x=1\) 处的极限为
 \[
@@ -50,9 +80,9 @@
 求导数时，
 \begin{align*}
 f'(1)
-&=\lim_{\Delta x\to0}
+&=\lim\limits_{\Delta x\to0}
   \frac{f(1+\Delta x)-f(1)}{\Delta x}\\
-&=\lim_{\Delta x\to0}
+&=\lim\limits_{\Delta x\to0}
   \frac{(1+\Delta x)^2-1}{\Delta x}.
 \end{align*}
 分子可以展开为
@@ -80,9 +110,9 @@ g(x)=
 x^2,&x\ne1,
 \end{cases}
 \]
-虽然 \(g(1)=2\)，仍有 \(\lim_{x\to1} g(x)=1\)。
+虽然 \(g(1)=2\)，仍有 \(\lim\limits_{x\to1} g(x)=1\)。
 
-\section*{2. 有限与无限}
+\section{有限与无限}
 
 \begin{enumerate}
 \item \textbf{鸽笼原理：}将 \(N+1\) 只鸽子放进 \(N\) 个笼子，
@@ -92,7 +122,7 @@ x^2,&x\ne1,
 从而腾出第 \(1\) 间。
 \end{enumerate}
 
-\section*{3. 数学归纳法}
+\section{数学归纳法}
 
 要证明命题 \(P(n)\) 对所有 \(n\in\mathbb Z^+\) 成立，
 只须证明：
@@ -102,9 +132,9 @@ x^2,&x\ne1,
 则 \(P(n+1)\) 也成立。
 \end{enumerate}
 
-\section*{4. 数系的扩充}
+\section{数系的扩充}
 
-\subsection*{从自然数到整数}
+\section{从自然数到整数}
 
 自然数对加法封闭，但减法未必仍得到自然数，例如
 \(1-2=-1\)。为了使加法方程 \(n+x=m\) 总能求解，
@@ -113,7 +143,7 @@ x^2,&x\ne1,
 \mathbb N\longrightarrow\mathbb Z.
 \]
 
-\subsection*{从整数到有理数}
+\section{从整数到有理数}
 
 整数对加法和乘法封闭，但方程 \(nx=m\) 在整数中
 未必有解。例如 \(2x=1\) 不存在整数解。
@@ -132,7 +162,7 @@ x^2,&x\ne1,
 实数的引入涉及连续性；复数使每个非常数复系数
 多项式在 \(\mathbb C\) 中有根。
 
-\subsection*{布尔巴基学派的结构观}
+\section{布尔巴基学派的结构观}
 
 数学结构可从以下几个方面考察：
 \[
@@ -144,5 +174,7 @@ x^2,&x\ne1,
 \end{array}
 \right.
 \]
+
+\end{document}
 
 \end{document}

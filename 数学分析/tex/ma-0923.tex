@@ -1,20 +1,53 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,0923}
 \title{数学分析 0923}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0.\ Recall}
+\section{\ Recall}
 
 原命题 $P\Rightarrow Q$；逆命题 $Q\Rightarrow P$；逆否命题 $\neg Q\Rightarrow\neg P$。
 
 反证法的原理即“原与逆否，同真同假”：通过否定结论 $\neg Q$ 推出条件不成立 $\neg P$，
 达到证明原命题的目的。
 
-\subsection*{1.\ 命题}
+\section{\ 命题}
 
 \subsubsection*{全称量词 $\forall$}
 
@@ -62,13 +95,13 @@ $\neg Q(x)=\exists y,\neg P(x,y)$。最后整理得否命题是
 \exists x,\ \exists y,\ \neg P(x,y).
 \]
 
-\subsection*{2.\ 牛顿二项式展开}
+\section{\ 牛顿二项式展开}
 
 \[
 (x+y)^n=\sum_{i=0}^{n}\binom{n}{i}x^iy^{n-i}.
 \]
 
-\subsection*{Chapter 1\quad 函数}
+\section{Chapter 1\quad 函数}
 
 \subsubsection*{1.\ 基本定义}
 
@@ -147,5 +180,7 @@ $|f(x)|\leq M$，则称 $f(x)$ 在 $X$ 上有界。
 依赖于 $x$，错误。（原笔记这里把式子误写成了 $f(x+T)=f(x)$，那是周期性的式子。）
 
 否命题即为无界的定义：$\forall M>0,\ \exists x\in X$，s.t. $|f(x)|>M$。
+
+\end{document}
 
 \end{document}

@@ -1,13 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何}
 \title{空间向量}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0.\ 向量}
+\section{\ 向量}
 
 \begin{itemize}
 \item \textbf{向量}\quad 有起点、有终点的有向线段，
@@ -69,5 +102,7 @@ $\vec a$ 与 $\vec b$ 方向相同或相反。
 \textbf{定理一}\quad 若 $\vec a\neq\vec 0$，则 $\vec b$ 与
 $\vec a$ 共线 $\Longleftrightarrow$ $\exists$ 唯一的
 $t\in\mathbb R$，s.t. $\vec b=t\cdot\vec a$。
+
+\end{document}
 
 \end{document}

@@ -1,14 +1,47 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473} % 让 ①②③ 等圈号使用中文字体
-\title{几何与代数 0921}
-\date{}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何\,·\,0921}
+\title{几何与代数 0921}
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473} % 让 ①②③ 等圈号使用中文字体
+\date{}
 \begin{document}
 \maketitle
 
-\subsection*{0.\ Recall：向量的外积}
+\section{\ Recall：向量的外积}
 
 $\vec a\times\vec b$ 定义为长度为
 $|\vec a||\vec b|\sin\langle\vec a,\vec b\rangle$、方向满足
@@ -46,7 +79,7 @@ $\vec a=(x_1,y_1,z_1)$，$\vec b=(x_2,y_2,z_2)$，则
 =(y_1z_2-y_2z_1,\ z_1x_2-z_2x_1,\ x_1y_2-x_2y_1).
 \]
 
-\subsection*{1.\ 行列式}
+\section{\ 行列式}
 
 \subsubsection*{二阶行列式}
 
@@ -226,11 +259,13 @@ d=|(\overrightarrow{P_0P_1})_h|
 |\vec a_{\vec e}|=|\vec a\cdot\vec e| .
 \]
 
-\subsection*{2.\ 二重外积公式}
+\section{\ 二重外积公式}
 
 \[
 \vec a\times(\vec b\times\vec c)
 =(\vec a\cdot\vec c)\vec b-(\vec a\cdot\vec b)\vec c .
 \]
+
+\end{document}
 
 \end{document}

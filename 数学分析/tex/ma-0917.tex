@@ -1,13 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,0917}
 \title{数学分析 0917}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0. Recall}
+\section{Recall}
 
 有理数集 $\mathbb Q$ 是稠密的：
 \[
@@ -21,7 +54,7 @@ a<b\ \Longrightarrow\
 $\phi:\mathbb Z^+\to S$；即可以将其元素依次编号为
 $s_1,s_2,s_3,\ldots$。
 
-\subsection*{1. 有理数的可数性}
+\section{有理数的可数性}
 
 \subsubsection*{整数可数}
 
@@ -80,7 +113,7 @@ d_i=
 由于 $\mathbb Q$ 可数，而 $\mathbb R$ 不可数，
 无理数集也不可数。
 
-\subsection*{2. 有理数没有连续性}
+\section{有理数没有连续性}
 
 \subsubsection*{回顾：$\mathbb Q$ 的稠密性}
 
@@ -230,5 +263,7 @@ $\epsilon=\frac12\min\{1,\ b-\sqrt2\}$，
 \forall a\in A,\ \forall b\in B,\quad a\leq c\leq b.
 \]
 所以 $\mathbb Q$ 不具有 dedikind 连续性，$\mathbb Q$ 不连续。
+
+\end{document}
 
 \end{document}

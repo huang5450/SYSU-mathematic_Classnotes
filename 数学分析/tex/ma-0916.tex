@@ -1,25 +1,55 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage{amsthm}
-\usepackage[a4paper,margin=2.5cm]{geometry}
-\usepackage{graphicx}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,0916}
+\title{数学分析 2024-09-16}
+\usepackage{graphicx}
 \newtheorem{theorem}{定理}
 \newtheorem{example}{例}
-
-\title{数学分析 2024-09-16}
 \date{}
-
 \begin{document}
 \maketitle
 
-\section*{5. 整数的算术}
+\section{整数的算术}
 
 整数对加法和乘法封闭。从加法的角度，可以用反复加 \(1\)
 描述正整数；从乘法的角度，大于 \(1\) 的正整数可以分解为素数的乘积。
 素数是仅有 \(1\) 和自身两个正因数的正整数。
 
-\subsection*{带余除法}
+\section{带余除法}
 
 对 \(n\in\mathbb Z\)、\(m\in\mathbb Z\setminus\{0\}\)，
 存在唯一的 \(q,r\in\mathbb Z\)，使
@@ -28,7 +58,7 @@ n=qm+r,\qquad 0\leq r<|m|.
 \]
 其中 \(r\) 是余数。
 
-\subsection*{素数有无穷多个}
+\section{素数有无穷多个}
 
 反设素数只有 \(p_1,\ldots,p_N\)。
 构造
@@ -53,7 +83,7 @@ M=p_1p_2\cdots p_N+1.
 \]
 其中 \(\log x\) 为自然对数。
 
-\subsection*{素数平方根的无理性}
+\section{素数平方根的无理性}
 
 设 \(p\) 为素数。反设
 \(\sqrt p=n/m\)，其中 \(n,m\) 互素且 \(m\ne0\)。
@@ -70,7 +100,7 @@ p^2k^2=pm^2,\qquad m^2=pk^2.
 \(\sqrt p\notin\mathbb Q\)；特别地，
 \(\sqrt2\notin\mathbb Q\)。
 
-\subsection*{有理数与小数展开}
+\section{有理数与小数展开}
 
 \[
 \mathbb Q
@@ -95,7 +125,7 @@ B\sum_{j=1}^{\infty}10^{-jm}
 余数一旦重复，之后的商位便重复；若出现余数 \(0\)，
 则小数展开终止。
 
-\section*{6. 补充集合论：映射}
+\section{补充集合论：映射}
 
 设 \(X,Y\) 为集合。映射 \(f:X\to Y\) 是指：
 对每个 \(x\in X\)，都存在唯一的 \(y\in Y\) 与之对应，
@@ -115,5 +145,7 @@ f(X)=\{f(x):x\in X\}
 对每个 \(y\in Y\)，存在 \(x\in X\)，使 \(f(x)=y\)。
 \item \textbf{双射：}既是单射又是满射。
 \end{itemize}
+
+\end{document}
 
 \end{document}

@@ -1,13 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何\,·\,0924}
 \title{几何与代数 0924}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0.\ 例：$\vec d=x\vec a+y\vec b+z\vec c$ 的系数}
+\section{\ 例：$\vec d=x\vec a+y\vec b+z\vec c$ 的系数}
 
 $\vec a,\vec b,\vec c$ 不共面，
 $\vec d=x\vec a+y\vec b+z\vec c$，求 $x,y,z$。
@@ -40,7 +73,7 @@ d_3=xa_3+yb_3+zc_3 .
 用之前求解三元一次方程组的方法即可写出 $x,y,z$ 的解，
 此为代数解法；几何运用混合积的想法详见上节笔记。
 
-\subsection*{1.\ 平行坐标系}
+\section{\ 平行坐标系}
 
 在空间中，任取三个线性无关的向量组
 $\vec a_1,\vec a_2,\vec a_3$，则称
@@ -76,7 +109,7 @@ x_2\\y_2\\z_2
 $\forall i,j$，$g_{ij}=\vec a_i\cdot\vec a_j$，
 我们称 $(g_{ij})$ 是\textbf{度量矩阵}。
 
-\subsection*{2.\ 对偶坐标系}
+\section{\ 对偶坐标系}
 
 令 $\vec a_1'$ 是与 $\vec a_2,\vec a_3$ 垂直，且
 $\vec a_1\cdot\vec a_1'=1$ 的向量；同理，$\vec a_2'$ 是与
@@ -138,5 +171,7 @@ $\vec b=x\vec a_1+y\vec a_2+z\vec a_3$，不难看出
 \vec b\cdot\vec a_2'=y,\qquad
 \vec b\cdot\vec a_3'=z .
 \]
+
+\end{document}
 
 \end{document}

@@ -1,14 +1,47 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473} % 让 ①②③ 等圈号使用中文字体
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何\,·\,1014}
 \title{几何与代数 1014}
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473} % 让 ①②③ 等圈号使用中文字体
 \date{}
 \begin{document}
 \maketitle
 
-\section*{几何与代数 1014}
-\subsection*{1. 二次曲线的化简}
+\section{二次曲线的化简}
 \[
 a_{11}x^2+2a_{12}xy+a_{22}y^2+2b_1x+2b_2y+c = 0
 \]
@@ -39,7 +72,7 @@ a_{11}'x'^2+a_{22}'y'^2+2b_1'x'+2b_2'y'+c' = 0
 \noindent\textbf{2.} 若有二次项,则无一次项
 \noindent\textbf{3.} 若有一次项,则无常数项
 
-\subsection*{2. 二次曲面的化简}
+\section{二次曲面的化简}
 三元二次方程
 \[
 c_{11}x^2+c_{22}y^2+c_{33}z^2+2c_{12}xy+2c_{13}xz+2c_{23}yz+2b_1x+2b_2y+2b_3z+c = 0 \quad \tag{*}
@@ -93,5 +126,7 @@ c_{11}'x'^2+c_{22}'y'^2+c_{33}'z'^2+2c_{12}'x'y'+2b'_{1}x'+2b'_{2}y'+2b'_{3}z'+c
 \noindent\textbf{3.} 有一次项,则无常数项
 \noindent\textbf{4.} 至多只有一个一次项
 由上,我们可以得出二次曲面一共有17种
+
+\end{document}
 
 \end{document}

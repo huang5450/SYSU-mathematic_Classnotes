@@ -1,14 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
 \usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,1012}
 \title{数学分析 1012}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0. Recall}
+\section{Recall}
 
 函数的极限分为两部分,函数值的趋势与自变量的趋势
 数列的极限一般考虑趋向正/负无穷
@@ -34,7 +66,7 @@ $$
 &&(x\to x_0^-).
 \end{aligned}
 \]
-\subsection*{1. 函数极限的性质}
+\section{函数极限的性质}
 
 1. 极限存在即唯一
 $$
@@ -77,18 +109,18 @@ $$
 取$\varepsilon = \frac{1}{2} A$易证
 4. 四则运算
 $$
-\lim_{x\to x_0}f(x)=A,\qquad
-\lim_{x\to x_0}g(x)=B
+\lim\limits_{x\to x_0}f(x)=A,\qquad
+\lim\limits_{x\to x_0}g(x)=B
 $$
 则有
 $$
-\lim_{x\to x_0}\bigl(f(x)\pm g(x)\bigr)=A\pm B,
+\lim\limits_{x\to x_0}\bigl(f(x)\pm g(x)\bigr)=A\pm B,
 \qquad
-\lim_{x\to x_0}\bigl(f(x)g(x)\bigr)=AB
+\lim\limits_{x\to x_0}\bigl(f(x)g(x)\bigr)=AB
 $$
 若 $B\neq0$，则
 $$
-\lim_{x\to x_0}\frac{f(x)}{g(x)}
+\lim\limits_{x\to x_0}\frac{f(x)}{g(x)}
 =\frac{A}{B}
 $$
 \begin{quote}
@@ -96,7 +128,7 @@ $$
 \end{quote}
 
 
-\subsection*{2. 海涅原理}
+\section{海涅原理}
 
 定理:
 $$
@@ -114,7 +146,7 @@ $x_n \to x_0$ , $\{ x_n \}$本身也是数列
 
 
 证明
-$\Rightarrow$ 由$\lim_{x\to x_0}f(x)=A$可知
+$\Rightarrow$ 由$\lim\limits_{x\to x_0}f(x)=A$可知
 $$
 \forall\varepsilon>0,\ \exists\delta>0,\ 
 \forall x,\quad
@@ -123,7 +155,7 @@ $$
 |f(x)-A|<\varepsilon.
 $$
 任取数列 $\{x_n\}$，$(x_n \to x_0)$ 寻找N , $\forall n , n > N , |f(x)-A| < \varepsilon$
-要证明$\lim_{n\to+\infty}f(x_n)=A$
+要证明$\lim\limits_{n\to+\infty}f(x_n)=A$
 只需证明
 $$
 \forall\varepsilon>0,\ \exists N,\ \forall n>N,
@@ -147,13 +179,13 @@ $$
 因此$|f(x_n)-A|<\varepsilon$
 故
 $$
-\lim_{n\to+\infty}f(x_n)=A
+\lim\limits_{n\to+\infty}f(x_n)=A
 $$
 
 $\Leftarrow$用反证法
 假设
 $$
-\lim_{x\to x_0}f(x)\neq A.
+\lim\limits_{x\to x_0}f(x)\neq A.
 $$
 则存在 $\varepsilon>0$，使得对于任意 $\delta>0$，都存在 $x$，满足
 $$
@@ -179,7 +211,7 @@ $$
 $$
 可知
 $$
-\lim_{n\to+\infty}x_n=x_0.
+\lim\limits_{n\to+\infty}x_n=x_0.
 $$
 
 但是
@@ -188,14 +220,14 @@ $$
 $$
 所以
 $$
-\lim_{n\to+\infty}f(x_n)\neq A.
+\lim\limits_{n\to+\infty}f(x_n)\neq A.
 $$
 
 这与题设“对于任意满足 $x_n\neq x_0$ 且 $x_n\to x_0$ 的数列 $\{x_n\}$，都有 $f(x_n)\to A$矛盾。
 
 因此
 $$
-\lim_{x\to x_0}f(x)=A.
+\lim\limits_{x\to x_0}f(x)=A.
 $$
 
 e.g. 极限
@@ -225,18 +257,20 @@ $$\begin{aligned}
 $$
 故极限不存在
 
-\subsection*{3. 夹迫定理}
+\section{夹迫定理}
 
 定理:
 $$\begin{aligned}
 \text{if} \ \exists \delta>0 , \forall x , 0<|x-x_0|<\delta \text{ 有}
 f(x) \leq g(x) \leq h(x)\\
-\text{且}\lim_{x \to x_0}f(x) = \lim_{x \to x_0}h(x) = A
+\text{且}\lim\limits_{x \to x_0}f(x) = \lim\limits_{x \to x_0}h(x) = A
 \end{aligned}
 $$
 则
 $$
-\lim_{x \to x_0}g(x) = A
+\lim\limits_{x \to x_0}g(x) = A
 $$
+
+\end{document}
 
 \end{document}

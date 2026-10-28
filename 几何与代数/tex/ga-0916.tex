@@ -1,13 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何\,·\,0916}
 \title{解析几何 0916}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0.\ Recall：线性组合、线性表示、线性相关与线性无关}
+\section{\ Recall：线性组合、线性表示、线性相关与线性无关}
 
 \begin{itemize}
 \item \textbf{共线}\quad $\vec a$ 与 $\vec b$ 共线
@@ -37,13 +70,15 @@ $\Longleftrightarrow$ $\exists$ 某个 $\vec a_i$，s.t.
 $\vec a_i$ 能被其余向量线性表示（有多余向量）。
 \end{itemize}
 
-\subsection*{1.\ 向量的坐标表示}
+\section{\ 向量的坐标表示}
 
-\textbf{定理：}\quad 若 $\vec a,\vec b,\vec c$ 不共面（线性无关），
+\begin{thm}
+若 $\vec a,\vec b,\vec c$ 不共面（线性无关），
 则 $\forall\vec d$，存在唯一的实数组 $\lambda,\mu,\nu$，s.t.
 \[
 \vec d=\lambda\vec a+\mu\vec b+\nu\vec c .
 \]
+\end{thm}
 
 在空间直角坐标系 $[O,X,Y,Z]$ 中，取 $OX,OY,OZ$ 轴方向的单位向量
 $\vec e_1,\vec e_2,\vec e_3$，则 $\forall\vec a$，存在唯一的
@@ -81,7 +116,7 @@ $\vec a+\vec b=(x_1+x_2,\ y_1+y_2,\ z_1+z_2)$。
 
 $\vec e_1,\vec e_2,\vec e_3$ 称为基向量。
 
-\subsection*{2.\ 向量的内积（点乘）前置}
+\section{\ 向量的内积（点乘）前置}
 
 \subsubsection*{投影}
 
@@ -145,7 +180,7 @@ $\vec a$ 与 $\vec b$ 的夹角定义成 $\vec a,\vec b$ 方向的夹角，
 \end{aligned}
 \]
 
-\subsection*{3.\ 向量的内积}
+\section{\ 向量的内积}
 
 $\vec a$ 与 $\vec b$ 的内积 $\vec a\cdot\vec b$ 定义为
 $|\vec a||\vec b|\cos\langle\vec a,\vec b\rangle$。
@@ -237,5 +272,7 @@ $\vec a=(x_1,y_1,z_1)$，$\vec b=(x_2,y_2,z_2)$，有
 =\sum_{i=1}^{3}x_iy_i .
 \end{aligned}
 \]
+
+\end{document}
 
 \end{document}

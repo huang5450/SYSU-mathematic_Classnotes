@@ -1,13 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何\,·\,0917}
 \title{习题课 0917}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{24.\ 有轴平面束}
+\section{\ 有轴平面束}
 
 \[
 \pi_1:\ A_1x+B_1y+C_1z+D_1=0,\qquad
@@ -34,12 +67,14 @@ $\pi$，于是 $\pi$ 的方程为上式。
 
 $\lambda$ 与 $\mu$ 至少有一个不为 $0$。
 
-\subsection*{18.\ 化为点向方程：以 (4) 为例}
+\section{\ 化为点向方程：以 (4) 为例}
 
 \[
 \frac{x}{1}=\frac{y-1}{0}=\frac{z+2}{0},
 \]
 某一个分母为 $0$ 应理解为它的分子为 $0$。
 点向方程的分母可以为 $0$。
+
+\end{document}
 
 \end{document}

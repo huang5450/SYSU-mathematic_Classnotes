@@ -1,14 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1021}
 \title{高等代数 1021}
 \date{}
 \begin{document}
 \maketitle
 
-\section*{高等代数 1021}
-
-\subsection*{3. 集合与映射}
+\section{集合与映射}
 
 集合 $S=\{P\mid P\text{ 满足某个性质}\}$；子集 $A=\{P\in S\}$；交集 $A\cap B$；并集 $A\cup B$；差集 $A\setminus B$；笛卡尔乘积
 \[
@@ -70,7 +102,9 @@ gf=id_A,\qquad fg=id_B,
 \]
 则称 $g$ 是 $f$ 的逆映射，此时称 $f$ 是可逆的，$g$ 也可记作 $f^{-1}$。
 
-定理 1：$f:A\to B$ 可逆 $\iff$ $f$ 是双射。
+\begin{thm}
+$f:A\to B$ 可逆 $\iff$ $f$ 是双射。
+\end{thm}
 
 证明：
 
@@ -85,5 +119,7 @@ gf(a)=a,\qquad fg(b)=b,
 a_1=gf(a_1)=gf(a_2)=a_2,
 \]
 故 $f$ 是单射。又 $\forall b\in B$，$b=f(g(b))$ 且 $g(b)\in A$，故 $f$ 是满射，于是 $f$ 是双射。证毕。
+
+\end{document}
 
 \end{document}

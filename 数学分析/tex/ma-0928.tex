@@ -1,20 +1,53 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,0928}
 \title{数学分析 0928}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0. Recall：极限定义}
+\section{Recall：极限定义}
 
 \[
 \forall\epsilon>0,\ \exists N_\epsilon,\ \forall n>N_\epsilon,\
 |a_n-a|<\epsilon .
 \]
 
-\subsection*{1. 例题}
+\section{例题}
 
 下面，我们通过一些例题，使用极限定义来证明极限。
 
@@ -120,24 +153,24 @@ N_\epsilon=\left\lfloor\log_{1+\epsilon}a\right\rfloor+1,
 \]
 
 $0<a<1$ 的情形：此时 $\dfrac1a>1$，对 $\dfrac1a$ 用上面的结论得
-$\lim_{n\to+\infty}\sqrt[n]{\dfrac1a}=1$，于是
+$\lim\limits_{n\to+\infty}\sqrt[n]{\dfrac1a}=1$，于是
 \[
 \lim_{n\to+\infty}\sqrt[n]{a}
 =\frac{1}{\lim\limits_{n\to+\infty}\sqrt[n]{\frac1a}}=1 .
 \]
 \end{itemize}
 
-\subsection*{2. 极限的性质}
+\section{极限的性质}
 
 \subsubsection*{有界性}
 
 \begin{itemize}
 \item 有极限存在的数列必有界，即：设
-$\lim_{n\to+\infty}a_n=a$，则 $\exists M>0$，s.t.
+$\lim\limits_{n\to+\infty}a_n=a$，则 $\exists M>0$，s.t.
 $\forall n$ 有 $|a_n|<M$。
-\item $\lim_{n\to+\infty}n^2=+\infty$，极限不存在；
-\item $\lim_{n\to+\infty}(-1)^n=\mathrm{DNE}$，数列有界，但是没有趋势；
-\item $\lim_{n\to+\infty}\sin\dfrac1n=\mathrm{DNE}$，它在 $[-1,1]$
+\item $\lim\limits_{n\to+\infty}n^2=+\infty$，极限不存在；
+\item $\lim\limits_{n\to+\infty}(-1)^n=\mathrm{DNE}$，数列有界，但是没有趋势；
+\item $\lim\limits_{n\to+\infty}\sin\dfrac1n=\mathrm{DNE}$，它在 $[-1,1]$
 之间剧烈震荡。
 \end{itemize}
 
@@ -155,7 +188,7 @@ M=\max\{|a_1|,|a_2|,\cdots,|a_N|,|a-1|,|a+1|\}+1,
 
 \subsubsection*{保号性}
 
-设 $\lim_{n\to+\infty}a_n=a$，则：
+设 $\lim\limits_{n\to+\infty}a_n=a$，则：
 
 \begin{itemize}
 \item \textbf{定理 1：}\quad if $a_n\geq0$，则 $a\geq0$。
@@ -185,5 +218,7 @@ a_n\in(a-\epsilon_0,\ a+\epsilon_0)
 a_n>a-\epsilon_0=\frac12a>0 .
 \]
 \end{itemize}
+
+\end{document}
 
 \end{document}

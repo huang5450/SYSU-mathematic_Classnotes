@@ -1,13 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何\,·\,0923}
 \title{几何与代数 0923}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0.\ 二重外积公式}
+\section{\ 二重外积公式}
 
 \[
 \vec a\times(\vec b\times\vec c)
@@ -16,7 +49,7 @@
 
 证明（待补）。
 
-\subsection*{1.\ 混合积（平行六面体的有向体积）}
+\section{\ 混合积（平行六面体的有向体积）}
 
 \[
 \vec a\cdot\vec b\times\vec c=\vec a\times\vec b\cdot\vec c .
@@ -175,7 +208,7 @@ a_{31} & a_{32} & a_{33}
 可以看出，行列式的行和列是等价的，所有列所具有的性质行也具备。
 \end{enumerate}
 
-\subsection*{2.\ 例：异面直线距离}
+\section{\ 例：异面直线距离}
 
 $l_1,l_2$ 任取两点 $P_1,P_2$，把向量
 $\overrightarrow{P_1P_2}$ 向公垂线方向投影，投影的模即为距离，即
@@ -207,7 +240,7 @@ $\vec v_1\times(\vec v_1\times\vec v_2)$ 来得到，另一个同理。
 $L_1,L_2$ 分别经过 $P_1,P_2$，取公垂线上任意一点 $P_0$ 有
 $\overrightarrow{P_0P_i}\cdot\vec n_i=0$，联立即可。
 
-\subsection*{3.\ 例：$\vec d=x\vec a+y\vec b+z\vec c$ 的系数}
+\section{\ 例：$\vec d=x\vec a+y\vec b+z\vec c$ 的系数}
 
 $\vec a,\vec b,\vec c$ 不共面，$\vec d=x\vec a+y\vec b+z\vec c$，
 求 $x,y,z$。
@@ -227,5 +260,7 @@ z=\frac{\vec a\cdot\vec b\times\vec d}
 {\vec a\cdot\vec b\times\vec c} .
 \]
 这就是\textbf{克莱姆法则}。
+
+\end{document}
 
 \end{document}

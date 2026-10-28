@@ -1,13 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何\,·\,0930}
 \title{几何与代数 0930}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{0.\ 二次曲面}
+\section{\ 二次曲面}
 
 \textbf{二次曲面}：由一个三元二次方程确定的空间图形。
 
@@ -41,7 +74,7 @@ a_{11}x^2+a_{22}y^2+2a_{12}xy+2a_1x+2a_2y+b=0 .
 曲面方程 $F(x,y,z)=0$；曲线方程可以看作两个曲面相交：
 $F(x,y,z)=0$，$G(x,y,z)=0$。
 
-\subsection*{1.\ 球面}
+\section{\ 球面}
 
 \textbf{球面}：到定点的距离等于定长的点的集合。
 
@@ -99,7 +132,7 @@ a_1=-\frac A2,\qquad a_2=-\frac B2,\qquad a_3=-\frac C2 .
 x^2+y^2+z^2-Ax-By-Cz=0 .
 \]
 
-\subsection*{2.\ 柱面}
+\section{\ 柱面}
 
 \textbf{柱面}：由一族平行直线所组成的图形。平面是柱面。
 
@@ -138,7 +171,7 @@ $(x,y,0)$，于是 $x^2+y^2=r^2$。
 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$，双曲柱面
 $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$，抛物柱面 $y^2=2px$。
 
-\subsection*{3.\ 锥面}
+\section{\ 锥面}
 
 \textbf{锥面}：由一族交于同一点的直线组成的图形。平面是锥面。
 
@@ -162,5 +195,7 @@ $\forall P(x,y,z)\in S$，由于 $F(x,y,z)=0
 \Longrightarrow F(tx,ty,tz)=0$，说明
 $(tx,ty,tz)\in S$，$\forall t\in\mathbb R$，于是直线
 $OP\subset S$，可知 $S$ 是顶点在原点的锥面。
+
+\end{document}
 
 \end{document}

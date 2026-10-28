@@ -1,23 +1,58 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,1015}
 \title{数学分析 1015}
 \date{}
 \begin{document}
 \maketitle
 
-\section*{数学分析 1015}
-\subsection*{0. Recall}
+\section{Recall}
 复合函数求极限
 设$h(x) = f(g(x))$ , 令$u = g(x)$. 如果当$x \to x_0$时 , $g(x) \to u_0$且$\exists x_0$的去心邻域$\mathring{U}$满足$\forall x \in \mathring{U} , g(x) \neq U_0$,则
 \[
 \lim_{x \to x_0} f(g(x)) = \lim_{u \to u_0}f(u)
 \]
 \begin{quote}
-大部分情况下(对于初等函数而言) , $\lim_{u \to u_0} f(x) = f(u_0)$
+大部分情况下(对于初等函数而言) , $\lim\limits_{u \to u_0} f(x) = f(u_0)$
 \end{quote}
 
-定义: $\lim_{x \to \infty} f(x) = A$是指$\forall \varepsilon >0 , \exists x , |x| > N$,有$|f(x)-A|< \varepsilon$
+\begin{defn}
+$\lim\limits_{x \to \infty} f(x) = A$是指$\forall \varepsilon >0 , \exists x , |x| > N$,有$|f(x)-A|< \varepsilon$
+\end{defn}
 
 命题
 \[
@@ -28,8 +63,8 @@
 \lim_{x \to \infty}f(x) = A \Leftrightarrow \lim_{x \to +\infty}f(x) = \lim_{x \to -\infty}f(x) = A
 \]
 
-\subsection*{1. 无穷小量}
-定义:若$\lim_{x \to \infty} f(x) = 0$则称f(x)为$x \to x_0$的无穷小量
+\section{无穷小量}
+定义:若$\lim\limits_{x \to \infty} f(x) = 0$则称f(x)为$x \to x_0$的无穷小量
 
 \begin{quote}
 1. 无穷小量必须强调极限过程
@@ -45,7 +80,7 @@
 则有
 \noindent\textbf{1.} $f \pm g , f \times g$也是$x \to x_0$的无穷小量
 \noindent\textbf{2.} 若$h$在$x_0$的某个去心邻域$\mathring{U}$中有界,则$h \times f$是$x \to x_0$时的无穷小量
-\noindent\textbf{3.} 若$\lim_{x \to x_0} \eta(x) = A$,则$n \times f$是$x \to x_0$时的无穷小量
+\noindent\textbf{3.} 若$\lim\limits_{x \to x_0} \eta(x) = A$,则$n \times f$是$x \to x_0$时的无穷小量
 
 \begin{quote}
 3由局部有界性可以转换成2
@@ -65,7 +100,7 @@
 \lim_{x \to x_0} h(x)f(x) = 0
 \]
 
-\subsection*{从无穷小量到泰勒级数}
+\section{从无穷小量到泰勒级数}
 注意到
 \[
 \lim_{x \to x_0}f(x) = A
@@ -78,7 +113,9 @@ f(x) = A + (f(x)-A)
 \]
 可以视作使用常数去近似$f(x)$
 
-定义:若$f,g$为$x \to x_0$时的无穷小量且$\lim_{x \to x_0} \frac{f}{g} = 0$ , 则称f为g的高阶无穷小
+\begin{defn}
+若$f,g$为$x \to x_0$时的无穷小量且$\lim\limits_{x \to x_0} \frac{f}{g} = 0$ , 则称f为g的高阶无穷小
+\end{defn}
 
 在上面的例子中,$f(x)-A$就是$A$的高阶无穷小
 不妨更进一步,用多项式去近似$f(x)$,即
@@ -104,7 +141,7 @@ f(x) = A +Bx +Cx^2 + \delta(x)
 \]
 其中$C$和$f(0)''$有关
 
-\subsection*{3. 无穷大量}
+\section{无穷大量}
 定义: 
 \[
 \lim_{x \to x_0} f(x) = \infty \triangleq \forall N >0 , \exists \delta >0 , \forall x \ 0<|x-x_0|<\delta , |f(x)| > N
@@ -132,9 +169,9 @@ f(x) = A +Bx +Cx^2 + \delta(x)
 \noindent\textbf{3.} 极限不存在,函数值趋向无穷大(无穷大量)
 \noindent\textbf{4.} 极限不存在,函数值震荡
 
-\subsection*{4. 无穷小(大)量之间的比较}
+\section{无穷小(大)量之间的比较}
 定义:
-若$\lim_{x \to x_0}f(x) = \lim_{x \to x_0}g(x) = 0$且$\lim_{x \to x_0} \frac{f(x)}{g(x)} = A \neq 0$,则称f与g同阶
+若$\lim\limits_{x \to x_0}f(x) = \lim\limits_{x \to x_0}g(x) = 0$且$\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = A \neq 0$,则称f与g同阶
 如果$A = 1$ , 则称f与g是等价无穷小
 
 我们有如下的常用结论
@@ -156,5 +193,7 @@ a^x - 1 &\sim x\ln{a}\\
 (1+x)^\alpha -1 &~ \alpha x
 \end{aligned}
 \]
+
+\end{document}
 
 \end{document}

@@ -1,13 +1,46 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,0921}
 \title{数学分析 0921}
 \date{}
-
 \begin{document}
 \maketitle
 
-\subsection*{1. 实数的连续性}
+\section{实数的连续性}
 
 \subsubsection*{Dedikind 连续性}
 
@@ -229,7 +262,7 @@ $\forall b\in B,\ b\neq r$；又因为 $r$ 也是分界点，
 我们从自然数将数集扩充到了实数，使数集对于加减乘除都封闭，
 且稠密并连续，提供了我们数学分析的舞台。
 
-\subsection*{2. 集合、映射与函数}
+\section{集合、映射与函数}
 
 映射：定义域，靶集，对应法则。
 
@@ -256,6 +289,8 @@ $f:X\longrightarrow Y$、$g:Y\longrightarrow Z$，
 \item 如果 $g\circ f$ 是满射，则 $g$ 是满射。
 \end{enumerate}
 
-\subsection*{3. 逻辑}
+\section{逻辑}
+
+\end{document}
 
 \end{document}

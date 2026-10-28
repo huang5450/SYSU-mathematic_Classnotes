@@ -1,14 +1,47 @@
-\documentclass[UTF8]{ctexart}
-\usepackage{amsmath,amssymb}
-\usepackage[a4paper,margin=2.5cm]{geometry}
-\xeCJKDeclareCharClass{CJK}{"2150 -> "218F} % 罗马数字 Ⅰ Ⅱ Ⅲ 使用中文字体
-\title{坐标变换公式}
-\date{}
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{解析几何\,·\,0924}
+\title{坐标变换公式}
+\xeCJKDeclareCharClass{CJK}{"2150 -> "218F} % 罗马数字 Ⅰ Ⅱ Ⅲ 使用中文字体
+\date{}
 \begin{document}
 \maketitle
 
-\subsection*{0.\ 设定}
+\section{\ 设定}
 
 $[O;\vec e_1,\vec e_2,\vec e_3]$ 为直角坐标系（Ⅰ），
 $[O';\vec e_1',\vec e_2',\vec e_3']$ 为直角坐标系（Ⅱ）。
@@ -32,7 +65,7 @@ $\vec e_3'$ 在旧坐标系中的坐标是 $(a_{13},a_{23},a_{33})$，即
 $(x',y',z')^T$。试问：$(x,y,z)^T$ 和 $(x',y',z')^T$
 关系如何？
 
-\subsection*{1.\ 用新坐标表示旧坐标}
+\section{\ 用新坐标表示旧坐标}
 
 易得
 \[
@@ -92,7 +125,7 @@ a_1\\a_2\\a_3
 X=AX'+X_0 . \tag{1}
 \]
 
-\subsection*{2.\ 用旧坐标表示新坐标}
+\section{\ 用旧坐标表示新坐标}
 
 以上，我们达成了用新坐标表示旧坐标的目的，但实际算题的时候，
 我们更希望通过旧坐标去表示新坐标，那又该怎么办呢？
@@ -151,7 +184,7 @@ X'=A^{-1}(X-X_0).
 两种方法得到的式子理应是一样的，即 $A^T=A^{-1}$。
 我们称这样的矩阵是“\textbf{正交矩阵}”。
 
-\subsection*{3.\ 连续变换与矩阵乘法}
+\section{\ 连续变换与矩阵乘法}
 
 如果此时有第三个坐标系，我们要从Ⅰ系连续变换到Ⅱ系再到Ⅲ系呢？
 
@@ -169,7 +202,7 @@ X'=A^{-1}(X-X_0).
 \]
 我们引入了矩阵之间的乘法。
 
-\subsection*{4.\ 正交基底带来的性质}
+\section{\ 正交基底带来的性质}
 
 回忆我们一开始的假设，我们假设
 $\vec e_1,\vec e_2,\vec e_3$ 是一组正交基底，
@@ -186,5 +219,7 @@ $\forall i,j=1,2,3$，有
 \[
 A^TA=I,\qquad AA^T=I .
 \]
+
+\end{document}
 
 \end{document}
