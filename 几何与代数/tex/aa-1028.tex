@@ -1,0 +1,157 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1028}
+\xeCJKDeclareCharClass{CJK}{"2150 -> "218F} % 让 Ⅰ Ⅱ 等罗马数字走中文字体
+\title{高等代数 1028}
+\date{}
+\begin{document}
+\maketitle
+
+\section{线性方程组}
+
+\begin{defn}[线性方程组]
+形如
+\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1,\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2,\\
+\qquad\quad \cdots\cdots\\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+\end{cases}
+\]
+的方程组称为 $m$ 个方程 $n$ 个未知量的线性方程组，记作 (Ⅰ)。其中 $x_1,\cdots,x_n$ 是方程组的未知量，$a_{ij}$ 是第 $i$ 个方程中 $x_j$ 的系数，$b_1,\cdots,b_m$ 是常数。
+\end{defn}
+
+\begin{defn}[解、解集、同解]
+如果 $x_1=k_1,\cdots,x_n=k_n$ 满足方程组 (Ⅰ)，则称 $x_1=k_1,\cdots,x_n=k_n$ 是方程组的解；全体解构成的集合称为解集。若方程组 (Ⅰ) 与 (Ⅱ) 的解集相同，则称 (Ⅰ) 与 (Ⅱ) 同解。
+\end{defn}
+
+\begin{rem}
+解方程组要回答三个问题：（1）方程组是否有解；（2）若有解，如何求解；（3）解集的结构如何。
+
+方程组可以有唯一解，可以无解，也可以有无穷多组解。
+\end{rem}
+
+\begin{defn}[初等变换]
+（1）两个方程对换；（2）某个方程乘以非零常数；（3）某个方程的倍数加到另一个方程上去。以上三种变换称为方程组的初等变换。
+\end{defn}
+
+\begin{thm}[初等变换的性质]
+（1）初等变换不改变方程组的解，即变换前后同解；
+（2）初等变换是可逆的。
+\end{thm}
+
+\begin{defn}[阶梯形方程组]
+称方程组为\textbf{阶梯形方程组}，是指
+\begin{enumerate}
+\item 不含未知量的等式永远在含未知量的等式的下方；
+\item 含有未知量的方程中，第一个未知量（称为主未知量）的下标向下严格递增。
+\end{enumerate}
+\end{defn}
+
+\begin{thm}[化阶梯形]
+任何一个线性方程组都可以由初等变换化为阶梯形方程组。
+\end{thm}
+
+\begin{proof}
+对方程的个数 $m$ 归纳。
+
+（1）当 $m=1$ 时，显然是阶梯形方程组。
+
+（2）假设方程个数为 $m-1$ 时命题成立。
+
+（3）当方程个数为 $m$ 时，不妨设 $a_{11}\neq0$；否则存在 $a_{i1}\neq0$，此时把第 $1$ 个方程与第 $i$ 个方程对调。再把第一个方程的 $-\dfrac{a_{i1}}{a_{11}}$ 倍加到第 $i$ 个方程（$i\geq2$），得到
+\[
+\begin{cases}
+a'_{11}x_1 + a'_{12}x_2 + \cdots + a'_{1n}x_n = b'_1,\\
+\qquad a'_{22}x_2 + \cdots + a'_{2n}x_n = b'_2,\\
+\qquad\qquad \cdots\cdots\\
+\qquad\qquad\qquad a'_{m2}x_2 + \cdots + a'_{mn}x_n = b'_m.
+\end{cases}
+\]
+其中后 $m-1$ 个方程（记为 $(*)$）只含 $x_2,\cdots,x_n$，共 $m-1$ 个方程。由归纳假设，$(*)$ 可化为阶梯形方程组；于是原方程组也可以化为阶梯形方程组。
+
+因此，任何一个线性方程组都可由初等变换化为阶梯形方程组。
+\end{proof}
+
+\begin{rem}
+上述过程就是 \textbf{Gauss 消元法}：用初等变换把方程组化为阶梯形，再逐层回代。
+\end{rem}
+
+\section{阶梯形方程组的类型}
+
+\begin{enumerate}
+\item 出现矛盾方程（$0=d\neq0$）：方程组无解。
+
+\item 所有未知量都是主未知量：
+\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 + \cdots + a_{1n}x_n = b_1,\\
+\qquad a_{22}x_2 + a_{23}x_3 + \cdots + a_{2n}x_n = b_2,\\
+\qquad\qquad a_{33}x_3 + \cdots + a_{3n}x_n = b_3,\\
+\qquad\qquad\qquad \ddots\\
+\qquad\qquad\qquad\qquad a_{nn}x_n = b_n,\\
+\qquad\qquad\qquad\qquad 0 = 0,\\
+\qquad\qquad\qquad\qquad \vdots
+\end{cases}
+\]
+从下往上分别解出 $x_n,x_{n-1},\cdots,x_1$，此时方程组有唯一解。
+
+\item 设 $x_{i_1},x_{i_2},\cdots,x_{i_r}$ 是主未知量，剩余的未知量称为\textbf{自由未知量}，记为 $x_{j_1},\cdots,x_{j_{n-r}}$。此时方程组形如
+\[
+\begin{cases}
+a'_{1i_1}x_{i_1} + a'_{1,i_1+1}x_{i_1+1} + \cdots + a'_{1n}x_n = b'_1,\\
+\qquad a'_{2i_2}x_{i_2} + \cdots + a'_{2n}x_n = b'_2,\\
+\qquad\qquad \cdots\cdots\\
+\qquad\qquad\qquad a'_{ri_r}x_{i_r} + \cdots + a'_{rn}x_n = b'_r,\\
+\qquad\qquad\qquad\qquad 0 = 0,\\
+\qquad\qquad\qquad\qquad \vdots
+\end{cases}
+\]
+把含自由未知量的项移到右边，得
+\[
+\begin{cases}
+a'_{1i_1}x_{i_1} = b'_1 - a'_{1j_1}x_{j_1} - \cdots - a'_{1,j_{n-r}}x_{j_{n-r}},\\
+a'_{2i_2}x_{i_2} = b'_2 - a'_{2j_1}x_{j_1} - \cdots - a'_{2,j_{n-r}}x_{j_{n-r}},\\
+\qquad\cdots\cdots\\
+a'_{ri_r}x_{i_r} = b'_r - a'_{rj_1}x_{j_1} - \cdots - a'_{r,j_{n-r}}x_{j_{n-r}}.
+\end{cases}
+\]
+用自由未知量表示主未知量，即可解出方程组的全部解。
+\end{enumerate}
+
+\end{document}
