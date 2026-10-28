@@ -1,0 +1,260 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,1022/1026}
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473} % 让 ①② 走中文字体
+\title{数学分析 1022 · 1026}
+\date{}
+\begin{document}
+\maketitle
+
+\section{导数}
+
+\begin{defn}[可导与导数]
+设 $f(x)$ 在 $(x_0-\delta,\ x_0+\delta)$ 内有定义（$\delta>0$）。若
+\[
+A=\lim_{\Delta x\to 0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}
+\]
+存在，则称 $f$ 在 $x_0$ 处可导，称 $A$ 为 $f$ 在 $x_0$ 处的导数。
+\end{defn}
+
+\begin{rem}
+（1）讨论 $f$ 在 $x_0$ 处的连续性与可导性时，总假设 $f$ 在 $x_0$ 的某个开区间上有定义。
+
+（2）导数是局部性质：它只由 $f$ 在 $x_0$ 附近的取值决定，与 $f(x_0)$ 本身的值无关。
+
+（3）导数的几种等价形式：
+\[
+\text{①}\quad f'(x_0)=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0};
+\qquad
+\text{②}\quad f(x)=f(x_0)+A(x-x_0)+o(x-x_0)\quad(x\to x_0).
+\]
+\end{rem}
+
+\begin{proof}[证明 ①]
+令 $\Delta x=x-x_0$，则 $\Delta x\to0\iff x\to x_0$，于是
+\[
+\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}
+=\lim_{x\to x_0}\frac{f(x_0+(x-x_0))-f(x_0)}{x-x_0}
+=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}.
+\]
+\end{proof}
+
+\begin{proof}[证明 ②]
+\[
+\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=A
+\iff \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=A+g(\Delta x),\quad g(\Delta x)\to0,
+\]
+\[
+\iff f(x_0+\Delta x)=f(x_0)+A\,\Delta x+\sigma(\Delta x),
+\qquad \sigma(\Delta x)=g(\Delta x)\,\Delta x=o(\Delta x).
+\]
+\end{proof}
+
+\begin{rem}[补：回答原稿批注]
+“这是两个无穷小量一乘就变成高阶无穷小了吗？”——是的，但“高阶”必须说清相对于谁：
+\[
+\sigma(\Delta x)=g(\Delta x)\cdot\Delta x
+\]
+是两个无穷小量之积，而 $\dfrac{\sigma(\Delta x)}{\Delta x}=g(\Delta x)\to 0$，按定义即 $\sigma=o(\Delta x)$。
+
+一般地，若 $\alpha\to0$、$\beta\to0$，则 $\alpha\beta=o(\alpha)$ 且 $\alpha\beta=o(\beta)$（因为 $\alpha\beta/\alpha=\beta\to0$）。
+
+反过来要小心：\textbf{两个无穷小之商未必是无穷小}（如 $x/x^2=1/x\to\infty$），所以不能只凭“都是无穷小”就断言比值趋于 $0$。
+\end{rem}
+
+\begin{thm}
+若 $f$ 在 $x_0$ 处可导，则 $f$ 在 $x_0$ 处连续。
+\end{thm}
+
+\begin{proof}
+可导等价于
+\[
+f(x)=f(x_0)+A(x-x_0)+\sigma(x-x_0),\qquad \sigma(x-x_0)=o(x-x_0).
+\]
+两边同时令 $x\to x_0$，得
+\[
+\lim_{x\to x_0}f(x)
+=\lim_{x\to x_0}\bigl[f(x_0)+A(x-x_0)+\sigma(x-x_0)\bigr]=f(x_0),
+\]
+即 $f$ 在 $x_0$ 处连续。
+\end{proof}
+
+反之不成立：$f$ 在 $x_0$ 处连续，$f$ 在 $x_0$ 处不一定可导。一个极端的例子是魏尔斯特拉斯（Weierstrass）函数：处处连续，但处处不可导。
+
+下面引入左、右导数的定义。
+
+\begin{defn}[左导数]
+若
+\[
+\lim_{x\to x_0^-}\frac{f(x)-f(x_0)}{x-x_0}
+\]
+存在，则称 $f$ 在 $x_0$ 处有左导数，记作 $f'_-(x_0)$。
+\end{defn}
+
+\begin{defn}[右导数（补）]
+若
+\[
+\lim_{x\to x_0^+}\frac{f(x)-f(x_0)}{x-x_0}
+\]
+存在，则称 $f$ 在 $x_0$ 处有右导数，记作 $f'_+(x_0)$。
+\end{defn}
+
+于是
+\[
+f\ \text{在}\ x_0\ \text{处可导}
+\iff f'_-(x_0),\ f'_+(x_0)\ \text{都存在且相等},
+\]
+此时 $f'(x_0)=f'_-(x_0)=f'_+(x_0)$。
+
+\begin{defn}[区间上可导]
+设 $f:[a,b]\to\mathbb{R}$。
+\begin{enumerate}
+\item 若 $\forall x_0\in(a,b)$，$f$ 在 $x_0$ 处可导，则称 $f$ 在 $(a,b)$ 上可导；
+\item 若 $f$ 在 $(a,b)$ 上可导，且 $f$ 在 $a$ 处右导数存在、在 $b$ 处左导数存在，则称 $f$ 在 $[a,b]$ 上可导。
+\end{enumerate}
+\end{defn}
+
+\begin{rem}[导函数，并回答原稿批注]
+由等价形式
+\[
+f(x)=f(x_0)+A(x-x_0)+\sigma(x-x_0)
+\]
+可知：对每个固定的 $x_0$，曲线 $y=f(x)$ 在点 $\bigl(x_0,f(x_0)\bigr)$ 处的切线为
+\[
+y=f(x_0)+A\,(x-x_0),
+\]
+其斜率就是 $A$。“当 $x_0$ 在 $(a,b)$ 上变动时，切线斜率变动为 $A(x_0)$”这句话的意思是：把 $x_0$ 换成动点 $t$，斜率也随之变，记作
+\[
+A(t)=f'(t)=\lim_{x\to t}\frac{f(x)-f(t)}{x-t}.
+\]
+也就是说，“每个点处的切线斜率”本身构成一个函数，这就是导函数。注意 $A$ 对 $t$ 的依赖来自 $f$，并不来自切线的自变量 $x$。
+
+上述函数 $A(x)$（$x\in(a,b)$）称为 $f$ 的导函数，记为 $f'(x)$。
+\end{rem}
+
+\section{求导法则}
+
+\subsection{常见函数的导数}
+
+\begin{thm}[基本导数公式]
+\[
+C'=0;\qquad (x^{\alpha})'=\alpha x^{\alpha-1}\quad(x>0);
+\]
+\[
+(a^{x})'=a^{x}\ln a\quad(a>0,\ a\neq1);
+\qquad (e^{x})'=e^{x};
+\]
+\[
+(\sin x)'=\cos x;\qquad (\cos x)'=-\sin x.
+\]
+\end{thm}
+
+\begin{rem}
+奇函数的导函数是偶函数；偶函数的导函数是奇函数。
+\end{rem}
+
+\subsection{四则运算}
+
+\begin{thm}[四则运算]
+设 $f,g$ 在 $x_0$ 处可导，则
+\[
+(f\pm g)'\big|_{x=x_0}=f'\big|_{x=x_0}\pm g'\big|_{x=x_0},
+\]
+\[
+(f\cdot g)'\big|_{x=x_0}=f(x_0)\,g'\big|_{x=x_0}+f'\big|_{x=x_0}\cdot g(x_0),
+\]
+且当 $g(x_0)\neq0$ 时
+\[
+\left(\frac fg\right)'\Big|_{x=x_0}
+=\frac{f'\big|_{x=x_0}\,g(x_0)-f(x_0)\,g'\big|_{x=x_0}}{g^{2}(x_0)}.
+\]
+\end{thm}
+
+\subsection{复合函数求导}
+
+\begin{thm}[链式法则]
+设 $f(u)$ 在 $u=u_0$ 处可导，$g(x)$ 在 $x=x_0$ 处可导，且 $g(x_0)=u_0$。令 $h(x)=f\bigl(g(x)\bigr)$，则
+\[
+h'(x)\big|_{x=x_0}=f'(u)\big|_{u=u_0}\cdot g'(x)\big|_{x=x_0}.
+\]
+\end{thm}
+
+\subsection{幂指型求导}
+
+\begin{thm}[幂指型]
+设 $y\triangleq h(x)=f(x)^{g(x)}$（$f(x)>0$）。两边取对数得
+\[
+\ln h(x)=g(x)\ln f(x),
+\]
+两边对 $x$ 求导得
+\[
+\frac{h'(x)}{h(x)}=g'(x)\ln f(x)+g(x)\frac{f'(x)}{f(x)},
+\]
+故
+\[
+h'(x)=h(x)\left(g'(x)\ln f(x)+g(x)\frac{f'(x)}{f(x)}\right).
+\]
+\end{thm}
+
+\begin{rem}
+取对数可把乘积变成加法、把幂变成数乘，所以处理很多函数的连乘、连幂时，取对数会很有效。
+\end{rem}
+
+\subsection{分段函数求导}
+
+\begin{exa}
+设
+\[
+f(x)=\begin{cases}
+x^{2}, & x\geq0,\\
+-x, & x<0.
+\end{cases}
+\]
+求 $f'(0)$ 是否存在。
+\end{exa}
+
+\begin{proof}
+当 $x>0$ 时 $f(x)=x^2$，当 $x<0$ 时 $f(x)=-x$，故 $x=0$ 处只能按定义看左、右导数：
+\[
+f'_+(0)=\lim_{x\to0^+}\frac{x^{2}-0}{x}=0,
+\qquad
+f'_-(0)=\lim_{x\to0^-}\frac{-x-0}{x}=-1.
+\]
+两者不相等（$0\neq-1$），故 $f$ 在 $x=0$ 处导数不存在。
+\end{proof}
+
+\end{document}
