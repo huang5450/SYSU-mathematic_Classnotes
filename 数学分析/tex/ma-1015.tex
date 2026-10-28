@@ -41,6 +41,7 @@
 \maketitle
 
 \section{Recall}
+
 复合函数求极限
 设$h(x) = f(g(x))$ , 令$u = g(x)$. 如果当$x \to x_0$时 , $g(x) \to u_0$且$\exists x_0$的去心邻域$\mathring{U}$满足$\forall x \in \mathring{U} , g(x) \neq U_0$,则
 \[
@@ -54,7 +55,7 @@
 $\lim\limits_{x \to \infty} f(x) = A$是指$\forall \varepsilon >0 , \exists x , |x| > N$,有$|f(x)-A|< \varepsilon$
 \end{defn}
 
-命题
+\begin{prop}
 \[
 \lim_{x \to x_0}f(x) = A \Leftrightarrow \lim_{x \to x_0^-}f(x) = \lim_{x \to x_0^+}f(x) = A
 \]
@@ -62,9 +63,13 @@ $\lim\limits_{x \to \infty} f(x) = A$是指$\forall \varepsilon >0 , \exists x ,
 \[
 \lim_{x \to \infty}f(x) = A \Leftrightarrow \lim_{x \to +\infty}f(x) = \lim_{x \to -\infty}f(x) = A
 \]
+\end{prop}
 
 \section{无穷小量}
-定义:若$\lim\limits_{x \to \infty} f(x) = 0$则称f(x)为$x \to x_0$的无穷小量
+
+\begin{defn}
+若$\lim\limits_{x \to \infty} f(x) = 0$则称f(x)为$x \to x_0$的无穷小量
+\end{defn}
 
 \begin{quote}
 1. 无穷小量必须强调极限过程
@@ -101,6 +106,7 @@ $\lim\limits_{x \to \infty} f(x) = A$是指$\forall \varepsilon >0 , \exists x ,
 \]
 
 \section{从无穷小量到泰勒级数}
+
 注意到
 \[
 \lim_{x \to x_0}f(x) = A
@@ -142,7 +148,8 @@ f(x) = A +Bx +Cx^2 + \delta(x)
 其中$C$和$f(0)''$有关
 
 \section{无穷大量}
-定义: 
+
+\begin{defn}
 \[
 \lim_{x \to x_0} f(x) = \infty \triangleq \forall N >0 , \exists \delta >0 , \forall x \ 0<|x-x_0|<\delta , |f(x)| > N
 \]
@@ -150,6 +157,7 @@ f(x) = A +Bx +Cx^2 + \delta(x)
 \begin{quote}
 趋势可以是$x \to x_0 \quad x \to x_0^+ \quad x \to x_0^-$及$x \to \infty \quad x \to +\infty \quad x \to -\infty$六种中的任何一种
 \end{quote}
+\end{defn}
 
 \begin{quote}
 无界函数和无穷大量
@@ -170,9 +178,11 @@ f(x) = A +Bx +Cx^2 + \delta(x)
 \noindent\textbf{4.} 极限不存在,函数值震荡
 
 \section{无穷小(大)量之间的比较}
-定义:
+
+\begin{defn}
 若$\lim\limits_{x \to x_0}f(x) = \lim\limits_{x \to x_0}g(x) = 0$且$\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = A \neq 0$,则称f与g同阶
 如果$A = 1$ , 则称f与g是等价无穷小
+\end{defn}
 
 我们有如下的常用结论
 对于数列,
