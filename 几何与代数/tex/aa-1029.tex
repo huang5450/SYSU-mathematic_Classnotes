@@ -1,0 +1,231 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1029}
+\title{高等代数 1029}
+\date{}
+\begin{document}
+\maketitle
+
+\section{线性方程组}
+
+\begin{defn}[线性方程组]
+形如
+\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1,\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2,\\
+\qquad\qquad \cdots\cdots\\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+\end{cases}
+\]
+的方程组记为 $(*)$。对方程组作初等变换，使其变形为阶梯形方程组。
+\end{defn}
+
+\begin{defn}[阶梯形方程组]
+（1）不含未知量的式子在下方；
+
+（2）主未知量的下标越来越大。
+\end{defn}
+
+\begin{thm}[阶梯形方程组的类型]
+（1）有矛盾方程（$0=d\neq0$）：无解；
+
+（2）所有未知量都是主未知量：唯一解；
+
+（3）有自由未知量：无穷多解。此时把含自由未知量的项移到右边，得
+\[
+\begin{cases}
+a'_{1i_1}x_{i_1} + a'_{1,i_1+1}x_{i_1+1} + \cdots + a'_{1n}x_n = b'_1,\\
+\qquad a'_{2i_2}x_{i_2} + \cdots + a'_{2n}x_n = b'_2,\\
+\qquad\qquad \cdots\cdots\\
+\qquad\qquad\qquad a'_{ri_r}x_{i_r} = b'_r,
+\end{cases}
+\]
+即
+\[
+a'_{ki_k}x_{i_k} = b'_k-\sum_{j\notin\{i_1,\cdots,i_r\}} a'_{kj}x_j
+\qquad(k=1,\cdots,r),
+\]
+其中 $x_{j_1},\cdots,x_{j_{n-r}}$ 是自由未知量。
+\end{thm}
+
+\begin{rem}[Gauss--Jordan 消元法]
+继续用初等变换把主元化为 $1$、把主元所在列的其他元素化为 $0$，就可以直接读出解。
+\end{rem}
+
+\section{矩阵}
+
+\begin{defn}[矩阵]
+设 $K$ 是数域，$mn$ 个 $K$ 上的数排成一个 $m$ 行 $n$ 列的数表
+\[
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+\]
+称为数域 $K$ 上的 $m\times n$ 矩阵。
+\end{defn}
+
+\begin{rem}
+（1）一般用 $A,B,C,P,Q$ 表示矩阵。
+
+（2）矩阵 $A$ 中第 $i$ 行和第 $j$ 列的交叉处的数称为 $A$ 的 $(i,j)$ 元，用 $A(i,j)$ 表示。
+
+（3）有时 $A$ 可表示成 $(a_{ij})_{m\times n}$。
+
+（4）零矩阵：所有元素都是 $0$ 的矩阵，用 $\mathbf{0}$ 表示。
+
+（5）如果 $m=n$，则称矩阵是 $n$ 阶方阵。
+
+（6）全体 $m\times n$ 矩阵构成的集合记作 $M_{m,n}(K)$；全体 $n$ 阶方阵构成的集合记作 $M_n(K)$。
+\end{rem}
+
+\begin{exa}
+\[
+\left(\frac{1}{i+j}\right)_{3\times 4}
+=
+\begin{pmatrix}
+\frac12 & \frac13 & \frac14 & \frac15\\[2pt]
+\frac13 & \frac14 & \frac15 & \frac16\\[2pt]
+\frac14 & \frac15 & \frac16 & \frac17
+\end{pmatrix}
+\]
+\end{exa}
+
+\begin{defn}[系数矩阵与增广矩阵]
+称
+\[
+A=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+\]
+是方程组 $(*)$ 的\textbf{系数矩阵}；
+\[
+\bar{A}=
+\left(\begin{array}{cccc|c}
+a_{11} & a_{12} & \cdots & a_{1n} & b_1\\
+a_{21} & a_{22} & \cdots & a_{2n} & b_2\\
+\vdots & \vdots & & \vdots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn} & b_m
+\end{array}\right)
+\]
+是方程组 $(*)$ 的\textbf{增广矩阵}。对方程组作初等变换，等价于对增广矩阵 $\bar{A}$ 作初等行变换。
+\end{defn}
+
+\begin{defn}[初等行变换]
+（1）两行对换：$r_i\leftrightarrow r_j$；
+
+（2）某行乘非零常数 $c$：$c\,r_i$（$c\neq0$）；
+
+（3）某行的倍数加到另一行：$r_j+k\,r_i$。
+\end{defn}
+
+\begin{rem}[Gauss 消元法]
+用初等行变换将增广矩阵 $\bar{A}$ 变成阶梯形矩阵。
+\end{rem}
+
+\begin{defn}[阶梯形矩阵]
+（1）零行在非零行的下方；
+
+（2）每一个非零行的第一个非零元（称为主元）的列标，随着行标的增大而严格递增。
+\end{defn}
+
+\begin{thm}
+$\forall A\in M_{m,n}(K)$ 都可由初等变换变成阶梯形矩阵。
+\end{thm}
+
+\begin{proof}
+对矩阵 $A$ 的行数归纳。
+
+（1）当 $A\in M_{1,n}(K)$ 时，$A$ 是阶梯形矩阵。
+
+（2）假设 $\forall(m-1)$ 行的矩阵都可以由初等变换变成阶梯形矩阵。
+
+（3）当 $A$ 有 $m$ 行时，设 $A=(a_{ij})\in M_{m,n}(K)$。若 $A=\mathbf{0}$，则命题成立。
+
+当 $A\neq\mathbf{0}$ 时，取
+\[
+j_0=\min\bigl\{j\ \big|\ \exists\,1\leq i\leq m,\ \text{s.t.}\ a_{ij}\neq0\bigr\},
+\]
+即第一个出现非零元的列。不妨设 $a_{1j_0}\neq0$（否则先把第 $1$ 行与第 $i$ 行对换）。把第一行的 $-\dfrac{a_{ij_0}}{a_{1j_0}}$ 倍加到第 $i$ 行（$i\geq2$），此时 $A$ 变成
+\[
+B=
+\begin{pmatrix}
+0 & \cdots & 0 & a'_{1j_0} & \ast & \cdots & \ast\\
+0 & \cdots & 0 & 0 & \ast & \cdots & \ast\\
+\vdots & & \vdots & \vdots & \vdots & & \vdots\\
+0 & \cdots & 0 & 0 & \ast & \cdots & \ast
+\end{pmatrix}.
+\]
+考虑矩阵
+\[
+C=
+\begin{pmatrix}
+0 & \cdots & 0 & 0 & \ast & \cdots & \ast\\
+\vdots & & \vdots & \vdots & \vdots & & \vdots\\
+0 & \cdots & 0 & 0 & \ast & \cdots & \ast
+\end{pmatrix},
+\]
+即 $B$ 去掉第一行。由归纳假设，$C$ 可由初等行变换变成阶梯形矩阵 $J$，则 $A$ 可由初等行变换变成
+\[
+\begin{pmatrix}
+0 & \cdots & 0 & a'_{1j_0} & \ast & \cdots & \ast\\[2pt]
+0 & & & & & & \\
+\vdots & & & J & & & \\
+0 & & & & & &
+\end{pmatrix},
+\]
+是阶梯形矩阵。
+\end{proof}
+
+\begin{rem}[解的情况]
+把增广矩阵化为阶梯形矩阵后：
+
+（1）第 $(n+1)$ 列有主元：方程组无解（出现 $0=d\neq0$）；
+
+（2）除第 $(n+1)$ 列外，每一列都有主元：方程组有唯一解；
+
+（3）除第 $(n+1)$ 列外，还有些列没有主元：方程组有无穷多解（这些列对应自由未知量）。
+\end{rem}
+
+\end{document}
