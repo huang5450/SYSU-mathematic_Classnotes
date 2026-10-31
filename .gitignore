@@ -28,3 +28,7 @@ toolkit/__pycache__/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# 原始扫描件（板书 record / 手写稿 handwriting）要入库，不受 *.pdf 影响
+!数学分析/handwriting/*.pdf
+!几何与代数/record/*.pdf
