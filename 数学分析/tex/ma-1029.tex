@@ -1,0 +1,284 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,1029}
+\title{数学分析 1029}
+\date{}
+\begin{document}
+\maketitle
+
+\section{高阶导数与泰勒级数}
+
+\subsection{高阶导数}
+
+$f$ 在 $x_0$ 处可导 $\Rightarrow$ $f$ 在 $x_0$ 处连续，但推不出 $f$ 在 $x_0$ 附近处处可导。
+
+若 $f$ 在 $x_0$ 的某个开邻域 $U$ 内点点可导，则 $\forall x\in U$，$f'(x)$ 存在，于是得到 $U$ 上的函数
+\[
+f':\ U\to\mathbb{R},\qquad x\longmapsto f'(x).
+\]
+若 $f'$ 在 $x_0$ 处可导，则记 $(f'(x))'|_{x=x_0}$ 为 $f''(x_0)$ 或 $f^{(2)}(x_0)$。
+
+\begin{rem}
+（1）$f$ 在 $x_0$ 处可导 $\Rightarrow$ $f$ 在 $x_0$ 处连续；
+
+（2）二阶可导 $\Rightarrow$ $x_0$ 的某个开区间内点点可导；
+
+（3）三阶可导 $\Rightarrow$ 二阶可导、一阶可导；$\cdots$；$k$ 阶可导 $\Rightarrow$ $k-1,k-2,\cdots,1$ 阶都可导。
+\end{rem}
+
+若 $f,g$ 在 $x_0$ 处 $n$ 阶可导，则
+\[
+(f\pm g)^{(n)}(x_0)=f^{(n)}(x_0)\pm g^{(n)}(x_0).
+\]
+
+\begin{rem}
+\[
+f^{(n)}(x_0)=\lim_{x\to x_0}\frac{f^{(n-1)}(x)-f^{(n-1)}(x_0)}{x-x_0}
+=\left.(f^{(n-1)})'\right|_{x=x_0},
+\]
+更一般地 $f^{(n)}(x_0)=\left.(f^{(k)})^{(n-k)}\right|_{x=x_0}$（$0\leq k\leq n$）。
+\end{rem}
+
+\subsection{乘积的高阶导数（Leibniz 公式）}
+
+\begin{thm}[Leibniz]
+若 $f,g$ 在 $x_0$ 处 $n$ 阶可导，则
+\[
+(fg)^{(n)}=\sum_{k=0}^{n}\binom{n}{k}f^{(n-k)}g^{(k)} .
+\]
+\end{thm}
+
+\begin{proof}
+对 $n$ 归纳。$n=1$ 即 $(fg)'=f'g+fg'$。设对 $n$ 成立，则
+\[
+(fg)^{(n+1)}=\Bigl(\sum_{k=0}^{n}\binom{n}{k}f^{(n-k)}g^{(k)}\Bigr)'
+=\sum_{k=0}^{n}\binom{n}{k}f^{(n+1-k)}g^{(k)}+\sum_{k=0}^{n}\binom{n}{k}f^{(n-k)}g^{(k+1)},
+\]
+把第二个和式中的下标换成 $k+1$ 并利用 $\binom{n}{k}+\binom{n}{k-1}=\binom{n+1}{k}$，即得 $n+1$ 的情形。
+\end{proof}
+
+\subsection{用算子再看这个公式}
+
+引入算子 $\partial$：把函数映成它的导函数，
+\[
+\partial:\ f\longmapsto f',\qquad\text{于是}\quad f^{(n)}=\partial^{n}f .
+\]
+\[
+\partial(fg)=\partial(f)\,g+f\,\partial(g)
+=(\partial\otimes1)(fg)+(1\otimes\partial)(fg)
+=(\partial\otimes1+1\otimes\partial)(fg),
+\]
+\[
+\partial^{n}(fg)=(\partial\otimes1+1\otimes\partial)^{n}(fg).
+\]
+类比 $(a+b)^{2}=a^{2}+ab+ba+b^{2}$：只有 $ab=ba$ 时才有 $(a+b)^{2}=a^{2}+2ab+b^{2}$。这里要说明
+\[
+(\partial\otimes1)(1\otimes\partial)=(1\otimes\partial)(\partial\otimes1),
+\]
+两者作用的结果都是 $f'g'$：
+\[
+(\partial\otimes1)(1\otimes\partial)(fg)=(1\otimes\partial)(\partial\otimes1)(fg)=f'g'.
+\]
+于是可以按二项式展开：
+\[
+(\partial\otimes1+1\otimes\partial)^{n}(fg)
+=\sum_{k=0}^{n}\binom{n}{k}(\partial\otimes1)^{k}(1\otimes\partial)^{n-k}(fg)
+=\sum_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n-k)} .
+\]
+
+\subsection{两个例子}
+
+\begin{exa}
+$y=\sin x$：
+\[
+y'=\cos x=\sin\Bigl(x+\frac{\pi}{2}\Bigr),\quad
+y''=\sin\Bigl(x+2\cdot\frac{\pi}{2}\Bigr),\quad\cdots,\quad
+y^{(n)}=\sin\Bigl(x+n\frac{\pi}{2}\Bigr).
+\]
+\end{exa}
+
+\begin{exa}
+$y=x^{n}$：
+\[
+y'=nx^{n-1},\quad y''=n(n-1)x^{n-2},\quad\cdots,\quad
+y^{(k)}=n(n-1)\cdots(n-k+1)x^{n-k},\quad y^{(n)}=n! .
+\]
+\end{exa}
+
+\subsection{从多项式到泰勒系数}
+
+设
+\[
+f(x)=a_nx^{n}+a_{n-1}x^{n-1}+\cdots+a_1x+a_0 ,
+\]
+已知 $\forall k$ 的 $f^{(k)}(0)$，并约定 $f^{(0)}(x)=f(x)$。先看二次的情形：
+\[
+f(x)=a_2x^{2}+a_1x+a_0\ \Longrightarrow\ a_0=f(0);
+\]
+\[
+f'(x)=2a_2x+a_1\ \Longrightarrow\ a_1=f'(0);\qquad
+f''(x)=2a_2\ \Longrightarrow\ a_2=\frac12f''(0).
+\]
+推到一般情形求 $a_m$：$f^{(m)}(x)$ 中只有 $a_mx^{m}$ 求 $m$ 次导后不留 $x$，其余各项都含 $x$ 的幂，于是令 $x=0$ 得 $a_m=\dfrac{1}{m!}f^{(m)}(0)$。更一般的写法：把 $f^{(k)}(x)$ 写成
+\[
+f^{(k)}(x)=k!\,a_k+x\,h(x),
+\]
+令 $x=0$ 即得 $a_k=\dfrac{f^{(k)}(0)}{k!}$。因此
+\[
+f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(0)}{k!}x^{k}.
+\]
+（求导用来消去低次项，令 $x=0$ 用来消去高次项。）
+
+\subsection{一般函数能这么做吗}
+
+如果 $g(x)$ 可在 $0$ 点求任意阶导数，令
+\[
+b_k=\frac{g^{(k)}(0)}{k!},
+\]
+构造多项式 $b_0+b_1x+\cdots+b_kx^{k}+\cdots+b_nx^{n}$。想用它逼近 $g(x)$，只需要验证
+\[
+g(x)-\bigl(b_0+b_1x+\cdots+b_nx^{n}\bigr)
+\]
+与 $x^{n}$ 比较阶数——这就是 Taylor 级数要处理的问题。
+
+\begin{exa}
+$f(x)=x^{2}\sin x$，求 $f^{(n)}(0)$。由 Leibniz 公式只有 $k=0,1,2$ 三项非零，而在 $x=0$ 处前两项为零，故
+\[
+f^{(n)}(0)=\binom{n}{2}\cdot 2\cdot\sin\frac{(n-2)\pi}{2}
+=n(n-1)\sin\frac{(n-2)\pi}{2}.
+\]
+\end{exa}
+
+\begin{exa}
+$y=\dfrac{2x+3}{(x+1)(x+2)}$，求 $y^{(n)}(x)$。先把分式拆成部分分式
+\[
+y=\frac{1}{x+1}+\frac{1}{x+2},
+\]
+再用 $\bigl((x+c)^{-1}\bigr)^{(n)}=(-1)^{n}n!\,(x+c)^{-(n+1)}$ 逐项求导。
+\end{exa}
+
+\begin{rem}
+求高阶导时，如果能先把乘除换成加减（部分分式、取对数等），会省事很多。
+\end{rem}
+
+\section{隐函数求导}
+
+\begin{defn}[隐函数]
+设 $F(x,y)=0$。如果通过限制取值范围的方式，使得范围内 $\forall x$ 都有唯一的 $y$ 与之对应，即 $F\bigl(x,y(x)\bigr)=0$，则称函数 $x\mapsto y(x)$ 为由 $F(x,y)=0$ 决定的隐函数。
+\end{defn}
+
+在 $F\bigl(x,y(x)\bigr)=0$ 两边对 $x$ 求导，得
+\[
+\frac{\partial F}{\partial x}+\frac{\partial F}{\partial y}\,y'(x)=0,
+\]
+只要 $\dfrac{\partial F}{\partial y}\neq0$，就可解出 $y'(x)$。
+
+\begin{exa}
+设 $y=y(x)$ 由 $e^{y}+xy=e$ 决定，求 $y'(x)|_{x=0}$。
+
+两边同时对 $x$ 求导：$e^{y}y'+y+xy'=0$，故
+\[
+y'\Big|_{x=0}=-\left.\frac{y}{e^{y}+x}\right|_{x=0}=-\frac{1}{e}
+\qquad(\text{当 }x=0\text{ 时 }y=1).
+\]
+\end{exa}
+
+\begin{exa}
+$f(x)=\arctan x$，求 $f^{(n)}(0)$。令 $y=\dfrac{1}{1+x^{2}}$，则 $y^{(n)}(0)=f^{(n+1)}(0)$，问题化为求 $y$ 的高阶导。
+
+由 $y(1+x^{2})=1$，两边同时求 $n$ 阶导（用 Leibniz 公式）得
+\[
+y^{(n)}\bigl(1+x^{2}\bigr)+2nx\,y^{(n-1)}+2\binom{n}{2}y^{(n-2)}=0 .
+\]
+令 $x=0$：
+\[
+y^{(n)}(0)+2\binom{n}{2}y^{(n-2)}(0)=0,
+\]
+即 $y^{(n)}(0)=-n(n-1)y^{(n-2)}(0)$。由 $y(0)=1$、$y'(0)=0$ 可依次推出所有 $y^{(n)}(0)$，从而得到 $f^{(n)}(0)$。
+\end{exa}
+
+\section{参数方程求导}
+
+设
+\[
+\begin{cases}
+x=\varphi(t),\\
+y=\psi(t).
+\end{cases}
+\]
+若在某开区间内 $\varphi(t)$ 严格单调且 $\varphi'(t)\neq0$，则 $x$ 可以反解出 $t=g(x)$，代入 $y=\psi(t)$ 得 $y=\psi\bigl(g(x)\bigr)$。
+
+此时 $y$ 是 $x$ 的函数，求 $y'(x)$：
+\[
+y'(x)=\psi'\bigl(g(x)\bigr)\cdot g'(x)=\psi'(t)\cdot g'(x),
+\]
+其中由反函数求导可知 $g'(x)=\dfrac{1}{\varphi'(t)}$。于是
+\[
+y'(x)=\left.\frac{\psi'(t)}{\varphi'(t)}\right|_{t=g(x)} .
+\]
+
+\section{微分}
+
+\begin{thm}[可导与可微]
+$f$ 在 $x_0$ 处可导
+\[
+\iff f(x)=f(x_0)+A\Delta x+o(\Delta x)
+\iff f(x)-f(x_0)=A\Delta x+o(\Delta x)=\Delta f .
+\]
+\end{thm}
+
+忽略高阶无穷小 $o(\Delta x)$，记
+\[
+\mathrm{d}f=A\Delta x=A\,\mathrm{d}x
+\qquad\Longrightarrow\qquad
+\frac{\mathrm{d}f}{\mathrm{d}x}=f' .
+\]
+对参数方程 $\begin{cases}y=\psi(t),\\ x=\varphi(t)\end{cases}$，同样有
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\mathrm{d}y/\mathrm{d}t}{\mathrm{d}x/\mathrm{d}t}
+=\frac{\psi'(t)}{\varphi'(t)} .
+\]
+
+\begin{defn}[微分]
+$\mathrm{d}f$ 称为 $f$ 的微分。若 $f$ 在 $x_0$ 附近能写成
+\[
+f(x)=f(x_0)+A\Delta x+o(\Delta x),
+\]
+则称 $f$ 在 $x_0$ 处可微。可微 $\iff$ 可导。
+\end{defn}
+
+\end{document}
