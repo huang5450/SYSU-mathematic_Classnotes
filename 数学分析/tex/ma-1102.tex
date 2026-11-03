@@ -1,0 +1,155 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{数学分析\,·\,1102}
+\title{数学分析 1102}
+\date{}
+\begin{document}
+\maketitle
+
+\section{微分(续)}
+
+\begin{rem}[Recall: 可微]
+设 $f(x)$ 在 $x_0$ 的一个开区间内有定义. 若在此开区间内
+\[
+f(x)=f(x_0)+A(x-x_0)+o(x-x_0),
+\]
+则称 $f$ 在 $x_0$ 处\textbf{可微}.
+\end{rem}
+
+\begin{thm}
+$f(x)$ 在 $x_0$ 处可微 $\iff$ $f(x)$ 在 $x_0$ 处可导, 且 $A=f'(x_0)$.
+\end{thm}
+
+\begin{defn}[微分]
+称
+\[
+\mathrm{d}f:=f'(x_0)\,\Delta x
+\]
+为 $f$ 在 $x_0$ 处的\textbf{微分}.
+\end{defn}
+
+\begin{rem}
+(1) 当 $x_0$ 固定时, $\mathrm{d}f$ 是 $\Delta x$ 的函数;
+
+(2) $f'(x_0)=\dfrac{\mathrm{d}f}{\mathrm{d}x}$ 是一个"商"(微分之商);
+
+(3) 过点 $\bigl(x_0,f(x_0)\bigr)$、以 $f'(x_0)$ 为斜率的直线就是 $f$ 在 $\bigl(x_0,f(x_0)\bigr)$ 处的切线:
+\[
+y-f(x_0)=f'(x_0)(x-x_0)=f'(x_0)\,\Delta x=\mathrm{d}f(\Delta x);
+\]
+
+(4) 实质: 用线性的切线近似 $f(x)$, 其差值是高阶无穷小;
+
+(5) $f'(x_0)$ 就是 $f$ 的微分 $\mathrm{d}f$ 与自变量的微分 $\mathrm{d}x\triangleq\Delta x$ 之商.
+\end{rem}
+
+\section{微分形式的不变性}
+
+\begin{thm}[微分形式的不变性]
+设 $y=y(u)$ 是关于 $u$ 的函数, $u=u(x)$ 是关于 $x$ 的函数. 则 $\mathrm{d}y$ 既可以看成 $u$ 的微分, 也可以看成 $x$ 的微分, 而两种算法结果相同:
+\[
+\mathrm{d}y=y'(u)\,\mathrm{d}u
+\qquad\text{与}\qquad
+\mathrm{d}y=y'(x)\,\mathrm{d}x .
+\]
+\end{thm}
+
+\begin{proof}
+因为 $u=u(x)$ 可微, 其微分为
+\[
+\mathrm{d}u=u'(x)\,\mathrm{d}x .
+\]
+代回第一个式子:
+\[
+\mathrm{d}y=y'(u)\,\mathrm{d}u=y'(u)\,u'(x)\,\mathrm{d}x=y'(x)\,\mathrm{d}x ,
+\]
+与第二个式子一致.
+\end{proof}
+
+\begin{rem}[关于 $\mathrm{d}u$ 与 $\Delta u$]
+这里 $\mathrm{d}u=u'(x)\mathrm{d}x$ 是 $u$ 的\textbf{微分}(线性主部), 一般\textbf{不等于}增量
+\[
+\Delta u=u(x+\mathrm{d}x)-u(x)=u'(x)\mathrm{d}x+o(\mathrm{d}x).
+\]
+所以"$\mathrm{d}u$ 其实就是 $\Delta u$"是不对的; 微分形式之所以不变, 是因为无论 $u$ 是不是自变量, $\mathrm{d}u$ 都取 $\mathrm{d}u=u'(x)\mathrm{d}x$ 这一形式. 这正对应复合函数求导的链式法则
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\mathrm{d}y}{\mathrm{d}u}\cdot\frac{\mathrm{d}u}{\mathrm{d}x} .
+\]
+\end{rem}
+
+\section{近似计算}
+
+由 $f(x)=f(x_0)+f'(x_0)(x-x_0)+o(x-x_0)$ 知, 当 $x$ 与 $x_0$ 较接近时
+\[
+f(x)\approx f(x_0)+f'(x_0)(x-x_0).
+\]
+
+\begin{exa}
+求 $\sqrt[n]{1+x}$ 在 $|x|$ 足够小时的近似式.
+
+令 $f(x)=\sqrt[n]{1+x}$, 取 $x_0=0$, 则 $f(x)-f(0)\approx f'(0)(x-0)$. 而
+\[
+f'(x)=\frac1n(1+x)^{\frac1n-1}\quad\Longrightarrow\quad f'(0)=\frac1n ,
+\]
+故
+\[
+f(x)\approx f(0)+\frac1n x=1+\frac{x}{n},
+\qquad\text{即}\qquad
+\sqrt[n]{1+x}\approx 1+\frac{x}{n}.
+\]
+\end{exa}
+
+\begin{exa}
+估算 $\sqrt{420}$.
+\[
+\sqrt{420}=20\sqrt{\frac{420}{400}}=20\sqrt{1+\frac1{20}}
+\approx 20\left(1+\frac1{2}\cdot\frac1{20}\right)=20\times1.025=20.5 .
+\]
+\end{exa}
+
+\begin{exa}
+设 $y=\ln(1+e^{x})$, 求 $\mathrm{d}y$.
+
+令 $y=\ln u$, $u=1+e^{x}$, 则
+\[
+\mathrm{d}y=y'(u)\,\mathrm{d}u=\frac{\mathrm{d}u}{u}
+=\frac{e^{x}\,\mathrm{d}x}{1+e^{x}}
+=\frac{e^{x}}{1+e^{x}}\,\mathrm{d}x .
+\]
+\end{exa}
+
+\end{document}
