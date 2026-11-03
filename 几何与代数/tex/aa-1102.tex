@@ -1,0 +1,261 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1102}
+\title{高等代数 1102}
+\date{}
+\begin{document}
+\maketitle
+
+\section{线性方程组}
+
+\begin{defn}[线性方程组]
+形如
+\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1,\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2,\\
+\qquad\qquad \cdots\cdots\\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+\end{cases}
+\]
+的方程组, 其中 $x_1,\cdots,x_n$ 是未知量, $a_{ij}$ 是第 $i$ 个方程中 $x_j$ 的系数, $b_1,\cdots,b_m$ 是常数项.
+\end{defn}
+
+\begin{rem}
+要解决三个问题: (1) 方程组是否有解; (2) 如果有解, 如何求解; (3) 解与解之间的关系如何.
+\end{rem}
+
+用 Gauss 消元法对原方程组作初等变换, 将其变成阶梯形方程组, 其特点是
+\begin{enumerate}
+\item 不含未知量的式子在下方;
+\item 主未知量的下标严格递增.
+\end{enumerate}
+
+\begin{thm}[阶梯形方程组的类型]
+(1) 有矛盾方程 ($0=d\neq0$): 无解;
+
+(2) 所有未知量都是主未知量: 唯一解;
+
+(3) 有自由未知量: 无穷多解.
+\end{thm}
+
+\begin{defn}[增广矩阵]
+\[
+\bar{A}=
+\left(\begin{array}{cccc|c}
+a_{11} & a_{12} & \cdots & a_{1n} & b_1\\
+a_{21} & a_{22} & \cdots & a_{2n} & b_2\\
+\vdots & \vdots & & \vdots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn} & b_m
+\end{array}\right).
+\]
+\end{defn}
+
+对增广矩阵作初等行变换, 将其变成行阶梯形矩阵, 其特点是
+\begin{enumerate}
+\item 零行在非零行的下方;
+\item 主元的列标随行标变大而严格递增.
+\end{enumerate}
+
+\begin{thm}[行阶梯形矩阵的类型]
+(1) 第 $n+1$ 列有主元: 无解;
+
+(2) 除第 $n+1$ 列之外, 每一列都有主元: 唯一解;
+
+(3) 除第 $n+1$ 列之外, 还有的列没有主元: 无穷多解.
+\end{thm}
+
+\begin{defn}[齐次与非齐次]
+若 $b_1=\cdots=b_m=0$, 则称方程组为\textbf{齐次线性方程组}; 否则称为\textbf{非齐次线性方程组}.
+\end{defn}
+
+\begin{rem}
+齐次线性方程组一定有解, 例如
+\[
+x_1=0,\ \cdots,\ x_m=0
+\]
+就是它的解, 称为它的\textbf{零解}, 其他解称为\textbf{非零解}.
+
+齐次线性方程组有/无非零解 $\iff$ 无/有唯一解.
+\end{rem}
+
+\begin{thm}
+若齐次线性方程组未知量的个数大于方程的个数, 则一定有非零解.
+\end{thm}
+
+\begin{proof}
+对 $m$ 归纳. 设方程组有 $m$ 个方程, $n$ 个未知量, 且 $n>m$.
+
+\textbf{$m=1$}: 方程为 $a_{11}x_1+\cdots+a_{1n}x_n=0$, 而 $n\geq2$. 若所有系数全为 $0$, 任取一个非零向量即可; 否则取 $a_{1j}\neq0$, 再取 $i\neq j$, 令
+\[
+x_i=a_{1j},\qquad x_j=-a_{1i},\qquad \text{其余 }x_k=0,
+\]
+则 $a_{1i}x_i+a_{1j}x_j=a_{1i}a_{1j}-a_{1j}a_{1i}=0$, 且这是非零解.
+
+\textbf{$m=k$ 成立, 推 $m=k+1$}: 设 $n>k+1$.
+
+若第一列全为零 ($a_{11}=\cdots=a_{k+1,1}=0$), 取 $x_1=1$, $x_2=\cdots=x_n=0$, 它满足每个方程且非零.
+
+否则不妨设 $a_{11}\neq0$. 用第一个方程把第 $2,\cdots,k+1$ 个方程中的 $x_1$ 消去: 第 $i$ 个方程减去第一个方程的 $\dfrac{a_{i1}}{a_{11}}$ 倍. 这样得到 $k$ 个\textbf{只含 $x_2,\cdots,x_n$} 的齐次方程, 即 $k$ 个方程, $n-1$ 个未知量. 由 $n>k+1$ 得 $n-1>k$, 故由归纳假设, 它有非零解 $(x_2^0,\cdots,x_n^0)$.
+
+令
+\[
+x_1^0=-\frac{1}{a_{11}}\bigl(a_{12}x_2^0+\cdots+a_{1n}x_n^0\bigr),
+\]
+则 $(x_1^0,x_2^0,\cdots,x_n^0)$ 满足第一个方程 (按上式构造), 也满足第 $2,\cdots,k+1$ 个方程 (因为消元后的方程成立, 而第一个方程已成立, 故原方程成立). 又 $(x_2^0,\cdots,x_n^0)\neq(0,\cdots,0)$, 所以这是一个非零解.
+
+由归纳法, 命题对一切 $m$ 成立.
+\end{proof}
+
+\begin{rem}[另两种思路]
+从\textbf{阶梯形方程组}看: 化为阶梯形后主元至多 $m$ 个, 而未知量有 $n>m$ 个, 故必有自由未知量; 把某个自由未知量取 $1$, 其余自由未知量取 $0$, 即得非零解.
+
+从\textbf{行阶梯形矩阵}看: $n$ 列中至多 $m$ 个主元列, 所以\textbf{至少有一列没有主元}, 该列对应的未知量就是自由未知量.
+\end{rem}
+
+\begin{defn}[向量形式]
+记
+\[
+\alpha_1=\begin{pmatrix}a_{11}\\a_{21}\\\vdots\\a_{m1}\end{pmatrix},\quad
+\alpha_2=\begin{pmatrix}a_{12}\\a_{22}\\\vdots\\a_{m2}\end{pmatrix},\quad
+\cdots,\quad
+\alpha_n=\begin{pmatrix}a_{1n}\\a_{2n}\\\vdots\\a_{mn}\end{pmatrix},\quad
+\beta=\begin{pmatrix}b_1\\b_2\\\vdots\\b_m\end{pmatrix},
+\]
+则原线性方程组等价于向量方程
+\[
+x_1\alpha_1+\cdots+x_n\alpha_n=\beta .
+\]
+\end{defn}
+
+\section{$m$ 维向量空间}
+
+设 $K$ 是数域, 记
+\[
+K^m=\left\{(a_1,a_2,\cdots,a_m)^{\mathrm T}\ \middle|\ a_i\in K,\ i=1,\cdots,m\right\}.
+\]
+若 $\alpha=(a_1,a_2,\cdots,a_m)^{\mathrm T}$, $\beta=(b_1,b_2,\cdots,b_m)^{\mathrm T}$, 则
+\[
+\alpha=\beta\iff a_1=b_1,\ \cdots,\ a_m=b_m .
+\]
+
+在 $K^m$ 上定义运算:
+
+\begin{defn}[加法]
+设 $\alpha=(a_1,a_2,\cdots,a_m)^{\mathrm T}$, $\beta=(b_1,b_2,\cdots,b_m)^{\mathrm T}$, 则
+\[
+\alpha+\beta=\begin{pmatrix}a_1+b_1\\a_2+b_2\\\vdots\\a_m+b_m\end{pmatrix}.
+\]
+\end{defn}
+
+\begin{defn}[数乘]
+设 $k\in K$, $\alpha=(a_1,a_2,\cdots,a_m)^{\mathrm T}$, 则
+\[
+k\alpha=\begin{pmatrix}ka_1\\ka_2\\\vdots\\ka_m\end{pmatrix}.
+\]
+\end{defn}
+
+\begin{defn}[负向量]
+任给 $K^m$ 上的向量 $\alpha=(a_1,a_2,\cdots,a_m)^{\mathrm T}$, 称
+\[
+-\alpha=(-a_1,-a_2,\cdots,-a_m)^{\mathrm T}
+\]
+是其\textbf{负向量}, 满足 $\alpha+(-\alpha)=\mathbf{0}$. 显然 $\mathbf{0}=\alpha+(-\alpha)\in K^m$.
+\end{defn}
+
+\begin{thm}[线性空间的性质]
+$(K^m,+,{\cdot})$ 满足: ($\forall\alpha,\beta,\gamma\in K^m$, $\forall k,l\in K$)
+\begin{enumerate}
+\item $\alpha+\beta=\beta+\alpha$ (加法交换律);
+\item $(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)$ (加法结合律);
+\item 存在零向量 $\mathbf{0}\in K^m$, 使 $\alpha+\mathbf{0}=\alpha$;
+\item 存在负向量 $-\alpha\in K^m$, 使 $\alpha+(-\alpha)=\mathbf{0}$;
+\item $1\cdot\alpha=\alpha$;
+\item $k(l\alpha)=(kl)\alpha$;
+\item $k(\alpha+\beta)=k\alpha+k\beta$;
+\item $(k+l)\alpha=k\alpha+l\alpha$.
+\end{enumerate}
+\end{thm}
+
+此即线性空间的定义. $(K^m,+,{\cdot})$ 是线性空间, 称其为 $m$ 维向量空间.
+
+\begin{rem}
+$K^m$ 中的元素称为向量, 一般用希腊字母表示, 不再用箭头表示.
+\end{rem}
+
+\section{线性组合}
+
+\begin{defn}[线性组合]
+设 $\alpha_1,\cdots,\alpha_n\in K^m$, $k_1,\cdots,k_n\in K$, 称
+\[
+k_1\alpha_1+k_2\alpha_2+\cdots+k_n\alpha_n
+\]
+为 $\alpha_1,\cdots,\alpha_n$ 的一个\textbf{线性组合}.
+\end{defn}
+
+\begin{defn}[线性表示]
+若向量 $\beta$ 能写成
+\[
+\beta=k_1\alpha_1+k_2\alpha_2+\cdots+k_n\alpha_n\qquad(k_i\in K),
+\]
+则称 $\beta$ 可由 $\alpha_1,\cdots,\alpha_n$ \textbf{线性表示} (或线性表出).
+\end{defn}
+
+\begin{defn}[线性相关与线性无关]
+考察向量方程
+\[
+x_1\alpha_1+x_2\alpha_2+\cdots+x_n\alpha_n=\mathbf{0}.
+\]
+若它\textbf{只有零解} (解唯一), 则称 $\alpha_1,\cdots,\alpha_n$ \textbf{线性无关}; 若它\textbf{有非零解} (解不唯一), 则称它们\textbf{线性相关}.
+\end{defn}
+
+在 $K^m$ 中, $\alpha_1,\cdots,\alpha_{m+1}$ 一定线性相关:
+\[
+x_1\alpha_1+\cdots+x_{m+1}\alpha_{m+1}=0
+\]
+由命题 1 知, 必有非零解 ($m$ 个方程, $m+1$ 个未知量), 即存在不全为零的 $x_1,\cdots,x_{m+1}$ 使上式成立.
+
+\begin{thm}[标准基]
+在 $K^m$ 中令
+\[
+\delta_i=(0,\cdots,0,1,0,\cdots,0)^{\mathrm T}
+\qquad(\text{第 } i \text{ 个分量为 } 1),\quad i=1,2,\cdots,m,
+\]
+则 $\delta_1,\delta_2,\cdots,\delta_m$ 线性无关.
+\end{thm}
+
+\end{document}
