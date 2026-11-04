@@ -44,7 +44,7 @@
 \section{$m$ 维向量空间(回顾)}
 
 \begin{itemize}
-\item $K$ 是数域, $K^m=\{(a_1,a_2,\cdots,a_m)\mid a_i\in K,\ i=1,\cdots,m\}$; $(K^m,+,\cdot)$ 是线性空间 (满足八条性质);
+\item $K$ 是数域, $K^m=\{(a_1,a_2,\cdots,a_m)^{\mathrm T}\mid a_i\in K,\ i=1,\cdots,m\}$; $(K^m,+,\cdot)$ 是线性空间 (满足八条性质);
 \item \textbf{线性组合}: $\sum_{i=1}^{s}k_i\alpha_i$ 称为 $\alpha_1,\cdots,\alpha_s$ 的线性组合;
 \item \textbf{线性表示}: 若 $\beta=\sum_{i=1}^{s}k_i\alpha_i$, 称 $\beta$ 可被 $\alpha_1,\cdots,\alpha_s$ 线性表示;
 \item \textbf{线性相关/无关}: 看方程 $x_1\alpha_1+\cdots+x_s\alpha_s=0$ 是否有非零解. 它是齐次线性方程组, 其系数矩阵为
@@ -70,7 +70,7 @@ $K^m$ 中有向量组 $\alpha_1,\cdots,\alpha_s$ (记为 (Ⅰ)) 及 $\beta_1,\cd
 \end{defn}
 
 \begin{exa}
-$K^3$ 中, $\alpha_1=(1,0,0)$, $\alpha_2=(0,1,0)$ 构成 (Ⅰ); $\beta_1=(1,1,0)$, $\beta_2=(0,2,0)$, $\beta_3=(1,-2,0)$ 构成 (Ⅱ). 则 (Ⅰ) 与 (Ⅱ) 线性等价.
+$K^3$ 中, $\alpha_1=(1,0,0)^{\mathrm T}$, $\alpha_2=(0,1,0)^{\mathrm T}$ 构成 (Ⅰ); $\beta_1=(1,1,0)^{\mathrm T}$, $\beta_2=(0,2,0)^{\mathrm T}$, $\beta_3=(1,-2,0)^{\mathrm T}$ 构成 (Ⅱ). 则 (Ⅰ) 与 (Ⅱ) 线性等价.
 \end{exa}
 
 \begin{thm}[线性等价的性质]
@@ -137,7 +137,7 @@ k_{s1} & k_{s2} & \cdots & k_{st}
 \end{defn}
 
 \begin{exa}
-$\beta_1=(1,1,0)$, $\beta_2=(0,2,0)$, $\beta_3=(1,-2,0)$. 因为
+$\beta_1=(1,1,0)^{\mathrm T}$, $\beta_2=(0,2,0)^{\mathrm T}$, $\beta_3=(1,-2,0)^{\mathrm T}$. 因为
 \[
 \beta_3=\beta_1-\frac32\beta_2,
 \]
