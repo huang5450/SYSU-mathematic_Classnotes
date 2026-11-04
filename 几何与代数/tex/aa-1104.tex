@@ -1,0 +1,220 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1104}
+\xeCJKDeclareCharClass{CJK}{"2150 -> "218F} % 让 Ⅰ Ⅱ Ⅲ 走中文字体
+\title{高等代数 1104}
+\date{}
+\begin{document}
+\maketitle
+
+\section{$m$ 维向量空间(回顾)}
+
+\begin{itemize}
+\item $K$ 是数域, $K^m=\{(a_1,a_2,\cdots,a_m)\mid a_i\in K,\ i=1,\cdots,m\}$; $(K^m,+,\cdot)$ 是线性空间 (满足八条性质);
+\item \textbf{线性组合}: $\sum_{i=1}^{s}k_i\alpha_i$ 称为 $\alpha_1,\cdots,\alpha_s$ 的线性组合;
+\item \textbf{线性表示}: 若 $\beta=\sum_{i=1}^{s}k_i\alpha_i$, 称 $\beta$ 可被 $\alpha_1,\cdots,\alpha_s$ 线性表示;
+\item \textbf{线性相关/无关}: 看方程 $x_1\alpha_1+\cdots+x_s\alpha_s=0$ 是否有非零解. 它是齐次线性方程组, 其系数矩阵为
+\[
+A=(\alpha_1,\cdots,\alpha_s).
+\]
+\end{itemize}
+
+\begin{exa}
+$K^m$ 中任意 $(m+1)$ 个向量 $\alpha_1,\cdots,\alpha_{m+1}$ 一定线性相关.
+
+理由: $A=(\alpha_1,\cdots,\alpha_{m+1})$ 的行阶梯形矩阵一定有些列没有主元 (列数 $m+1$ 大于行数 $m$), 故必有非零解. 反过来, $K^m$ 中可以找到 $m$ 个线性无关的向量.
+\end{exa}
+
+\begin{prop}
+$\alpha_1,\cdots,\alpha_s$ 线性相关 $\iff$ 存在某个 $\alpha_j$, s.t. $\alpha_j$ 能被其余向量线性表示 (即向量组中有``多余''的向量).
+\end{prop}
+
+\section{向量组的秩}
+
+\begin{defn}[线性等价]
+$K^m$ 中有向量组 $\alpha_1,\cdots,\alpha_s$ (记为 (Ⅰ)) 及 $\beta_1,\cdots,\beta_t$ (记为 (Ⅱ)). 如果 (Ⅰ) 中每个向量能被 (Ⅱ) 线性表示, 且 (Ⅱ) 中每个向量能被 (Ⅰ) 线性表示, 则称 (Ⅰ) 和 (Ⅱ) \textbf{线性等价}, 记作 (Ⅰ)$\sim$(Ⅱ).
+\end{defn}
+
+\begin{exa}
+$K^3$ 中, $\alpha_1=(1,0,0)$, $\alpha_2=(0,1,0)$ 构成 (Ⅰ); $\beta_1=(1,1,0)$, $\beta_2=(0,2,0)$, $\beta_3=(1,-2,0)$ 构成 (Ⅱ). 则 (Ⅰ) 与 (Ⅱ) 线性等价.
+\end{exa}
+
+\begin{thm}[线性等价的性质]
+(1) 反身性: (Ⅰ)$\sim$(Ⅰ);
+
+(2) 对称性: (Ⅰ)$\sim$(Ⅱ) $\Rightarrow$ (Ⅱ)$\sim$(Ⅰ);
+
+(3) 传递性: (Ⅰ)$\sim$(Ⅱ), (Ⅱ)$\sim$(Ⅲ) $\Rightarrow$ (Ⅰ)$\sim$(Ⅲ).
+\end{thm}
+
+线性等价是``等价关系''.
+
+\begin{lem}
+设 $\alpha_1,\cdots,\alpha_s$ (Ⅰ) 及 $\beta_1,\cdots,\beta_t$ (Ⅱ), 且 (Ⅱ) 能被 (Ⅰ) 线性表示. 若 $\gamma$ 能被 (Ⅱ) 线性表示, 则 $\gamma$ 能被 (Ⅰ) 线性表示.
+\end{lem}
+
+\begin{proof}
+由于 (Ⅱ) 能被 (Ⅰ) 线性表示, 则
+\[
+\begin{aligned}
+\beta_1&=k_{11}\alpha_1+k_{21}\alpha_2+\cdots+k_{s1}\alpha_s,\\
+\beta_2&=k_{12}\alpha_1+k_{22}\alpha_2+\cdots+k_{s2}\alpha_s,\\
+&\ \ \cdots\cdots\\
+\beta_t&=k_{1t}\alpha_1+k_{2t}\alpha_2+\cdots+k_{st}\alpha_s,
+\end{aligned}
+\]
+用矩阵乘法可以写成
+\[
+(\beta_1,\cdots,\beta_t)=(\alpha_1,\cdots,\alpha_s)
+\begin{pmatrix}
+k_{11} & k_{12} & \cdots & k_{1t}\\
+k_{21} & k_{22} & \cdots & k_{2t}\\
+\vdots & \vdots & & \vdots\\
+k_{s1} & k_{s2} & \cdots & k_{st}
+\end{pmatrix}
+=(\alpha_1,\cdots,\alpha_s)K .
+\]
+又 $\gamma=a_1\beta_1+\cdots+a_t\beta_t$, 用矩阵乘法可以写成
+\[
+\gamma=(\beta_1,\cdots,\beta_t)\begin{pmatrix}a_1\\a_2\\\vdots\\a_t\end{pmatrix},
+\]
+于是
+\[
+\gamma=(\alpha_1,\cdots,\alpha_s)\,K\begin{pmatrix}a_1\\a_2\\\vdots\\a_t\end{pmatrix},
+\]
+即有
+\[
+\gamma=\Bigl(\sum_{j=1}^{t}k_{1j}a_j\Bigr)\alpha_1+\cdots+\Bigl(\sum_{j=1}^{t}k_{sj}a_j\Bigr)\alpha_s
+=\sum_{i=1}^{s}\Bigl(\sum_{j=1}^{t}k_{ij}a_j\Bigr)\alpha_i ,
+\]
+所以 $\gamma$ 能被 $\alpha_1,\cdots,\alpha_s$ 线性表示.
+\end{proof}
+
+\section{极大线性无关部分组}
+
+\begin{defn}
+设 $\alpha_{i_1},\cdots,\alpha_{i_r}$ (Ⅱ) 是 $\alpha_1,\cdots,\alpha_s$ (Ⅰ) 的一个部分组. 如果
+
+(1) (Ⅰ) 和 (Ⅱ) 线性等价;
+
+(2) (Ⅱ) 线性无关,
+
+则称 (Ⅱ) 是 (Ⅰ) 的\textbf{极大线性无关部分组} (简称\textbf{极大无关组}).
+\end{defn}
+
+\begin{exa}
+$\beta_1=(1,1,0)$, $\beta_2=(0,2,0)$, $\beta_3=(1,-2,0)$. 因为
+\[
+\beta_3=\beta_1-\frac32\beta_2,
+\]
+所以 $\beta_1,\beta_2$ 是极大无关组; 同理 $\beta_1,\beta_3$ 也是, 且
+\[
+\beta_2=\frac23\beta_1-\frac23\beta_3 .
+\]
+可见\textbf{极大无关组不唯一, 但向量个数相同} (本例都是 $2$).
+\end{exa}
+
+\begin{thm}
+设 $\alpha_1,\cdots,\alpha_s$ (Ⅰ), $\beta_1,\cdots,\beta_t$ (Ⅱ). 如果 (Ⅰ) 能被 (Ⅱ) 线性表示, 且 $s>t$, 则 (Ⅰ) 一定线性相关.
+\end{thm}
+
+\begin{proof}
+由于 (Ⅰ) 能被 (Ⅱ) 线性表示, 则
+\[
+(\alpha_1,\cdots,\alpha_s)=(\beta_1,\cdots,\beta_t)
+\begin{pmatrix}
+k_{11} & k_{12} & \cdots & k_{1s}\\
+k_{21} & k_{22} & \cdots & k_{2s}\\
+\vdots & \vdots & & \vdots\\
+k_{t1} & k_{t2} & \cdots & k_{ts}
+\end{pmatrix}
+=(\beta_1,\cdots,\beta_t)K .
+\]
+考虑方程
+\[
+x_1\alpha_1+\cdots+x_s\alpha_s=0,
+\]
+其等价于
+\[
+(\alpha_1,\cdots,\alpha_s)\begin{pmatrix}x_1\\\vdots\\x_s\end{pmatrix}=0
+\iff
+(\beta_1,\cdots,\beta_t)\,K\begin{pmatrix}x_1\\\vdots\\x_s\end{pmatrix}=0 .
+\]
+即得: 只要 $x\neq0$ 满足 $Kx=0$, 就有 $x_1\alpha_1+\cdots+x_s\alpha_s=0$. 现考虑方程
+\[
+K\begin{pmatrix}x_1\\\vdots\\x_s\end{pmatrix}=0 ,
+\]
+这是 $t$ 个方程、$s$ 个未知量的齐次线性方程组. 由于 $s>t$, 它必有非零解, 故存在不全为零的 $x_1,\cdots,x_s$ 使 $x_1\alpha_1+\cdots+x_s\alpha_s=0$, 即 $\alpha_1,\cdots,\alpha_s$ 线性相关.
+\end{proof}
+
+\begin{thm}
+设 $\alpha_1,\cdots,\alpha_s$ (Ⅰ), 且 $\alpha_{i_1},\cdots,\alpha_{i_t}$ (Ⅱ) 与 $\beta_{j_1},\cdots,\beta_{j_r}$ (Ⅲ) 都是 (Ⅰ) 的极大无关组, 则 $t=r$.
+\end{thm}
+
+\begin{cor}
+设 $\alpha_1,\cdots,\alpha_s$ (Ⅰ) 与 $\beta_1,\cdots,\beta_t$ (Ⅱ). 如果 (Ⅰ) 能被 (Ⅱ) 线性表示, 且 (Ⅰ) 线性无关, 则 $s\leq t$.
+\end{cor}
+
+\begin{defn}[向量组的秩]
+\[
+\operatorname{rank}(\alpha_1,\cdots,\alpha_s)\triangleq \alpha_1,\cdots,\alpha_s \text{ 任一极大无关组的向量个数}.
+\]
+\end{defn}
+
+\section{筛选法选出极大无关组}
+
+设 $\alpha_1,\cdots,\alpha_s$. 不妨设 $\alpha_1\neq0$;
+
+若 $\alpha_2$ 能被 $\alpha_1$ 线性表示, 则去掉 $\alpha_2$, 否则保留 $\alpha_2$;
+
+重复上述操作: 对于 $\alpha_j$, 如果 $\alpha_j$ 能被前面\textbf{保留}的向量线性表示, 则去掉 $\alpha_j$, 否则保留 $\alpha_j$, 直到选择完成. 此时得到向量组 $\alpha_{i_1},\cdots,\alpha_{i_r}$.
+
+\begin{proof}[为什么它是极大无关组]
+被去掉的每个向量都能被保留下来的向量线性表示, 故两者线性等价. 若 $\alpha_{i_1},\cdots,\alpha_{i_r}$ 线性相关, 则存在不全为零的 $k_1,\cdots,k_r$ 使
+\[
+k_1\alpha_{i_1}+\cdots+k_r\alpha_{i_r}=0 ;
+\]
+从左往右取第一个不为零的系数 $k_j$, 则
+\[
+k_1\alpha_{i_1}+\cdots+k_j\alpha_{i_j}=0
+\quad\Longrightarrow\quad
+\alpha_{i_j}=-\frac{1}{k_j}\bigl(k_1\alpha_{i_1}+\cdots+k_{j-1}\alpha_{i_{j-1}}\bigr),
+\]
+即 $\alpha_{i_j}$ 能被前面保留的向量线性表示, 与``保留''的规则矛盾. 所以保留的向量组线性无关, 从而是极大无关组.
+\end{proof}
+
+\end{document}
