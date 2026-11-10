@@ -1,0 +1,222 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1109}
+\xeCJKDeclareCharClass{CJK}{"2150 -> "218F}
+\title{高等代数 1109}
+\date{}
+\begin{document}
+\maketitle
+
+\section{向量组的秩(回顾)}
+
+\begin{defn}[极大无关组]
+设 $\alpha_1,\cdots,\alpha_s$ 是 $K^m$ 中的向量组. 若部分组 $\alpha_{i_1},\cdots,\alpha_{i_r}$ 满足
+
+(1) $\alpha_{i_1},\cdots,\alpha_{i_r}$ 线性无关;
+
+(2) $\alpha_{i_1},\cdots,\alpha_{i_r}$ 与 $\alpha_1,\cdots,\alpha_s$ 线性等价,
+
+则称它为 $\alpha_1,\cdots,\alpha_s$ 的\textbf{极大无关组}. 任意一个极大无关组所含向量的个数称为向量组的\textbf{秩}, 记作 $\operatorname{rank}(\alpha_1,\cdots,\alpha_s)$.
+\end{defn}
+
+\begin{rem}[从子空间看]
+$\alpha_1,\cdots,\alpha_s$ 生成 $K^m$ 的一个子空间
+\[
+L(\alpha_1,\cdots,\alpha_s)=\Bigl\{\sum_{i=1}^{s}k_i\alpha_i\ \Big|\ k_i\in K,\ i=1,\cdots,s\Bigr\} .
+\]
+$L(\alpha_1,\cdots,\alpha_s)$ 一定存在基; \textbf{极大无关组就是 $L$ 的一组基}, 而向量组的秩就是 $L$ 的维数.
+\end{rem}
+
+\textbf{问题}: 如何求向量组的极大无关组与秩?
+
+\section{矩阵的秩}
+
+设 $A\in M_{m,n}(K)$, 即 $A$ 是数域 $K$ 上的 $m\times n$ 矩阵:
+\[
+A=\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1n}\\
+a_{21}&a_{22}&\cdots&a_{2n}\\
+\vdots&\vdots&&\vdots\\
+a_{m1}&a_{m2}&\cdots&a_{mn}
+\end{pmatrix}.
+\]
+
+把每一列看成一个列向量:
+\[
+\alpha_j=\begin{pmatrix}a_{1j}\\a_{2j}\\\vdots\\a_{mj}\end{pmatrix}\in K^m,
+\qquad\text{则有}\quad A=(\alpha_1,\alpha_2,\cdots,\alpha_n),
+\]
+称向量组 $\alpha_1,\cdots,\alpha_n$ 的秩为矩阵 $A$ 的\textbf{列秩}.
+
+把每一行看成一个行向量:
+\[
+\beta_i=(a_{i1},a_{i2},\cdots,a_{in})\in K^n,
+\qquad\text{则有}\quad A=\begin{pmatrix}\beta_1\\\beta_2\\\vdots\\\beta_m\end{pmatrix},
+\]
+称向量组 $\beta_1,\cdots,\beta_m$ 的秩为矩阵 $A$ 的\textbf{行秩}.
+
+\textbf{问题}: 行秩与列秩是否相等?
+
+\begin{prop}
+若向量组 (Ⅰ) 与 (Ⅱ) 线性等价, 则 $\operatorname{rank}(\text{Ⅰ})=\operatorname{rank}(\text{Ⅱ})$.
+\end{prop}
+
+(理由: (Ⅰ) 的极大无关组与 (Ⅱ) 的极大无关组线性等价, 而两个线性等价的线性无关组所含向量个数相同.)
+
+\begin{defn}[初等变换]
+(1) 两行(列)对换: $r_i\leftrightarrow r_j$ ($c_i\leftrightarrow c_j$);
+
+(2) 某行(列)乘一个非零常数: $k\,r_i$ ($k\,c_j$, $k\neq0$);
+
+(3) 某行(列)的倍数加到另一行(列): $r_j+k\,r_i$ ($c_j+k\,c_i$).
+\end{defn}
+
+\begin{thm}
+列变换不改变矩阵的列秩.
+\end{thm}
+
+\begin{proof}
+只需逐一验证三种列变换.
+
+(1) 对换两列: 列向量组只是换了次序, 秩不变;
+
+(2) 某列乘非零常数 $k$: 新列 $c\alpha_j$ 与旧列 $\alpha_j$ 互相线性表示, 两组线性等价, 秩不变;
+
+(3) 某列的倍数加到另一列: 设 $\alpha'_j=\alpha_j+k\alpha_i$, 其余列不变. 新组显然能被旧组线性表示; 反过来 $\alpha_j=\alpha'_j-k\alpha'_i$ 也能被新组表示, 故两组线性等价, 秩不变.
+\end{proof}
+
+\begin{cor}
+行变换不改变行秩(把"列"全换成"行"即证).
+\end{cor}
+
+\begin{thm}
+行变换不改变矩阵的列秩.
+\end{thm}
+
+\begin{proof}
+记 $A=(\alpha_1,\cdots,\alpha_n)$, 经行变换得 $A'=(\alpha'_1,\cdots,\alpha'_n)$. 取 $\alpha_1,\cdots,\alpha_n$ 的极大无关组 $\alpha_{i_1},\cdots,\alpha_{i_r}$, 目标: 证明 $\alpha'_{i_1},\cdots,\alpha'_{i_r}$ 是 $\alpha'_1,\cdots,\alpha'_n$ 的极大无关组.
+
+\textbf{(1) 线性无关.} 记 $B=(\alpha_{i_1},\cdots,\alpha_{i_r})$, $B'=(\alpha'_{i_1},\cdots,\alpha'_{i_r})$. 由于 $B'$ 是 $B$ 经\textbf{同样的}初等行变换得到的, 向量方程
+\[
+x_1\alpha'_{i_1}+\cdots+x_r\alpha'_{i_r}=0
+\quad\text{与}\quad
+x_1\alpha_{i_1}+\cdots+x_r\alpha_{i_r}=0
+\]
+同解(行变换不改变方程组的解集). 后一个方程只有零解, 故前一个也只有零解, 即 $\alpha'_{i_1},\cdots,\alpha'_{i_r}$ 线性无关.
+
+\textbf{(2) 与列组等价.} 任取 $\alpha'_j$, 要证它能被 $\alpha'_{i_1},\cdots,\alpha'_{i_r}$ 线性表示, 即方程
+\[
+x_1\alpha'_{i_1}+\cdots+x_r\alpha'_{i_r}=\alpha'_j
+\]
+有解. 记 $C=(\alpha_{i_1},\cdots,\alpha_{i_r},\alpha_j)$, $C'=(\alpha'_{i_1},\cdots,\alpha'_{i_r},\alpha'_j)$, 同样由"$C'$ 是 $C$ 的行变换像"知两方程同解; 而
+\[
+x_1\alpha_{i_1}+\cdots+x_r\alpha_{i_r}=\alpha_j
+\]
+有解($\alpha_j$ 在极大无关组生成的空间中), 故前一方程也有解.
+
+于是 $\alpha'_{i_1},\cdots,\alpha'_{i_r}$ 线性无关且与 $\alpha'_1,\cdots,\alpha'_n$ 线性等价, 从而是极大无关组, 列秩不变.
+\end{proof}
+
+\section{矩阵的转置}
+
+\begin{defn}[转置]
+矩阵 $A=(a_{ij})\in M_{m,n}(K)$ 的转置为
+\[
+A^{T}=(a_{ji})\in M_{n,m}(K).
+\]
+\end{defn}
+
+不难看出: \textbf{$A$ 的列向量组正是 $A^{T}$ 的行向量组}. 于是
+\[
+\text{行秩}(A)=\text{列秩}(A^{T}),\qquad
+\text{列秩}(A)=\text{行秩}(A^{T}),
+\]
+而"行变换不改变列秩"与"列变换不改变行秩"在转置下互换.
+
+\begin{thm}
+矩阵的初等变换不改变行秩和列秩.
+\end{thm}
+
+\begin{proof}[证明思路]
+若 $A=0$, 行秩 $=$ 列秩 $=0$. 若 $A\neq0$, 不妨设 $a_{11}\neq0$, 用初等变换把第一行、第一列化为 $(1,0,\cdots,0)$ 形式, 再对右下角的 $(m-1)\times(n-1)$ 子矩阵重复, 最终化为标准形
+\[
+\begin{pmatrix}I_r&0\\0&0\end{pmatrix},
+\]
+其行秩 $=$ 列秩 $=r$. 由前面的命题, 初等变换不改变行秩与列秩, 故 $A$ 的行秩 $=$ 列秩 $=r$.
+\end{proof}
+
+\begin{thm}
+矩阵的行秩等于列秩.
+\end{thm}
+
+称矩阵的行秩或列秩为矩阵的\textbf{秩}, 记作 $r(A)$.
+
+\begin{cor}
+若 $A=(\alpha_1,\cdots,\alpha_n)$ 经初等\textbf{行}变换变为 $A'=(\alpha'_1,\cdots,\alpha'_n)$, 则
+\[
+k_1\alpha_1+\cdots+k_n\alpha_n=0
+\iff
+k_1\alpha'_1+\cdots+k_n\alpha'_n=0 .
+\]
+即行变换\textbf{保持列向量组之间的线性关系}, 于是可以先化行阶梯形矩阵, 再直接读出极大无关组与秩.
+\end{cor}
+
+\begin{exa}
+$\alpha_1=(2,0,1,1)$, $\alpha_2=(-1,-1,-1,-1)$, $\alpha_3=(1,-1,0,0)$, $\alpha_4=(0,-2,-1,-1)$,
+\[
+A=(\alpha_1,\alpha_2,\alpha_3,\alpha_4)=
+\begin{pmatrix}
+2&-1&1&0\\
+0&-1&-1&-2\\
+1&-1&0&-1\\
+1&-1&0&-1
+\end{pmatrix}
+\ \xrightarrow{\ \text{行变换}\ }\
+\begin{pmatrix}
+1&0&1&1\\
+0&1&1&2\\
+0&0&0&0\\
+0&0&0&0
+\end{pmatrix}.
+\]
+故 $r(A)=2$, $\alpha_1,\alpha_2$ 是一组极大无关组; 且由行阶梯形可见
+\[
+\alpha_3=\alpha_1+\alpha_2,\qquad \alpha_4=\alpha_1+2\alpha_2 .
+\]
+\end{exa}
+
+\end{document}
