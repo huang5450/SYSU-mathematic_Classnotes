@@ -1,0 +1,230 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1111}
+\xeCJKDeclareCharClass{CJK}{"2150 -> "218F}
+\title{高等代数 1111}
+\date{}
+\begin{document}
+\maketitle
+
+\section{矩阵的秩(补完)}
+
+设 $A\in M_{m,n}(K)$,
+\[
+A=(\alpha_1,\cdots,\alpha_n)=
+\begin{pmatrix}\beta_1\\\vdots\\\beta_m\end{pmatrix}.
+\]
+上一讲已证 $A$ 的行秩 $=$ $A$ 的列秩, 记作 $A$ 的\textbf{秩} $r(A)$. 这里把"为什么"补齐:
+
+\textbf{(1) 列秩在三种初等列变换下不变}(逐条看列向量组):
+
+\begin{enumerate}
+\item 对换两列: $\alpha_1,\cdots,\alpha_i,\cdots,\alpha_j,\cdots,\alpha_n\mapsto\alpha_1,\cdots,\alpha_j,\cdots,\alpha_i,\cdots,\alpha_n$;
+\item 某列乘非零常数 $k$: $\alpha_1,\cdots,\alpha_i,\cdots\mapsto\alpha_1,\cdots,k\alpha_i,\cdots$;
+\item 某列的倍数加到另一列: $\alpha_j\mapsto\alpha_j+k\alpha_i$.
+\end{enumerate}
+
+三种情形下新旧列组都\textbf{线性等价}, 故列秩不变(命题: 线性等价 $\Rightarrow$ 秩相等).
+
+\textbf{(2) 列秩在行变换下不变}: 设 $A=(\alpha_1,\cdots,\alpha_n)\xrightarrow{\ \text{行}\ }A'=(\alpha'_1,\cdots,\alpha'_n)$, 则齐次方程组
+\[
+AX=0\quad\text{与}\quad A'X=0\ \text{同解},
+\]
+即
+\[
+k_1\alpha_1+\cdots+k_n\alpha_n=0
+\iff
+k_1\alpha'_1+\cdots+k_n\alpha'_n=0 .
+\]
+于是两者的列组有\textbf{完全相同的线性关系}, 特别地极大无关组的列标相同, 列秩不变.
+
+\textbf{(3) 转置}: $A$ 的列秩 $=$ $A^{T}$ 的行秩. 由 (2) 得"行秩在列变换下不变", 由 (1) 得"行秩在行变换下不变".
+
+\textbf{(4) 化为标准形}: 经初等变换 $A$ 可化为
+\[
+D=\begin{pmatrix}I_r&0\\0&0\end{pmatrix}\ (m=n),\qquad
+D=\begin{pmatrix}I_r&0\end{pmatrix}\ (m<n),\qquad
+D=\begin{pmatrix}I_r\\0\end{pmatrix}\ (m>n),
+\]
+其行秩 $=$ 列秩 $=r$. 由 (1)(2)(3), 初等变换不改变行秩与列秩, 故 $A$ 的行秩 $=$ 列秩 $=r$.
+
+\textbf{从阶梯形看}: $A\xrightarrow{\ \text{行}\ }$ 阶梯形矩阵 $J$. 在 $J$ 中, \textbf{非主元行是主元行的线性组合}(例如 $x_1\beta_1+x_2\beta_2=\beta_3$), 而各主元行线性无关, 故
+\[
+r(A)=\text{主元个数}=\text{非零行数}.
+\]
+
+\section{线性方程组}
+
+\begin{equation*}
+\begin{cases}
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1,\\
+a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2,\\
+\qquad\qquad\cdots\cdots\\
+a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=b_m.
+\end{cases}
+\tag{$*$}
+\end{equation*}
+
+要回答三个问题:
+
+(1) 方程组是否有解? 如何判断?
+
+(2) 若有解, 如何求解(Gauss 消元法)?
+
+(3) 解与解之间关系如何?
+
+\begin{defn}[解向量与解集]
+如果 $x_1=k_1,\cdots,x_n=k_n$ 是 $(*)$ 的解, 则称 $(k_1,\cdots,k_n)\in K^n$ 是 $(*)$ 的\textbf{解向量}; $(*)$ 的全体解向量构成的集合称为\textbf{解集}.
+\end{defn}
+
+\textbf{齐次情形}　若 $b_1=\cdots=b_m=0$, 则 $(*)$ 变成\textbf{齐次线性方程组}
+\begin{equation*}
+\begin{cases}
+a_{11}x_1+\cdots+a_{1n}x_n=0,\\
+\qquad\qquad\cdots\cdots\\
+a_{m1}x_1+\cdots+a_{mn}x_n=0,
+\end{cases}
+\tag{$**$}
+\end{equation*}
+其解集记为 $W\subseteq K^n$.
+
+\begin{prop}
+$(**)$ 的解集 $W$ 满足
+
+(1) $\mathbf 0\in W$, 且 $W\neq\varnothing$;
+
+(2) 若 $\eta_1,\eta_2\in W$, 则 $\eta_1+\eta_2\in W$(对加法封闭);
+
+(3) $\forall\eta\in W$, $k\in K$, 则 $k\eta\in W$(对数乘封闭).
+
+于是 \textbf{$W$ 是 $K^n$ 的一个子空间}(齐次解空间).
+\end{prop}
+
+\begin{defn}[基础解系]
+如果 $W$ 中的向量组 $\eta_1,\cdots,\eta_s$ 满足
+
+(1) $\eta_1,\cdots,\eta_s$ 线性无关;
+
+(2) 任意解向量 $\eta\in W$ 都能被 $\eta_1,\cdots,\eta_s$ 线性表示,
+
+则称 $\eta_1,\cdots,\eta_s$ 是 $(**)$ 的一个\textbf{基础解系}.
+\end{defn}
+
+基础解系本质上就是\textbf{解空间 $W$ 的一组基}.
+
+\section{两个预备命题}
+
+\begin{thm}[表示唯一]
+若 $\alpha_1,\cdots,\alpha_s$ 线性无关, 且 $\beta\in L(\alpha_1,\cdots,\alpha_s)$, 则 $\beta$ 的表示方式\textbf{唯一}: 若
+\[
+\beta=k_1\alpha_1+\cdots+k_s\alpha_s=\lambda_1\alpha_1+\cdots+\lambda_s\alpha_s,
+\]
+则 $k_1=\lambda_1,\cdots,k_s=\lambda_s$.
+\end{thm}
+
+\begin{proof}
+两式相减得
+\[
+\mathbf 0=(k_1-\lambda_1)\alpha_1+\cdots+(k_s-\lambda_s)\alpha_s ,
+\]
+而 $\alpha_1,\cdots,\alpha_s$ 线性无关, 故各系数为零.
+\end{proof}
+
+\begin{cor}
+$\alpha_1,\cdots,\alpha_s$ 线性无关 $\iff$ 零向量的表示唯一, 即
+\[
+\mathbf 0=k_1\alpha_1+\cdots+k_s\alpha_s
+\]
+只有零解 $k_1=\cdots=k_s=0$.
+\end{cor}
+
+\section{基础解系的构造}
+
+把 $(**)$ 写成向量形式
+\[
+x_1\alpha_1+\cdots+x_n\alpha_n=\mathbf 0,\qquad
+\alpha_j=\begin{pmatrix}a_{1j}\\\vdots\\a_{mj}\end{pmatrix}\in K^m .
+\]
+
+若 $\alpha_1,\cdots,\alpha_n$ 线性无关, 则 $(**)$ \textbf{只有零解}(推论 1).
+
+若 $\alpha_1,\cdots,\alpha_n$ 线性相关, 不妨设 $\alpha_1,\cdots,\alpha_r$($r<n$)是\textbf{极大无关组}. 于是后面 $n-r$ 个向量都能唯一地被它们表示:
+\[
+\alpha_{r+1}=a_{11}\alpha_1+\cdots+a_{1r}\alpha_r,\quad
+\cdots,\quad
+\alpha_n=a_{n-r,1}\alpha_1+\cdots+a_{n-r,r}\alpha_r .
+\]
+
+令
+\[
+\eta_1=\bigl(-a_{11},\cdots,-a_{1r},\ 1,\ 0,\cdots,0\bigr),
+\]
+\[
+\eta_2=\bigl(-a_{21},\cdots,-a_{2r},\ 0,\ 1,\cdots,0\bigr),\quad\cdots,\quad
+\eta_{n-r}=\bigl(-a_{n-r,1},\cdots,-a_{n-r,r},\ 0,\cdots,0,\ 1\bigr),
+\]
+即"前 $r$ 个分量取负的表示系数, 后面依次放一个 $1$". 则
+
+\textbf{(1) $\eta_1,\cdots,\eta_{n-r}$ 都是解向量}: 直接代入即得(相当于把 $\alpha_{r+i}$ 的表示移项).
+
+\textbf{(2) $\eta_1,\cdots,\eta_{n-r}$ 线性无关}: 设 $x_1\eta_1+\cdots+x_{n-r}\eta_{n-r}=\mathbf 0$, 由于
+\[
+x_1\eta_1+\cdots+x_{n-r}\eta_{n-r}
+=\bigl(*,\cdots,*,x_1,x_2,\cdots,x_{n-r}\bigr)=\mathbf 0,
+\]
+比较后 $n-r$ 个分量得 $x_1=\cdots=x_{n-r}=0$.
+
+\textbf{(3) 任一解向量都能被它们表示}: 设 $\eta=(k_1,\cdots,k_r,k_{r+1},\cdots,k_n)$ 是解向量, 令
+\[
+\eta'=\eta-k_{r+1}\eta_1-\cdots-k_n\eta_{n-r},
+\]
+则 $\eta'$ 仍是解向量(解空间对线性组合封闭), 且 $\eta'$ 的后 $n-r$ 个分量全为 $0$, 即
+\[
+\eta'=(c_1,\cdots,c_r,0,\cdots,0).
+\]
+代入 $(**)$ 得 $c_1\alpha_1+\cdots+c_r\alpha_r=\mathbf 0$; 而 $\alpha_1,\cdots,\alpha_r$ 线性无关, 故 $c_1=\cdots=c_r=0$, 即 $\eta'=\mathbf 0$. 于是
+\[
+\eta=k_{r+1}\eta_1+\cdots+k_n\eta_{n-r}.
+\]
+
+\textbf{结论}　$\eta_1,\cdots,\eta_{n-r}$ 是 $(**)$ 的一个基础解系, 从而
+\[
+\dim W=n-r=n-r(A).
+\]
+这就是"\textbf{基础解系所含向量个数 $=n-r(A)$}"的来源.
+
+\end{document}
