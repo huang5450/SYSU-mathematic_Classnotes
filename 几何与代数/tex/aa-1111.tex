@@ -87,6 +87,14 @@ D=\begin{pmatrix}I_r\\0\end{pmatrix}\ (m>n),
 r(A)=\text{主元个数}=\text{非零行数}.
 \]
 
+\begin{rem}[引子: 为什么 $\beta_3$ 能被 $\beta_1,\beta_2$ 表示?]
+在阶梯形里这是"一眼可见"的, 但凭什么说原矩阵的行之间也有同样的关系?
+
+严格地说, "$\beta_3=x_1\beta_1+x_2\beta_2$"是一个关于 $x_1,x_2$ 的线性方程组(按列写出 $n$ 个方程). 所以"能不能表示、系数是多少"本质上是"\textbf{方程组有没有解、解是什么}"的问题.
+
+这就把我们引向下一节的三个问题, 尤其是第三个: \textbf{解与解之间是什么关系?} —— 把解集的结构搞清楚, 这类"表示"问题就一并解决了.
+\end{rem}
+
 \section{线性方程组}
 
 \begin{equation*}
@@ -141,15 +149,13 @@ $(**)$ 的解集 $W$ 满足
 
 (2) 任意解向量 $\eta\in W$ 都能被 $\eta_1,\cdots,\eta_s$ 线性表示,
 
-则称 $\eta_1,\cdots,\eta_s$ 是 $(**)$ 的一个\textbf{基础解系}.
+则称 $\eta_1,\cdots,\eta_s$ 是 $(**)$ 的一个\textbf{基础解系}. 基础解系本质上就是\textbf{解空间 $W$ 的一组基}.
 \end{defn}
-
-基础解系本质上就是\textbf{解空间 $W$ 的一组基}.
 
 \section{两个预备命题}
 
 \begin{thm}[表示唯一]
-若 $\alpha_1,\cdots,\alpha_s$ 线性无关, 且 $\beta\in L(\alpha_1,\cdots,\alpha_s)$, 则 $\beta$ 的表示方式\textbf{唯一}: 若
+若 $\alpha_1,\cdots,\alpha_s$ 线性无关, 且 $\beta$ 可被它们线性表示, 则表示法\textbf{唯一}: 若
 \[
 \beta=k_1\alpha_1+\cdots+k_s\alpha_s=\lambda_1\alpha_1+\cdots+\lambda_s\alpha_s,
 \]
@@ -165,66 +171,84 @@ $(**)$ 的解集 $W$ 满足
 \end{proof}
 
 \begin{cor}
-$\alpha_1,\cdots,\alpha_s$ 线性无关 $\iff$ 零向量的表示唯一, 即
-\[
-\mathbf 0=k_1\alpha_1+\cdots+k_s\alpha_s
-\]
-只有零解 $k_1=\cdots=k_s=0$.
+$\alpha_1,\cdots,\alpha_s$ 线性无关 $\iff$ 零向量的表示唯一, 即 $\mathbf 0=k_1\alpha_1+\cdots+k_s\alpha_s$ 只有零解.
 \end{cor}
 
-\section{基础解系的构造}
+\section{基础解系存在, 且含 $n-r$ 个向量}
 
-把 $(**)$ 写成向量形式
+\begin{thm}
+数域 $K$ 上的齐次线性方程组 $(**)$ 的\textbf{基础解系存在}, 且任一基础解系所含解向量的个数为
 \[
-x_1\alpha_1+\cdots+x_n\alpha_n=\mathbf 0,\qquad
-\alpha_j=\begin{pmatrix}a_{1j}\\\vdots\\a_{mj}\end{pmatrix}\in K^m .
+n-r,\qquad n=\text{未知量个数},\quad r=r(A).
 \]
+\end{thm}
 
-若 $\alpha_1,\cdots,\alpha_n$ 线性无关, 则 $(**)$ \textbf{只有零解}(推论 1).
+\begin{proof}
+分两步: 先说明"任意两个基础解系含向量的个数相同", 再具体找出一个含 $n-r$ 个向量的基础解系.
 
-若 $\alpha_1,\cdots,\alpha_n$ 线性相关, 不妨设 $\alpha_1,\cdots,\alpha_r$($r<n$)是\textbf{极大无关组}. 于是后面 $n-r$ 个向量都能唯一地被它们表示:
-\[
-\alpha_{r+1}=a_{11}\alpha_1+\cdots+a_{1r}\alpha_r,\quad
-\cdots,\quad
-\alpha_n=a_{n-r,1}\alpha_1+\cdots+a_{n-r,r}\alpha_r .
-\]
+\textbf{第一步(个数与选法无关).} 若 $(**)$ 有两个基础解系, 它们都线性等价于解空间 $W$, 故彼此线性等价, 于是秩相等; 又两者都线性无关, 故所含向量个数相同, 都等于 $W$ 的维数.
 
-令
-\[
-\eta_1=\bigl(-a_{11},\cdots,-a_{1r},\ 1,\ 0,\cdots,0\bigr),
-\]
-\[
-\eta_2=\bigl(-a_{21},\cdots,-a_{2r},\ 0,\ 1,\cdots,0\bigr),\quad\cdots,\quad
-\eta_{n-r}=\bigl(-a_{n-r,1},\cdots,-a_{n-r,r},\ 0,\cdots,0,\ 1\bigr),
-\]
-即"前 $r$ 个分量取负的表示系数, 后面依次放一个 $1$". 则
+\textbf{第二步(构造).} 设 $A$ 的列向量组为 $\alpha_1,\cdots,\alpha_n$, 把 $(**)$ 写成向量形式
+\begin{equation*}
+x_1\alpha_1+x_2\alpha_2+\cdots+x_n\alpha_n=\mathbf 0 .\tag{2}
+\end{equation*}
+若 $r=n$, 则 $\alpha_1,\cdots,\alpha_n$ 线性无关, $(**)$ 只有零解, 基础解系含 $n-r=0$ 个向量, 定理成立.
 
-\textbf{(1) $\eta_1,\cdots,\eta_{n-r}$ 都是解向量}: 直接代入即得(相当于把 $\alpha_{r+i}$ 的表示移项).
+下设 $r<n$, 不妨设 $\alpha_1,\cdots,\alpha_r$ 是 $A$ 的列向量组的一个\textbf{极大线性无关部分组}.
 
-\textbf{(2) $\eta_1,\cdots,\eta_{n-r}$ 线性无关}: 设 $x_1\eta_1+\cdots+x_{n-r}\eta_{n-r}=\mathbf 0$, 由于
-\[
-x_1\eta_1+\cdots+x_{n-r}\eta_{n-r}
-=\bigl(*,\cdots,*,x_1,x_2,\cdots,x_{n-r}\bigr)=\mathbf 0,
-\]
-比较后 $n-r$ 个分量得 $x_1=\cdots=x_{n-r}=0$.
+因 $\alpha_{r+1},\cdots,\alpha_n$ 都能被 $\alpha_1,\cdots,\alpha_r$ 线性表示, 故它们的\textbf{任一线性组合}也能被 $\alpha_1,\cdots,\alpha_r$ 线性表示; 再由命题 1, 表示法\textbf{唯一}. 于是:
 
-\textbf{(3) 任一解向量都能被它们表示}: 设 $\eta=(k_1,\cdots,k_r,k_{r+1},\cdots,k_n)$ 是解向量, 令
+任给 $x_{r+1},\cdots,x_n$ 一组数 $x_{r+1}=k_{r+1},\cdots,x_n=k_n$, 向量
 \[
-\eta'=\eta-k_{r+1}\eta_1-\cdots-k_n\eta_{n-r},
+\beta=-(k_{r+1}\alpha_{r+1}+\cdots+k_n\alpha_n)
 \]
-则 $\eta'$ 仍是解向量(解空间对线性组合封闭), 且 $\eta'$ 的后 $n-r$ 个分量全为 $0$, 即
+能唯一地表成 $\alpha_1,\cdots,\alpha_r$ 的线性组合, 即存在唯一的一组 $k_1,\cdots,k_r$, 使
 \[
-\eta'=(c_1,\cdots,c_r,0,\cdots,0).
+k_1\alpha_1+\cdots+k_r\alpha_r+k_{r+1}\alpha_{r+1}+\cdots+k_n\alpha_n=\mathbf 0 .
 \]
-代入 $(**)$ 得 $c_1\alpha_1+\cdots+c_r\alpha_r=\mathbf 0$; 而 $\alpha_1,\cdots,\alpha_r$ 线性无关, 故 $c_1=\cdots=c_r=0$, 即 $\eta'=\mathbf 0$. 于是
+这说明两件事:
+
+(i) 方程 (2) 中未知量 $x_{r+1},\cdots,x_n$ 任取一组值, 都能\textbf{唯一确定} $x_1,\cdots,x_r$, 从而得到 $(**)$ 的一组解;
+
+(ii) $(**)$ 的两组解 $\eta_1,\eta_2$, 若在 $x_{r+1},\cdots,x_n$ 处取值相同, 则 $\eta_1=\eta_2$.
+
+称 $x_{r+1},\cdots,x_n$ 为\textbf{自由未知量}. 让某个自由未知量取 $1$、其余取 $0$, 就得到一组解向量; 共得 $n-r$ 个:
+\begin{equation*}
+\begin{aligned}
+\eta_1&=(*,\cdots,*,1,0,\cdots,0),\\
+\eta_2&=(*,\cdots,*,0,1,\cdots,0),\\
+&\ \ \cdots\cdots\\
+\eta_{n-r}&=(*,\cdots,*,0,\cdots,0,1),
+\end{aligned}\tag{3}
+\end{equation*}
+其中 $*$ 表示由 (i) 唯一确定的值(不必具体写出).
+
+\textbf{第三步: 验证它们构成基础解系.}
+
+(a) \textbf{线性无关.} 设 $k_1\eta_1+\cdots+k_{n-r}\eta_{n-r}=\mathbf 0$. 由 (3),
+\[
+k_1\eta_1+\cdots+k_{n-r}\eta_{n-r}=(*,\cdots,*,k_1,k_2,\cdots,k_{n-r})=\mathbf 0 ,
+\]
+比较后 $n-r$ 个分量即得 $k_1=\cdots=k_{n-r}=0$.
+
+(b) \textbf{任一解都能被它们表示.} 设 $\eta=(k_1,\cdots,k_r,k_{r+1},\cdots,k_n)$ 是任一解, 令
+\[
+\eta'=k_{r+1}\eta_1+\cdots+k_n\eta_{n-r}=(*,\cdots,*,k_{r+1},\cdots,k_n).
+\]
+$\eta'$ 也是解(解空间对线性组合封闭), 且它与 $\eta$ 在自由未知量处取值相同; 由 (ii) 得 $\eta=\eta'$, 即
 \[
 \eta=k_{r+1}\eta_1+\cdots+k_n\eta_{n-r}.
 \]
 
-\textbf{结论}　$\eta_1,\cdots,\eta_{n-r}$ 是 $(**)$ 的一个基础解系, 从而
-\[
-\dim W=n-r=n-r(A).
-\]
-这就是"\textbf{基础解系所含向量个数 $=n-r(A)$}"的来源.
+综上, $\eta_1,\cdots,\eta_{n-r}$ 是 $(**)$ 的一个基础解系, 恰好含 $n-r$ 个向量.
+\end{proof}
+
+\begin{cor}
+设齐次方程组系数矩阵 $A$ 的秩为 $r$, 未知量个数为 $n$: 若 $r=n$, 则只有零解; 若 $r<n$, 则必有非零解. 即\textbf{齐次方程组有非零解 $\iff r(A)<n$}.
+\end{cor}
+
+\begin{rem}
+定理的证明本身就是求法: 找到一组自由未知量, 让它们轮流取 $1$(其余取 $0$), 依次解出其余未知量, 就得到基础解系. 实际操作时: 把系数矩阵化成\textbf{阶梯形}, 阶梯的个数就是 $r$, 剩下的 $n-r$ 列对应的未知量取作自由未知量. ※ 自由未知量的选取必须按这个法则, 否则求出的解向量组未必是基础解系.
+\end{rem}
 
 \end{document}
