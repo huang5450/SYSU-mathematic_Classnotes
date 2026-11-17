@@ -1,0 +1,136 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1112}
+\xeCJKDeclareCharClass{CJK}{"2150 -> "218F}
+\title{高等代数 1112}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Recall: 线性方程组}
+
+\begin{equation*}
+\begin{cases}
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1,\\
+a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2,\\
+\qquad\qquad\cdots\cdots\\
+a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=b_m,
+\end{cases}
+\tag{$*$}
+\end{equation*}
+系数矩阵 $A=(a_{ij})_{m\times n}$, 增广矩阵 $\bar A$.
+
+\subsection{齐次情形}
+
+若 $b_1=\cdots=b_m=0$, 则称为\textbf{齐次线性方程组}.
+
+\begin{thm}
+齐次线性方程组的基础解系一定存在, 且任何一个基础解系中的解向量个数为 $n-r(A)$.
+\end{thm}
+
+从向量空间的角度看: 解集是 $K^n$ 的一个\textbf{子空间}, 其维数为 $n-r(A)$.
+
+\subsection{非齐次情形}
+
+记其解集为 $W$(可能为空). 方程组可写作向量方程
+\[
+x_1\alpha_1+x_2\alpha_2+\cdots+x_n\alpha_n=\beta,\qquad
+\alpha_j=\begin{pmatrix}a_{1j}\\\vdots\\a_{mj}\end{pmatrix},\quad
+\beta=\begin{pmatrix}b_1\\\vdots\\b_m\end{pmatrix}.
+\]
+于是
+\[
+(*)\ \text{有解}\iff\beta\ \text{能被}\ \alpha_1,\cdots,\alpha_n\ \text{线性表示},
+\]
+而每一个表示的系数就组成方程组的一个解向量.
+
+\begin{thm}
+若 $\alpha_1,\cdots,\alpha_s$ 线性无关, 且 $\alpha_1,\cdots,\alpha_s,\beta$ 线性相关, 则 $\beta$ 能被 $\alpha_1,\cdots,\alpha_s$ 线性表示.
+\end{thm}
+
+\begin{proof}
+由 $\alpha_1,\cdots,\alpha_s,\beta$ 线性相关, 存在不全为零的数 $k_1,\cdots,k_s$ 与 $k_0$, 使
+\[
+k_1\alpha_1+\cdots+k_s\alpha_s+k_0\beta=\mathbf 0 .
+\]
+若 $k_0=0$, 则 $k_1\alpha_1+\cdots+k_s\alpha_s=\mathbf 0$; 而 $\alpha_1,\cdots,\alpha_s$ 线性无关, 故 $k_1=\cdots=k_s=0$, 与"不全为零"矛盾. 因此 $k_0\neq0$, 于是
+\[
+\beta=-\frac{1}{k_0}\bigl(k_1\alpha_1+\cdots+k_s\alpha_s\bigr),
+\]
+即 $\beta$ 能被线性表示.
+\end{proof}
+
+\begin{thm}
+$W\neq\varnothing\iff r(A)=r(\bar A)$.
+\end{thm}
+
+\begin{proof}
+\textbf{必要性.} 若 $W\neq\varnothing$, 则 $\beta$ 能被 $\alpha_1,\cdots,\alpha_n$ 线性表示. 取 $\alpha_1,\cdots,\alpha_n$ 的极大无关组, 则 $\beta$ 也能被该极大无关组线性表示, 说明该线性无关组也是 $\alpha_1,\cdots,\alpha_n,\beta$ 的极大无关组, 故 $r(A)=r(\bar A)$.
+
+\textbf{充分性.} 取 $\alpha_1,\cdots,\alpha_n$ 的极大无关组 $\alpha_{i_1},\cdots,\alpha_{i_r}$. 若 $W=\varnothing$, 则 $\beta$ 不能被 $\alpha_{i_1},\cdots,\alpha_{i_r}$ 线性表示, 于是 $\alpha_{i_1},\cdots,\alpha_{i_r},\beta$ 线性无关, 从而
+\[
+\operatorname{rank}(\alpha_{i_1},\cdots,\alpha_{i_r},\beta)>\operatorname{rank}(\alpha_{i_1},\cdots,\alpha_{i_r}),
+\]
+与 $r(A)=r(\bar A)$ 矛盾.
+\end{proof}
+
+\begin{thm}[$W$ 的性质]
+设 $W_0$ 是对应齐次方程组的解空间.
+
+(1) 若 $\eta_1,\eta_2\in W$, 则 $\eta_1-\eta_2\in W_0$;
+
+(2) 若 $\eta_1\in W$, $\eta_0\in W_0$, 则 $\eta_1+\eta_0\in W$.
+\end{thm}
+
+于是, 若 $\eta\in W$, 则
+\[
+W=\eta+W_0\triangleq\{\eta+\eta_0\mid \eta_0\in W_0\}.
+\]
+※ $W$ 一般**不是**子空间: 它首先就不含零向量.
+
+\begin{thm}
+若 $r(A)=r(\bar A)$, 则
+
+(1) $r(A)=n$(即 $W_0=\{\mathbf 0\}$)时, $W$ 只有一个元素, 方程组有\textbf{唯一解};
+
+(2) $r(A)<n$ 时, $W$ 中有无穷多个元素, 且每个元素都可表示为
+\[
+\text{特解}+\text{齐次方程组基础解系的线性组合}.
+\]
+\end{thm}
+
+\end{document}

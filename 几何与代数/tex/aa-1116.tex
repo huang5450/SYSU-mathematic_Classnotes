@@ -1,0 +1,293 @@
+% ==STYLE-BEGIN==
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm,top=2.3cm,bottom=2.3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---- 版式 ----
+\linespread{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.6em}
+\setlist{nosep,leftmargin=2em}
+
+% ---- 页眉 ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursename}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---- 定理环境：中文用正体，标题加粗，按小节共用一条流水号 ----
+\newtheoremstyle{cnthm}{0.7em}{0.7em}{\normalfont}{}{\bfseries}{}{0.5em}{}
+\theoremstyle{cnthm}
+\newtheorem{thm}{定理}[section]
+\newtheorem{lem}[thm]{引理}
+\newtheorem{prop}[thm]{命题}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{defn}[thm]{定义}
+\newtheorem{rem}[thm]{注}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{猜想}
+\renewcommand{\proofname}{\bfseries 证明}
+\providecommand{\coursename}{}
+% ==STYLE-END==
+\renewcommand{\coursename}{高等代数\,·\,1116}
+\xeCJKDeclareCharClass{CJK}{"2150 -> "218F}
+\title{高等代数 1116}
+\date{}
+\begin{document}
+\maketitle
+
+\section{线性方程组(回顾)}
+
+\begin{equation*}
+\begin{cases}
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1,\\
+a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2,\\
+\qquad\qquad\cdots\cdots\\
+a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=b_m,
+\end{cases}
+\tag{$*$}
+\end{equation*}
+
+\textbf{Q}: (1) 方程组是否有解? (2) 如何求解? (3) 解集的结构如何?
+
+\textbf{A}: (1) 阶梯形方程组中没有矛盾方程; (2) Gauss 消元法——用自由未知量表示主未知量.
+
+\section{同一个问题的三种语言}
+
+本节要建立三套彼此等价的语言, 可以从任意一套翻译到另外两套.
+
+\subsection{语言一: $m$ 维向量空间 $K^m$}
+
+$(*)$ $\iff$ 向量方程
+\[
+x_1\alpha_1+x_2\alpha_2+\cdots+x_n\alpha_n=\beta .
+\]
+由此可以把解析几何里的概念全部引进来: 线性组合、线性表示、线性相关/无关; 极大无关组、秩; 子空间及其基与维数.
+\[
+(*)\ \text{有解}\iff\beta\ \text{可被}\ \alpha_1,\cdots,\alpha_n\ \text{线性表示}
+\iff \beta\in L(\alpha_1,\cdots,\alpha_n).
+\]
+
+若 $\beta=\mathbf 0$: 取 $\alpha_1,\cdots,\alpha_n$ 的极大无关组, 再把多余的向量用极大无关组表示; \textbf{每一个表示就给出一个解向量}, 这些解向量构成一个\textbf{基础解系}.
+
+\subsection{语言二: 矩阵}
+
+增广矩阵 $\bar A$ 经初等行变换化为(简化)行阶梯形矩阵, 于是
+\[
+(*)\ \text{有解}\iff\text{最后一列无主元}\iff r(A)=r(\bar A).
+\]
+若 $\beta=\mathbf 0$, 则
+\[
+(*)\ \text{有非零解}\iff r(A)<n .
+\]
+
+\subsection{语言三: 矩阵代数}
+
+下面把"矩阵"本身当作运算对象来研究——这是继方程组、向量之后的第三套语言.
+
+\section{矩阵代数}
+
+\begin{defn}[矩阵]
+数域 $K$ 上 $mn$ 个数排成的一个 $m$ 行 $n$ 列的数表
+\[
+\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1n}\\
+a_{21}&a_{22}&\cdots&a_{2n}\\
+\vdots&\vdots&&\vdots\\
+a_{m1}&a_{m2}&\cdots&a_{mn}
+\end{pmatrix}
+\]
+称为 $K$ 上的一个 $m\times n$ 矩阵. $K$ 上全体 $m\times n$ 矩阵记为 $M_{m,n}(K)$.
+\end{defn}
+
+\begin{rem}
+(1) 矩阵一般用 $A,B,C,P,Q$ 表示; 元素用 $a,b,c$ 表示. 例如 $A$ 的第 $i$ 行与第 $j$ 列交叉处的元素用 $a_{ij}$ 表示, 也可用 $A(i,j)$;
+
+(2) 若 $A$ 的元素全是 $0$, 则称 $A$ 是 $O$ 矩阵, 记作 $O$;
+
+(3) 如果 $A\in M_{m,n}(K)$ 且 $m=n$, 则称 $A$ 为 $n$ 阶方阵, 全体 $n$ 阶方阵记为 $M_n(K)$.
+\end{rem}
+
+\section{矩阵的加法与数乘}
+
+设 $A=(a_{ij})\in M_{m,n}(K)$, $B=(b_{ij})\in M_{m,n}(K)$, $k\in K$.
+
+\begin{defn}[加法与数乘]
+(1) \textbf{加法}: $A+B\triangleq(a_{ij}+b_{ij})\in M_{m,n}(K)$;
+
+(2) \textbf{数乘}: $kA\triangleq(ka_{ij})\in M_{m,n}(K)$.
+\end{defn}
+
+\begin{thm}
+$(M_{m,n}(K),+,\cdot)$ 是一个线性空间, 其中
+\[
+-A\triangleq(-a_{ij}),\qquad A-B\triangleq A+(-B).
+\]
+\end{thm}
+
+\textbf{同构}　把 $A=(a_{ij})$ 的 $mn$ 个元素按顺序排成一列, 就得到 $K^{mn}$ 中的一个向量, 且加法、数乘一一对应, 故
+\[
+(M_{m,n}(K),+,\cdot)\cong(K^{mn},+,\cdot).
+\]
+
+\section{矩阵的乘法}
+
+\textbf{动机}　线性方程组可以写成"$ax=b$"的形状:
+\[
+\begin{cases}
+a_{11}x_1+\cdots+a_{1n}x_n=b_1,\\
+\qquad\cdots\cdots\\
+a_{m1}x_1+\cdots+a_{mn}x_n=b_m
+\end{cases}
+\iff
+AX=\beta,
+\]
+其中
+\[
+A=(a_{ij}),\qquad X=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix},\qquad
+\beta=\begin{pmatrix}b_1\\\vdots\\b_m\end{pmatrix}.
+\]
+为了让这个写法成立, 需要定义矩阵与向量的乘法.
+
+\subsection{矩阵与向量相乘}
+
+\begin{defn}
+设 $A=(a_{ij})\in M_{m,n}(K)$, $X=(x_1,x_2,\cdots,x_n)^{\mathrm T}\in M_{n,1}(K)$, 定义
+\[
+AX=
+\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1n}\\
+a_{21}&a_{22}&\cdots&a_{2n}\\
+\vdots&\vdots&&\vdots\\
+a_{m1}&a_{m2}&\cdots&a_{mn}
+\end{pmatrix}
+\begin{pmatrix}x_1\\x_2\\\vdots\\x_n\end{pmatrix}
+\triangleq
+\begin{pmatrix}
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n\\
+a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n\\
+\vdots\\
+a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n
+\end{pmatrix}.
+\]
+\end{defn}
+
+\textbf{条件}: $A$ 的列数 $=$ $X$ 的行数.
+
+\subsection{矩阵与矩阵相乘}
+
+\begin{defn}
+设 $A\in M_{m,n}(K)$, $B\in M_{n,s}(K)$. 把 $B$ 按列分块 $B=(B_1,B_2,\cdots,B_s)$, 定义
+\[
+AB=A(B_1,B_2,\cdots,B_s)\triangleq(AB_1,AB_2,\cdots,AB_s).
+\]
+\end{defn}
+
+\textbf{条件}: $A$ 的列数 $=$ $B$ 的行数.
+
+若 $A=(a_{ij})\in M_{m,n}(K)$, $B=(b_{ij})\in M_{n,s}(K)$, 则 $AB\in M_{m,s}(K)$, 且
+\[
+AB=
+\begin{pmatrix}
+\sum\limits_{k=1}^{n}a_{1k}b_{k1}&\cdots&\sum\limits_{k=1}^{n}a_{1k}b_{ks}\\
+\vdots&&\vdots\\
+\sum\limits_{k=1}^{n}a_{mk}b_{k1}&\cdots&\sum\limits_{k=1}^{n}a_{mk}b_{ks}
+\end{pmatrix}.
+\]
+单独看每个元素: \textbf{$AB$ 的 $(i,j)$ 元 $=$ $A$ 的第 $i$ 行与 $B$ 的第 $j$ 列对应相乘再相加}:
+\[
+(AB)(i,j)=(a_{i1},a_{i2},\cdots,a_{in})
+\begin{pmatrix}b_{1j}\\b_{2j}\\\vdots\\b_{nj}\end{pmatrix}
+=\sum_{k=1}^{n}a_{ik}b_{kj}.
+\]
+
+\section{矩阵乘法的性质}
+
+\begin{thm}
+(1) $(AB)C=A(BC)$(结合律);
+
+(2) $A(B+C)=AB+AC$(左分配律);
+
+(3) $k(AB)=(kA)B=A(kB)$;
+
+(4) $(AB)^{\mathrm T}=B^{\mathrm T}A^{\mathrm T}$, $(A+B)^{\mathrm T}=A^{\mathrm T}+B^{\mathrm T}$.
+\end{thm}
+
+\begin{proof}[(1) 结合律]
+设 $A\in M_{m,n}(K)$, $B\in M_{n,s}(K)$, $C\in M_{s,t}(K)$.
+\[
+\bigl((AB)C\bigr)(i,j)=\sum_{k=1}^{s}(AB)(i,k)\,C(k,j)
+=\sum_{k=1}^{s}\Bigl(\sum_{l=1}^{n}A(i,l)B(l,k)\Bigr)C(k,j)
+=\sum_{k=1}^{s}\sum_{l=1}^{n}A(i,l)B(l,k)C(k,j),
+\]
+\[
+\bigl(A(BC)\bigr)(i,j)=\sum_{l=1}^{n}A(i,l)(BC)(l,j)
+=\sum_{l=1}^{n}A(i,l)\Bigl(\sum_{k=1}^{s}B(l,k)C(k,j)\Bigr)
+=\sum_{l=1}^{n}\sum_{k=1}^{s}A(i,l)B(l,k)C(k,j).
+\]
+两者只是\textbf{求和次序不同}(有限和可交换), 故相等.
+\end{proof}
+
+\begin{proof}[(4) 转置]
+由定义
+\[
+(AB)^{\mathrm T}(i,j)=(AB)(j,i)=\sum_{k=1}^{n}A(j,k)B(k,i),
+\]
+\[
+(B^{\mathrm T}A^{\mathrm T})(i,j)=\sum_{k=1}^{n}B^{\mathrm T}(i,k)A^{\mathrm T}(k,j)=\sum_{k=1}^{n}B(k,i)A(j,k).
+\]
+两者相等(数的乘法可交换), 故 $(AB)^{\mathrm T}=B^{\mathrm T}A^{\mathrm T}$.
+\end{proof}
+
+\section{注一: 矩阵乘法没有交换律}
+
+$AB\neq BA$ 是常态, 分三种情形:
+
+\begin{enumerate}
+\item $AB$ 与 $BA$ \textbf{不一定同时有意义}(要求 $A$ 的列数 $=$ $B$ 的行数, 同时 $B$ 的列数 $=$ $A$ 的行数, 一般不成立);
+\item 即使都有意义($A\in M_{m,n}(K)$, $B\in M_{n,m}(K)$), 当 $m\neq n$ 时 $AB$ 是 $m$ 阶、$BA$ 是 $n$ 阶, \textbf{阶数都不同};
+\item 即使 $m=n$, 也一般不相等. 例如
+\[
+A=\begin{pmatrix}1&-1\\0&2\end{pmatrix},\qquad
+B=\begin{pmatrix}-1&1\\2&3\end{pmatrix},
+\]
+\[
+AB=\begin{pmatrix}-3&-2\\4&6\end{pmatrix},\qquad
+BA=\begin{pmatrix}-1&3\\2&4\end{pmatrix},\qquad AB\neq BA .
+\]
+\end{enumerate}
+
+\section{注二: 矩阵有零因子}
+
+\[
+AB=O\ \nRightarrow\ A=O\ \text{或}\ B=O .
+\]
+例如
+\[
+A=\begin{pmatrix}1&1\\1&1\end{pmatrix},\qquad
+B=\begin{pmatrix}1&-1\\-1&1\end{pmatrix},\qquad
+AB=\begin{pmatrix}0&0\\0&0\end{pmatrix}.
+\]
+对照:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+对象 & 有没有零因子 & 乘法可交换吗\\
+\hline
+数域 $K$ & 没有($ab=0\Rightarrow a=0$ 或 $b=0$) & 可交换\\
+多项式 & 没有($fg=0\Rightarrow f=0$ 或 $g=0$) & 可交换\\
+\textbf{矩阵} & \textbf{有} & \textbf{不可交换}\\
+函数(复合) & 有 & 不可交换($f\circ g\neq g\circ f$)\\
+\hline
+\end{tabular}
+\end{center}
+
+所以矩阵乘法只有"结合律 $+$ 分配律 $+$ 与数乘相容", 没有交换律、也没有消去律——凡是用到交换律、消去律的推理, 在矩阵里都要重新检查.
+
+\end{document}
