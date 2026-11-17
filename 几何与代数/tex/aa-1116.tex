@@ -41,7 +41,9 @@
 \begin{document}
 \maketitle
 
-\section{线性方程组(回顾)}
+\section{回顾: 方程组与三套语言}
+
+\subsection{线性方程组与三个问题}
 
 \begin{equation*}
 \begin{cases}
@@ -56,10 +58,6 @@ a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=b_m,
 \textbf{Q}: (1) 方程组是否有解? (2) 如何求解? (3) 解集的结构如何?
 
 \textbf{A}: (1) 阶梯形方程组中没有矛盾方程; (2) Gauss 消元法——用自由未知量表示主未知量.
-
-\section{同一个问题的三种语言}
-
-本节要建立三套彼此等价的语言, 可以从任意一套翻译到另外两套.
 
 \subsection{语言一: $m$ 维向量空间 $K^m$}
 
@@ -86,11 +84,9 @@ x_1\alpha_1+x_2\alpha_2+\cdots+x_n\alpha_n=\beta .
 (*)\ \text{有非零解}\iff r(A)<n .
 \]
 
-\subsection{语言三: 矩阵代数}
-
-下面把"矩阵"本身当作运算对象来研究——这是继方程组、向量之后的第三套语言.
-
 \section{矩阵代数}
+
+下面把"矩阵"本身当作运算对象来研究——这是继方程组、向量之后的第三套语言(三套语言中的第三套).
 
 \begin{defn}[矩阵]
 数域 $K$ 上 $mn$ 个数排成的一个 $m$ 行 $n$ 列的数表
@@ -244,7 +240,7 @@ AB=
 两者相等(数的乘法可交换), 故 $(AB)^{\mathrm T}=B^{\mathrm T}A^{\mathrm T}$.
 \end{proof}
 
-\section{注一: 矩阵乘法没有交换律}
+\subsection{注一: 矩阵乘法没有交换律}
 
 $AB\neq BA$ 是常态, 分三种情形:
 
@@ -262,7 +258,7 @@ BA=\begin{pmatrix}-1&3\\2&4\end{pmatrix},\qquad AB\neq BA .
 \]
 \end{enumerate}
 
-\section{注二: 矩阵有零因子}
+\subsection{注二: 矩阵有零因子}
 
 \[
 AB=O\ \nRightarrow\ A=O\ \text{或}\ B=O .
